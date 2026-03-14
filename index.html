@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Google AI Studio App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Global Scroll-to-Top Fix
+      document.addEventListener('DOMContentLoaded', () => {
+        window.scrollTo(0, 0);
+      });
+      
+      // Listen for navigation clicks
+      document.body.addEventListener('click', (e) => {
+        const target = e.target.closest('button, a');
+        if (target) {
+          const text = target.textContent.trim();
+          const navLinks = ['首页', '果园', '光林市集', '认养', '旅程', '日记', '关于'];
+          if (navLinks.includes(text) || target.closest('nav')) {
+            setTimeout(() => {
+              window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+            }, 50);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
+
