@@ -64,7 +64,7 @@ export function About() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               { name: "林师傅", role: "首席果农", img: "https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E6%9E%97%E5%B8%88%E5%82%85%E5%A4%B4%E5%83%8F.png" },
-              { name: "Sarah Chen", role: "可持续发展总监", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop" },
+              { name: "许沁", role: "可持续发展总监", img: "https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E5%8F%AF%E6%8C%81%E7%BB%AD%E5%8F%91%E5%B1%95%E6%80%BB%E7%9B%91.png" },
               { name: "王博士", role: "农学家", img: "https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E7%8E%8B%E5%8D%9A%E5%A3%AB%E5%A4%B4%E5%83%8F.png" }
             ].map((member, i) => (
               <div key={i} className="text-center">

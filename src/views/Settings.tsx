@@ -26,14 +26,14 @@ export function Settings({ onBack, fontSize, setFontSize }: { onBack: () => void
               type="range" 
               min="12" 
               max="24" 
-              step="4"
+              step="1"
               value={fontSize}
               onChange={(e) => setFontSize(parseInt(e.target.value))}
               className="w-full h-1.5 bg-black/5 rounded-full appearance-none cursor-pointer accent-[#2D463E]"
             />
             <div className="flex justify-between mt-6 text-[10px] uppercase tracking-widest text-black/30 font-bold">
               <span>小 (12PX)</span>
-              <span>标准 (16PX)</span>
+              <span>标准 (18PX)</span>
               <span>大 (24PX)</span>
             </div>
           </div>

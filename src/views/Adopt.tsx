@@ -285,25 +285,25 @@ export function Adopt() {
                 title: "科学守护",
                 subtitle: "Scientific Guardianship",
                 text: "华南农业大学全程技术支持与实时传感器监测，确保每一棵树健康生长，见证科学与自然的完美结合。",
-                image: "https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E7%A7%91%E5%AD%A6%E5%AE%88%E6%8A%A4.png"
+                image: "https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E7%A7%91%E5%AD%A6%E5%AE%88%E6%8A%A4.png?v=2"
               },
               {
                 title: "连接果农",
                 subtitle: "Connect with Farmers",
                 text: "成为扩展社区的一份子，与茂名果农实时互动、分享故事，一起守护这片百年果园。",
-                image: "https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E8%BF%9E%E6%8E%A5%E6%9E%9C%E5%86%9C.png"
+                image: "https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E8%BF%9E%E6%8E%A5%E6%9E%9C%E5%86%9C.png?v=2"
               },
               {
                 title: "实时见证",
                 subtitle: "Witness in Real Time",
                 text: "通过高清直播、每日实拍与成长日记，亲身参与一棵树的完整生命旅程，从开花到结果。",
-                image: "https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E5%AE%9E%E6%97%B6%E8%A7%81%E8%AF%81.png"
+                image: "https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E5%AE%9E%E6%97%B6%E8%A7%81%E8%AF%81.png?v=2"
               },
               {
                 title: "共创未来",
                 subtitle: "Be Part of the Change",
                 text: "您的认养直接支持本地果农与可持续农业，还可选择优雅回购机制，让每一颗果实都成为正向改变的一部分。",
-                image: "https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E5%85%B1%E5%88%9B%E6%9C%AA%E6%9D%A5.png"
+                image: "https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E5%85%B1%E5%88%9B%E6%9C%AA%E6%9D%A5.png?v=2"
               }
             ].map((card, i) => (
               <motion.div 
