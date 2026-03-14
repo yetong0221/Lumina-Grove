@@ -33,7 +33,6 @@ export function Settings({ onBack, fontSize, setFontSize }: { onBack: () => void
             />
             <div className="flex justify-between mt-6 text-[10px] uppercase tracking-widest text-black/30 font-bold">
               <span>小 (12PX)</span>
-              <span>标准 (18PX)</span>
               <span>大 (24PX)</span>
             </div>
           </div>
