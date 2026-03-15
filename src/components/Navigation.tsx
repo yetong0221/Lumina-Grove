@@ -15,6 +15,7 @@ export function Navigation({ currentView, onChangeView }: NavigationProps) {
     { id: 'adopt', label: '认养' },
     { id: 'journey', label: '旅程' },
     { id: 'journal', label: '日记' },
+    { id: 'trees', label: '我的果树' },
     { id: 'about', label: '关于' },
   ];
 

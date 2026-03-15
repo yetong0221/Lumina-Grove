@@ -59,7 +59,7 @@ export function Footer() {
         <div className="border-t border-white/10 pt-12 flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-white/40 uppercase tracking-widest">
           <p>© 2024 Lumina Grove. 保留所有权利。</p>
           <div className="flex items-center gap-2">
-            <span>茂名市农业局支持项目</span>
+            <span>茂名市农业农村局指导 华南农业大学茂名现代农业研究院指导</span>
             <span className="w-1 h-1 bg-lumina-gold rounded-full"></span>
             <span>中国广东</span>
           </div>

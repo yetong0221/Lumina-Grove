@@ -284,15 +284,15 @@ export function Home({ onChangeView }: HomeProps) {
       {/* Trust Bar */}
       <div className="bg-lumina-stone py-6 px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-lumina-green/60 text-xs uppercase tracking-widest">
-          <span>茂名市农业局支持项目</span>
+          <span>茂名市农业农村局指导 华南农业大学茂名现代农业研究院指导</span>
           <div className="flex items-center gap-8">
-            <span>有机认证</span>
+            <span>科学种植</span>
             <span>可持续耕作</span>
-            <span>传统品种</span>
+            <span>特色品种</span>
           </div>
           <div className="flex items-center gap-2 text-red-500 animate-pulse">
             <div className="w-2 h-2 bg-red-500 rounded-full" />
-            <span>果园实况直播中</span>
+            <span>果园实况实拍</span>
           </div>
         </div>
       </div>

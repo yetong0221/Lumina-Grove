@@ -27,6 +27,8 @@ declare global {
   }
 }
 
+import { MyTree } from '@/views/MyTree';
+
 export interface Address {
   id: string;
   name: string;
@@ -39,8 +41,6 @@ export default function App() {
   const [currentView, setCurrentView] = useState('home');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [globalFontSize, setGlobalFontSize] = useState(16);
-  const [hasApiKey, setHasApiKey] = useState(false);
-  const [isCheckingKey, setIsCheckingKey] = useState(true);
   const [addresses, setAddresses] = useState<Address[]>([
     {
       id: '1',
@@ -51,24 +51,6 @@ export default function App() {
     }
   ]);
   const [editingAddress, setEditingAddress] = useState<Address | null>(null);
-
-  useEffect(() => {
-    const checkKey = async () => {
-      if (window.aistudio && window.aistudio.hasSelectedApiKey) {
-        const hasKey = await window.aistudio.hasSelectedApiKey();
-        setHasApiKey(hasKey);
-      }
-      setIsCheckingKey(false);
-    };
-    checkKey();
-  }, []);
-
-  const handleSelectKey = async () => {
-    if (window.aistudio && window.aistudio.openSelectKey) {
-      await window.aistudio.openSelectKey();
-      setHasApiKey(true);
-    }
-  };
 
   // Global Scroll-to-Top Fix
   useEffect(() => {
@@ -84,32 +66,6 @@ export default function App() {
     setToastMessage(message);
     setTimeout(() => setToastMessage(null), 3000);
   };
-
-  if (isCheckingKey) {
-    return <div className="min-h-screen bg-lumina-cream flex items-center justify-center text-lumina-green font-serif text-2xl">Loading...</div>;
-  }
-
-  if (!hasApiKey) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-lumina-cream text-lumina-charcoal">
-        <div className="text-center p-12 bg-white rounded-2xl shadow-xl max-w-lg border border-lumina-stone/20">
-          <h1 className="text-3xl font-serif text-lumina-green mb-6">需要 API Key</h1>
-          <p className="text-lumina-charcoal/70 mb-8 leading-relaxed">
-            本应用使用了 Gemini 3.1 Flash Image Preview 模型，需要您提供自己的 API Key 才能继续使用。
-            请确保您选择的 API Key 属于付费 Google Cloud 项目。
-            <br/><br/>
-            <a href="https://ai.google.dev/gemini-api/docs/billing" target="_blank" rel="noreferrer" className="text-lumina-terracotta underline underline-offset-4 hover:text-lumina-green transition-colors">了解计费详情</a>
-          </p>
-          <button 
-            onClick={handleSelectKey}
-            className="px-8 py-4 bg-lumina-green text-white rounded-full hover:bg-lumina-terracotta transition-colors font-bold tracking-widest text-sm uppercase"
-          >
-            选择 API Key
-          </button>
-        </div>
-      </div>
-    );
-  }
 
   const renderView = () => {
     switch (currentView) {
@@ -136,15 +92,7 @@ export default function App() {
           </div>
         );
       case 'trees':
-        return (
-          <div className="pt-48 px-6 text-center min-h-screen">
-            <h2 className="text-3xl font-serif text-[#2D463E] mb-6">我的果树</h2>
-            <div className="bg-white rounded-[32px] p-12 shadow-sm border border-black/5">
-              <p className="text-black/40 text-lg">您还没有认养果树</p>
-            </div>
-            <button onClick={() => setCurrentView('my')} className="mt-12 text-[#2D463E] font-bold text-lg underline underline-offset-8">返回个人中心</button>
-          </div>
-        );
+        return <MyTree />;
       default: return <Home onChangeView={setCurrentView} />;
     }
   };
