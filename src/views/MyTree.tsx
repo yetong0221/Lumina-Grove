@@ -25,8 +25,12 @@ import {
   Heart,
   Plus,
   ArrowRight,
-  Gift
+  Gift,
+  Gamepad2
 } from 'lucide-react';
+
+import { FruitCatchGame } from '@/components/FruitCatchGame';
+import { LuckySpinGame } from '@/components/LuckySpinGame';
 
 type Variety = 'lychee' | 'longan' | 'mango' | 'huangpi';
 type GrowthStage = 'seedling' | 'growth' | 'fruiting' | 'harvest';
@@ -363,10 +367,11 @@ const TreeIllustration = ({
 
 // --- Main Page Component ---
 
-export function MyTree() {
-  const [activeTab, setActiveTab] = useState<'tasks' | 'shop' | 'coupons' | 'achievements' | 'social'>('tasks');
-  const [variety, setVariety] = useState<Variety>('lychee');
-  const [treeName, setTreeName] = useState('我的荔枝树');
+export function MyTree({ onChangeView }: { onChangeView?: (view: string) => void }) {
+  const [activeTab, setActiveTab] = useState<'tasks' | 'shop' | 'coupons' | 'achievements' | 'games'>('tasks');
+  const [isAdopted, setIsAdopted] = useState(false);
+  const [variety, setVariety] = useState<Variety>('huangpi');
+  const [treeName, setTreeName] = useState('我的果树');
   const [isEditingName, setIsEditingName] = useState(false);
   const [points, setPoints] = useState(500);
   const [waterLevel, setWaterLevel] = useState(60);
@@ -374,7 +379,21 @@ export function MyTree() {
   const [activeBg, setActiveBg] = useState('https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E8%8C%82%E5%90%8D%E4%B9%A1%E6%9D%91%E7%94%B0%E5%9B%AD.png');
   const [equippedAccs, setEquippedAccs] = useState<string[]>([]);
   const [checkedIn, setCheckedIn] = useState(false);
-  const [coPlantProgress, setCoPlantProgress] = useState(35);
+  const [readDiary, setReadDiary] = useState(false);
+  const [waterCount, setWaterCount] = useState(0);
+  const [fertilized, setFertilized] = useState(false);
+  const [pestControlled, setPestControlled] = useState(false);
+  const [toast, setToast] = useState<string | null>(null);
+  const [flashingButton, setFlashingButton] = useState<string | null>(null);
+  const [showCatchGame, setShowCatchGame] = useState(false);
+  const [showSpinGame, setShowSpinGame] = useState(false);
+
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
   
   // Achievements State
   const [achievements, setAchievements] = useState<Achievement[]>([
@@ -401,6 +420,7 @@ export function MyTree() {
       setPoints(prev => prev - 10);
       setWaterLevel(prev => Math.min(100, prev + 15));
       setGrowth(prev => Math.min(100, prev + 2));
+      setWaterCount(prev => prev + 1);
       triggerEffect('water');
     }
   };
@@ -409,6 +429,7 @@ export function MyTree() {
     if (points >= 30) {
       setPoints(prev => prev - 30);
       setGrowth(prev => Math.min(100, prev + 8));
+      setFertilized(true);
       triggerEffect('fertilize');
     }
   };
@@ -417,6 +438,7 @@ export function MyTree() {
     if (points >= 20) {
       setPoints(prev => prev - 20);
       setGrowth(prev => Math.min(100, prev + 5));
+      setPestControlled(true);
       triggerEffect('pest');
     }
   };
@@ -442,8 +464,117 @@ export function MyTree() {
     }
   };
 
+  if (!isAdopted) {
+    return (
+      <div className="min-h-screen bg-[#FFFBF5] pt-28 pb-32 px-4 md:px-6 font-sans">
+        <div className="max-w-5xl mx-auto text-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-12"
+          >
+            <h1 className="text-4xl md:text-5xl font-bold text-orange-950 mb-4">开启您的云养之旅</h1>
+            <p className="text-orange-900/60 text-lg">选择一棵心仪的茂名特色果树，见证它的成长与收获</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            {(['huangpi', 'longan', 'mango', 'lychee'] as Variety[]).map((v, i) => (
+              <motion.div 
+                key={v}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-white rounded-[40px] p-8 shadow-xl border border-orange-50 hover:shadow-2xl transition-all group cursor-pointer"
+                onClick={() => {
+                  setVariety(v);
+                  setTreeName(`我的${VARIETY_CONFIG[v].label}树`);
+                  setIsAdopted(true);
+                }}
+              >
+                <div className="aspect-square bg-orange-50 rounded-[32px] mb-6 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform">
+                  <div className="w-40 h-40">
+                    <TreeIllustration variety={v} growth={100} isShaking={false} equippedAccs={[]} />
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-orange-950 mb-2">{VARIETY_CONFIG[v].label}</h3>
+                <p className="text-sm text-orange-900/40 mb-6">茂名特色品种，口感极佳</p>
+                <button className="w-full py-3 bg-orange-500 text-white rounded-2xl font-bold group-hover:bg-orange-600 transition-colors shadow-lg shadow-orange-100">
+                  立即领养
+                </button>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="bg-orange-100/30 rounded-[48px] p-10 border border-orange-100 flex flex-col md:flex-row items-center gap-10">
+            <div className="flex-1 text-left">
+              <h4 className="text-2xl font-bold text-orange-950 mb-4">领养计划说明</h4>
+              <ul className="space-y-3 text-orange-900/70">
+                <li className="flex items-center gap-3"><Check size={18} className="text-green-500" /> 100% 真实果树映射，线上线下同步成长</li>
+                <li className="flex items-center gap-3"><Check size={18} className="text-green-500" /> 积分可兑换真实鲜果与周边好礼</li>
+                <li className="flex items-center gap-3"><Check size={18} className="text-green-500" /> 助力茂名乡村振兴，共享丰收喜悦</li>
+              </ul>
+            </div>
+            <div className="w-full md:w-64 aspect-video bg-white rounded-3xl shadow-lg flex items-center justify-center text-orange-300">
+              <CloudSun size={64} />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const handleShare = async () => {
+    const shareData = {
+      title: '我的果园',
+      text: `快来看看我的${treeName}，已经成长到${growth}%啦！`,
+      url: window.location.href,
+    };
+
+    try {
+      if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+        await navigator.share(shareData);
+      } else {
+        throw new Error('Web Share API not supported');
+      }
+    } catch (err) {
+      console.log('Share failed, using clipboard fallback:', err);
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        setToast('分享链接已复制到剪贴板');
+      } catch (clipErr) {
+        console.error('Clipboard copy failed:', clipErr);
+        setToast('分享失败，请手动复制链接');
+      }
+    }
+  };
+
+  const handleSwitchVariety = (key: Variety) => {
+    setVariety(key);
+    const newName = `我的${VARIETY_CONFIG[key].label}树`;
+    setTreeName(newName);
+    setToast(`当前果树已切换为：${VARIETY_CONFIG[key].label}`);
+  };
+
+  const triggerFlash = (btnId: string) => {
+    setFlashingButton(btnId);
+    setTimeout(() => setFlashingButton(null), 2000);
+  };
+
   return (
     <div className="min-h-screen bg-[#FFFBF5] pt-20 pb-32 px-4 md:px-6 font-sans selection:bg-orange-200">
+      <AnimatePresence>
+        {toast && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, x: '-50%' }}
+            animate={{ opacity: 1, y: 0, x: '-50%' }}
+            exit={{ opacity: 0, y: 50, x: '-50%' }}
+            className="fixed bottom-32 left-1/2 z-50 bg-orange-950 text-white px-6 py-3 rounded-2xl shadow-2xl font-bold text-sm"
+          >
+            {toast}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <div className="max-w-5xl mx-auto">
         
         {/* Top Bar - Profile & Points */}
@@ -467,17 +598,21 @@ export function MyTree() {
 
           <div className="flex gap-2">
             <button 
+              id="checkin-btn"
               onClick={handleCheckIn}
               disabled={checkedIn}
               className={`px-5 py-2.5 rounded-2xl text-xs font-bold transition-all shadow-md ${
                 checkedIn 
                 ? 'bg-orange-50 text-orange-300 cursor-not-allowed' 
                 : 'bg-orange-500 text-white hover:bg-orange-600 active:scale-95 shadow-orange-200'
-              }`}
+              } ${flashingButton === 'checkin' ? 'animate-pulse ring-4 ring-orange-300' : ''}`}
             >
               {checkedIn ? '已签到' : '每日签到 +50'}
             </button>
-            <button className="p-2.5 bg-white text-orange-600 rounded-2xl border border-orange-100 hover:bg-orange-50 transition-colors shadow-sm">
+            <button 
+              onClick={handleShare}
+              className="p-2.5 bg-white text-orange-600 rounded-2xl border border-orange-100 hover:bg-orange-50 transition-colors shadow-sm"
+            >
               <Share2 size={20} />
             </button>
           </div>
@@ -505,7 +640,7 @@ export function MyTree() {
               {Object.entries(VARIETY_CONFIG).map(([key, val]) => (
                 <button
                   key={key}
-                  onClick={() => setVariety(key as Variety)}
+                  onClick={() => handleSwitchVariety(key as Variety)}
                   className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all ${
                     variety === key ? 'bg-green-500 text-white shadow-lg scale-110' : 'bg-white text-green-800 hover:bg-green-50'
                   }`}
@@ -600,14 +735,15 @@ export function MyTree() {
             {/* Action Buttons */}
             <div className="flex gap-5">
               {[
-                { icon: Droplets, color: 'bg-blue-500', label: '浇水', cost: 10, action: handleWater },
-                { icon: Sparkles, color: 'bg-orange-500', label: '施肥', cost: 30, action: handleFertilize },
-                { icon: Bug, color: 'bg-green-600', label: '除虫', cost: 20, action: handlePestControl },
+                { id: 'water', icon: Droplets, color: 'bg-blue-500', label: '浇水', cost: 10, action: handleWater },
+                { id: 'fertilize', icon: Sparkles, color: 'bg-orange-500', label: '施肥', cost: 30, action: handleFertilize },
+                { id: 'pest', icon: Bug, color: 'bg-green-600', label: '除虫', cost: 20, action: handlePestControl },
               ].map((btn, i) => (
                 <button 
                   key={i}
+                  id={`action-${btn.id}`}
                   onClick={btn.action}
-                  className="group relative w-20 h-20 bg-white text-orange-950 rounded-[32px] flex flex-col items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all border-4 border-white"
+                  className={`group relative w-20 h-20 bg-white text-orange-950 rounded-[32px] flex flex-col items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all border-4 border-white ${flashingButton === btn.id ? 'animate-pulse ring-4 ring-orange-300' : ''}`}
                 >
                   <div className={`w-12 h-12 ${btn.color} text-white rounded-2xl flex items-center justify-center mb-1 shadow-lg`}>
                     <btn.icon size={28} />
@@ -620,34 +756,6 @@ export function MyTree() {
               ))}
             </div>
           </div>
-
-          {/* Co-plant Indicator */}
-          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 md:left-auto md:right-10 md:translate-x-0">
-             <div className="bg-white/90 backdrop-blur-md px-6 py-3 rounded-3xl shadow-xl border border-orange-100 flex items-center gap-4">
-                <div className="flex -space-x-3">
-                  {[1, 2, 3].map(i => (
-                    <img 
-                      key={i}
-                      src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${i}`} 
-                      className="w-8 h-8 rounded-full border-2 border-white bg-orange-50"
-                      alt="Friend"
-                    />
-                  ))}
-                  <div className="w-8 h-8 rounded-full border-2 border-white bg-green-500 flex items-center justify-center text-white">
-                    <Plus size={14} />
-                  </div>
-                </div>
-                <div>
-                  <p className="text-[10px] font-bold text-orange-900/40 uppercase tracking-widest">合种进度</p>
-                  <div className="flex items-center gap-2">
-                    <div className="w-24 h-1.5 bg-orange-100 rounded-full overflow-hidden">
-                      <div className="h-full bg-green-500" style={{ width: `${coPlantProgress}%` }} />
-                    </div>
-                    <span className="text-xs font-bold text-green-600">{coPlantProgress}%</span>
-                  </div>
-                </div>
-             </div>
-          </div>
         </div>
 
         {/* Interactive Tabs Section */}
@@ -658,7 +766,7 @@ export function MyTree() {
               { id: 'shop', label: '装扮', icon: Palette },
               { id: 'coupons', label: '优惠券', icon: Ticket },
               { id: 'achievements', label: '成就', icon: Medal },
-              { id: 'social', label: '社交', icon: Users },
+              { id: 'games', label: '游戏', icon: Gamepad2 },
             ].map(tab => (
               <button
                 key={tab.id}
@@ -688,10 +796,28 @@ export function MyTree() {
                   <div className="space-y-4">
                     <h4 className="text-xl font-bold text-orange-950 mb-6">每日任务</h4>
                     {[
-                      { name: '每日签到', reward: 50, done: checkedIn },
-                      { name: '累计浇水3次', reward: 30, done: false },
-                      { name: '帮好友除虫', reward: 20, done: false },
-                      { name: '分享果园动态', reward: 40, done: false },
+                      { name: '每日签到', reward: 50, done: checkedIn, action: () => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        triggerFlash('checkin');
+                      }},
+                      { name: '累计浇水3次', reward: 30, done: waterCount >= 3, action: () => {
+                        document.getElementById('action-water')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        triggerFlash('water');
+                      }},
+                      { name: '施肥任务', reward: 30, done: fertilized, action: () => {
+                        document.getElementById('action-fertilize')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        triggerFlash('fertilize');
+                      }},
+                      { name: '除虫任务', reward: 20, done: pestControlled, action: () => {
+                        document.getElementById('action-pest')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        triggerFlash('pest');
+                      }},
+                      { name: '阅读日记', reward: 20, done: readDiary, action: () => {
+                        setReadDiary(true);
+                        setPoints(prev => prev + 20);
+                        if (onChangeView) onChangeView('journal');
+                      }},
+                      { name: '分享果园动态', reward: 40, done: false, action: handleShare },
                     ].map((task, i) => (
                       <div key={i} className="flex items-center justify-between p-5 bg-orange-50/30 rounded-3xl border border-orange-100/30">
                         <div className="flex items-center gap-4">
@@ -703,7 +829,7 @@ export function MyTree() {
                             <p className="text-xs font-bold text-orange-400">奖励: {task.reward} 积分</p>
                           </div>
                         </div>
-                        {!task.done && <button className="text-xs font-bold text-orange-600 bg-white px-4 py-2 rounded-xl shadow-sm hover:shadow-md transition-all">去完成</button>}
+                        {!task.done && <button onClick={task.action} className="text-xs font-bold text-orange-600 bg-white px-4 py-2 rounded-xl shadow-sm hover:shadow-md transition-all">去完成</button>}
                       </div>
                     ))}
                   </div>
@@ -740,7 +866,7 @@ export function MyTree() {
                   exit={{ opacity: 0, y: -10 }}
                   className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6"
                 >
-                  {VARIETY_CONFIG[variety].decorations.map((acc, i) => (
+                  {VARIETY_CONFIG[variety].decorations.concat(['🎀', '🌟', '💎', '🎨', '🎵', '🌈']).map((acc, i) => (
                     <div key={i} className="group flex flex-col items-center p-6 bg-orange-50/30 rounded-[32px] border border-orange-100/30 hover:bg-white hover:shadow-xl transition-all">
                       <div className="w-24 h-24 bg-white rounded-3xl flex items-center justify-center text-5xl mb-4 shadow-sm group-hover:scale-110 transition-transform">
                         {acc}
@@ -764,6 +890,7 @@ export function MyTree() {
                   {[
                     { name: '茂名乡村', img: 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E8%8C%82%E5%90%8D%E4%B9%A1%E6%9D%91%E7%94%B0%E5%9B%AD.png' },
                     { name: '海边', img: 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E6%B5%B7%E8%BE%B9.png' },
+                    { name: '森林晨雾', img: 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E6%A3%AE%E6%9E%97%E6%99%A8%E9%9B%BE.png' },
                   ].map((bg, i) => (
                     <div key={i} className="group flex flex-col items-center p-6 bg-orange-50/30 rounded-[32px] border border-orange-100/30 hover:bg-white hover:shadow-xl transition-all">
                       <div className="w-24 h-24 rounded-3xl overflow-hidden mb-4 shadow-sm group-hover:scale-110 transition-transform">
@@ -871,48 +998,59 @@ export function MyTree() {
                 </motion.div>
               )}
 
-              {activeTab === 'social' && (
+              {activeTab === 'games' && (
                 <motion.div 
-                  key="social"
+                  key="games"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="space-y-6"
+                  className="space-y-8"
                 >
                   <div className="flex items-center justify-between mb-8">
-                    <h4 className="text-xl font-bold text-orange-950">好友列表</h4>
-                    <button className="flex items-center gap-2 text-sm font-bold text-orange-600 bg-orange-50 px-4 py-2 rounded-xl hover:bg-orange-100 transition-all">
-                      <Plus size={16} /> 邀请好友
-                    </button>
+                    <h4 className="text-xl font-bold text-orange-950">果园小游戏</h4>
+                    <div className="flex items-center gap-2 text-sm font-bold text-orange-600 bg-orange-50 px-4 py-2 rounded-xl">
+                      <Coins size={16} /> 玩游戏赢积分
+                    </div>
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {[
-                      { name: '林小茂', level: 12, tree: '荔枝树', needsHelp: true },
-                      { name: '张大果', level: 8, tree: '芒果树', needsHelp: false },
-                      { name: '王小农', level: 15, tree: '龙眼树', needsHelp: true },
-                      { name: '李阿婆', level: 20, tree: '黄皮树', needsHelp: false },
-                    ].map((friend, i) => (
-                      <div key={i} className="flex items-center justify-between p-5 bg-white rounded-3xl border border-orange-100 shadow-sm hover:shadow-md transition-all">
-                        <div className="flex items-center gap-4">
-                          <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${friend.name}`} className="w-14 h-14 rounded-2xl bg-orange-50" alt={friend.name} />
-                          <div>
-                            <p className="font-bold text-orange-950">{friend.name}</p>
-                            <p className="text-xs text-orange-900/60">Lv.{friend.level} · {friend.tree}</p>
-                          </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Fruit Catch Mini Game */}
+                    <div className="bg-gradient-to-br from-green-400 to-green-600 rounded-[40px] p-8 text-white relative overflow-hidden shadow-xl group">
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-xl" />
+                      <div className="relative z-10">
+                        <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6 backdrop-blur-md">
+                          <Gift size={32} />
                         </div>
-                        <div className="flex gap-2">
-                          {friend.needsHelp && (
-                            <button className="p-2.5 bg-blue-50 text-blue-600 rounded-xl hover:bg-blue-100 transition-colors" title="帮他浇水">
-                              <Droplets size={20} />
-                            </button>
-                          )}
-                          <button className="p-2.5 bg-orange-50 text-orange-600 rounded-xl hover:bg-orange-100 transition-colors">
-                            <ArrowRight size={20} />
-                          </button>
-                        </div>
+                        <h5 className="text-2xl font-bold mb-2">接果实大作战</h5>
+                        <p className="text-green-50 text-sm mb-6 opacity-80">在规定时间内接住掉落的果实，接得越多积分越高！</p>
+                        <button 
+                          onClick={() => setShowCatchGame(true)}
+                          className="bg-white text-green-600 px-8 py-3 rounded-2xl font-bold hover:bg-green-50 transition-all shadow-lg"
+                        >
+                          开始游戏
+                        </button>
                       </div>
-                    ))}
+                    </div>
+
+                    {/* Lucky Spin Mini Game */}
+                    <div className="bg-gradient-to-br from-orange-400 to-orange-600 rounded-[40px] p-8 text-white relative overflow-hidden shadow-xl group">
+                      <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2 blur-xl" />
+                      <div className="relative z-10">
+                        <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6 backdrop-blur-md">
+                          <Sparkles size={32} />
+                        </div>
+                        <h5 className="text-2xl font-bold mb-2">果园大转盘</h5>
+                        <p className="text-orange-50 text-sm mb-6 opacity-80">每天一次免费抽奖机会，最高可获得 500 积分奖励！</p>
+                        <button 
+                          onClick={() => setShowSpinGame(true)}
+                          className="bg-white text-orange-600 px-8 py-3 rounded-2xl font-bold hover:bg-orange-50 transition-all shadow-lg"
+                        >
+                          立即抽奖
+                        </button>
+                      </div>
+                    </div>
                   </div>
+
                 </motion.div>
               )}
             </AnimatePresence>
@@ -925,6 +1063,34 @@ export function MyTree() {
           <p className="mt-2">助力乡村振兴 · 品味正宗岭南</p>
         </div>
       </div>
+
+      <AnimatePresence>
+        {showCatchGame && (
+          <FruitCatchGame 
+            onClose={() => setShowCatchGame(false)}
+            onFinish={(score) => {
+              setPoints(p => p + score);
+              setShowCatchGame(false);
+              setToast(`游戏结束！获得 ${score} 积分`);
+            }}
+          />
+        )}
+        {showSpinGame && (
+          <LuckySpinGame 
+            onClose={() => setShowSpinGame(false)}
+            onFinish={(reward) => {
+              if (reward.type === 'points') {
+                setPoints(p => p + reward.value);
+              } else if (reward.type === 'decoration') {
+                setEquippedAccs(prev => [...prev, reward.value]);
+              }
+              // Coupons logic could be added here if there was a wallet state
+              setShowSpinGame(false);
+              setToast(`恭喜获得 ${reward.label}！`);
+            }}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

@@ -92,7 +92,7 @@ export default function App() {
           </div>
         );
       case 'trees':
-        return <MyTree />;
+        return <MyTree onChangeView={setCurrentView} />;
       default: return <Home onChangeView={setCurrentView} />;
     }
   };
