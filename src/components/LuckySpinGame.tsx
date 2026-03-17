@@ -8,26 +8,26 @@ interface LuckySpinGameProps {
 }
 
 const REWARDS = [
-  { type: 'points' as const, value: 100, label: '100 积分', color: 'bg-orange-100' }, // 1
-  { type: 'points' as const, value: 200, label: '200 积分', color: 'bg-orange-200' }, // 2
-  { type: 'points' as const, value: 100, label: '100 积分', color: 'bg-orange-100' }, // 3
-  { type: 'decoration' as const, value: '💎', label: '隐藏款装扮', color: 'bg-yellow-200' }, // 4
-  { type: 'points' as const, value: 100, label: '100 积分', color: 'bg-orange-100' }, // 5
-  { type: 'points' as const, value: 200, label: '200 积分', color: 'bg-orange-200' }, // 6
-  { type: 'points' as const, value: 100, label: '100 积分', color: 'bg-orange-100' }, // 7
-  { type: 'coupon' as const, value: 'c2', label: '10元优惠券', color: 'bg-orange-300' }, // 8
-  { type: 'points' as const, value: 100, label: '100 积分', color: 'bg-orange-100' }, // 9
-  { type: 'points' as const, value: 200, label: '200 积分', color: 'bg-orange-200' }, // 10
-  { type: 'points' as const, value: 100, label: '100 积分', color: 'bg-orange-100' }, // 11
-  { type: 'points' as const, value: 200, label: '200 积分', color: 'bg-orange-200' }, // 12
-  { type: 'points' as const, value: 100, label: '100 积分', color: 'bg-orange-100' }, // 13
-  { type: 'decoration' as const, value: '💎', label: '隐藏款装扮', color: 'bg-yellow-200' }, // 14
-  { type: 'points' as const, value: 100, label: '100 积分', color: 'bg-orange-100' }, // 15
-  { type: 'points' as const, value: 200, label: '200 积分', color: 'bg-orange-200' }, // 16
-  { type: 'points' as const, value: 100, label: '100 积分', color: 'bg-orange-100' }, // 17
-  { type: 'coupon' as const, value: 'c2', label: '10元优惠券', color: 'bg-orange-300' }, // 18
-  { type: 'points' as const, value: 100, label: '100 积分', color: 'bg-orange-100' }, // 19
-  { type: 'coupon' as const, value: 'sample', label: '荔枝试吃装', color: 'bg-yellow-400' }, // 20
+  { type: 'points' as const, value: 100, label: '100 积分', color: '#FFEDD5' }, // orange-100
+  { type: 'points' as const, value: 200, label: '200 积分', color: '#FED7AA' }, // orange-200
+  { type: 'points' as const, value: 100, label: '100 积分', color: '#FFEDD5' },
+  { type: 'decoration' as const, value: '💎', label: '隐藏款装扮', color: '#FEF08A' }, // yellow-200
+  { type: 'points' as const, value: 100, label: '100 积分', color: '#FFEDD5' },
+  { type: 'points' as const, value: 200, label: '200 积分', color: '#FED7AA' },
+  { type: 'points' as const, value: 100, label: '100 积分', color: '#FFEDD5' },
+  { type: 'coupon' as const, value: 'c2', label: '10元优惠券', color: '#FDBA74' }, // orange-300
+  { type: 'points' as const, value: 100, label: '100 积分', color: '#FFEDD5' },
+  { type: 'points' as const, value: 200, label: '200 积分', color: '#FED7AA' },
+  { type: 'points' as const, value: 100, label: '100 积分', color: '#FFEDD5' },
+  { type: 'points' as const, value: 200, label: '200 积分', color: '#FED7AA' },
+  { type: 'points' as const, value: 100, label: '100 积分', color: '#FFEDD5' },
+  { type: 'decoration' as const, value: '💎', label: '隐藏款装扮', color: '#FEF08A' },
+  { type: 'points' as const, value: 100, label: '100 积分', color: '#FFEDD5' },
+  { type: 'points' as const, value: 200, label: '200 积分', color: '#FED7AA' },
+  { type: 'points' as const, value: 100, label: '100 积分', color: '#FFEDD5' },
+  { type: 'coupon' as const, value: 'c2', label: '10元优惠券', color: '#FDBA74' },
+  { type: 'points' as const, value: 100, label: '100 积分', color: '#FFEDD5' },
+  { type: 'coupon' as const, value: 'sample', label: '荔枝试吃装', color: '#FACC15' }, // yellow-400
 ];
 
 export const LuckySpinGame: React.FC<LuckySpinGameProps> = ({ onClose, onFinish }) => {
@@ -43,25 +43,33 @@ export const LuckySpinGame: React.FC<LuckySpinGameProps> = ({ onClose, onFinish 
     
     const extraSpins = 5 + Math.floor(Math.random() * 5);
     const stopIndex = Math.floor(Math.random() * REWARDS.length);
-    // Calculate final rotation to land on the center of the slice
-    // The wheel rotates clockwise, so we subtract the slice angle
     const sliceAngle = 360 / REWARDS.length;
-    const newRotation = rotation + (extraSpins * 360) + (stopIndex * sliceAngle);
     
-    setRotation(newRotation);
+    // To land stopIndex at the top (0 deg):
+    // The center of slice stopIndex is at (stopIndex * sliceAngle + sliceAngle / 2)
+    // We want (center + newRotation) % 360 = 0
+    // So newRotation % 360 = 360 - (stopIndex * sliceAngle + sliceAngle / 2)
+    const targetRotationMod = (360 - (stopIndex * sliceAngle + sliceAngle / 2)) % 360;
+    const currentRotationMod = rotation % 360;
+    
+    let rotationDiff = targetRotationMod - currentRotationMod;
+    if (rotationDiff <= 0) rotationDiff += 360;
+    
+    const finalRotation = rotation + rotationDiff + (extraSpins * 360);
+    
+    setRotation(finalRotation);
     
     setTimeout(() => {
       setIsSpinning(false);
-      // The pointer is at the top (0 degrees). 
-      // When the wheel rotates by `rotation`, the slice at index `i` is at `i * sliceAngle + rotation`.
-      // We want the slice at the top to be the result.
-      // (i * sliceAngle + rotation) % 360 = 0
-      // i * sliceAngle = -rotation % 360
-      const actualRotation = newRotation % 360;
-      const indexAtTop = (REWARDS.length - Math.round(actualRotation / sliceAngle)) % REWARDS.length;
-      setResult(REWARDS[(indexAtTop + REWARDS.length) % REWARDS.length]);
+      setResult(REWARDS[stopIndex]);
     }, 4000);
   };
+
+  const wheelGradient = REWARDS.map((reward, i) => {
+    const start = (i * 360) / REWARDS.length;
+    const end = ((i + 1) * 360) / REWARDS.length;
+    return `${reward.color} ${start}deg ${end}deg`;
+  }).join(', ');
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
@@ -93,24 +101,25 @@ export const LuckySpinGame: React.FC<LuckySpinGameProps> = ({ onClose, onFinish 
 
           {/* The Wheel */}
           <motion.div 
-            className="w-full h-full rounded-full border-8 border-orange-100 relative overflow-hidden shadow-2xl"
+            className="w-full h-full rounded-full border-8 border-orange-100 relative shadow-2xl"
+            style={{ 
+              background: `conic-gradient(${wheelGradient})`,
+            }}
             animate={{ rotate: rotation }}
             transition={{ duration: 4, ease: [0.45, 0.05, 0.55, 0.95] }}
           >
             {REWARDS.map((reward, i) => (
               <div 
                 key={i}
-                className={`absolute top-0 left-1/2 w-1/2 h-full origin-left flex items-center justify-end pr-2 ${reward.color} border-l border-white/20`}
+                className="absolute top-0 left-1/2 w-1/2 h-full origin-left flex items-center justify-end pr-4"
                 style={{ 
-                  transform: `rotate(${i * (360 / REWARDS.length)}deg)`,
-                  clipPath: `polygon(0 0, 100% 0, 100% ${100/REWARDS.length * 2}%, 0 0)` // Approximate wedge shape
+                  transform: `rotate(${i * (360 / REWARDS.length) + (360 / REWARDS.length / 2) - 90}deg)`,
                 }}
               >
                 <div 
-                  className="text-[8px] font-black text-orange-900/60 whitespace-nowrap"
+                  className="text-[9px] font-black text-orange-900/80 whitespace-nowrap"
                   style={{ 
-                    transform: `rotate(${90 + 360/REWARDS.length/2}deg) translate(-10px, 0)`,
-                    transformOrigin: 'center'
+                    transform: 'rotate(0deg)',
                   }}
                 >
                   {reward.label}

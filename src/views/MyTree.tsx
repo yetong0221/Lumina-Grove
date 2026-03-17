@@ -1040,7 +1040,7 @@ export function MyTree({ onChangeView }: { onChangeView?: (view: string) => void
                           <Sparkles size={32} />
                         </div>
                         <h5 className="text-2xl font-bold mb-2">果园大转盘</h5>
-                        <p className="text-orange-50 text-sm mb-6 opacity-80">每天一次免费抽奖机会，最高可获得 500 积分奖励！</p>
+                        <p className="text-orange-50 text-sm mb-6 opacity-80">每天一次免费抽奖机会，更多惊喜等你来拿！</p>
                         <button 
                           onClick={() => setShowSpinGame(true)}
                           className="bg-white text-orange-600 px-8 py-3 rounded-2xl font-bold hover:bg-orange-50 transition-all shadow-lg"
