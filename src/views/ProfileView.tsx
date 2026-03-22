@@ -22,7 +22,7 @@ export function ProfileView() {
   return (
     <div className="min-h-screen bg-lumina-cream pb-32">
       {/* Header Profile Section */}
-      <div className="bg-lumina-green text-white pt-20 pb-12 px-8 rounded-b-[40px] relative overflow-hidden">
+      <div className="bg-lumina-green text-white pt-8 pb-12 px-8 rounded-b-[40px] relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
         
         <div className="relative z-10 flex items-center gap-6 mb-12">

@@ -50,7 +50,7 @@ export function Navigation({ currentView, onChangeView }: NavigationProps) {
         </div>
 
         {/* Actions */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="flex items-center gap-4 md:gap-6">
           <button 
             onClick={() => onChangeView('my')}
             className={`transition-colors duration-300 ${currentView === 'my' ? 'text-lumina-terracotta' : 'text-lumina-green hover:text-lumina-terracotta'}`}

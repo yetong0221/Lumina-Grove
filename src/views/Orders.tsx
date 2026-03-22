@@ -6,7 +6,7 @@ export function Orders({ onBack }: { onBack: () => void }) {
   const { orders } = useCart();
 
   return (
-    <div className="pt-32 pb-20 px-6 max-w-2xl mx-auto min-h-screen">
+    <div className="pt-12 pb-20 px-6 max-w-2xl mx-auto min-h-screen">
       <div className="flex items-center gap-4 mb-10">
         <button 
           onClick={onBack}

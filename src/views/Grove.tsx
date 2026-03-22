@@ -77,9 +77,9 @@ export function Grove({ onShowToast }: GroveProps) {
   };
 
   return (
-    <div className="pt-24 min-h-screen bg-lumina-cream relative">
+    <div className="pt-12 min-h-screen bg-lumina-cream relative">
       {/* Floating Banner */}
-      <div className="fixed top-20 left-0 right-0 z-40 bg-lumina-green text-lumina-cream py-3 px-6 shadow-md">
+      <div className="fixed top-0 left-0 right-0 z-40 bg-lumina-green text-lumina-cream py-3 px-6 shadow-md">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs sm:text-sm tracking-widest">
           <Gift size={16} className="text-lumina-gold" />
           <span>每笔消费自动累计 · 满¥780 即可解锁云认养权益</span>

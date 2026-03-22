@@ -39,7 +39,7 @@ export function Cart() {
 
   if (cart.length === 0 && !isPaying) {
     return (
-      <div className="pt-32 pb-20 px-6 max-w-2xl mx-auto min-h-[80vh] flex flex-col items-center justify-center text-center">
+      <div className="pt-12 pb-20 px-6 max-w-2xl mx-auto min-h-[80vh] flex flex-col items-center justify-center text-center">
         <div className="w-24 h-24 bg-black/5 rounded-full flex items-center justify-center mb-6">
           <ShoppingBag size={40} className="text-lumina-green/30" />
         </div>
@@ -55,7 +55,7 @@ export function Cart() {
   }
 
   return (
-    <div className="pt-32 pb-32 px-6 max-w-2xl mx-auto min-h-screen">
+    <div className="pt-12 pb-32 px-6 max-w-2xl mx-auto min-h-screen">
       <div className="mb-10">
         <h2 className="font-serif text-4xl text-lumina-green mb-2">购物袋</h2>
         <p className="text-lumina-green/60">{totalItems} 件商品</p>

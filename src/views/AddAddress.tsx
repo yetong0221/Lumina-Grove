@@ -53,7 +53,7 @@ export function AddAddress({ onBack, addresses, setAddresses, editingAddress }: 
   };
 
   return (
-    <div className="min-h-screen bg-[#FDFCF9] pt-32 pb-32 px-6">
+    <div className="min-h-screen bg-[#FDFCF9] pt-12 pb-32 px-6">
       <div className="max-w-2xl mx-auto">
         <div className="flex items-center gap-4 mb-12">
           <button 

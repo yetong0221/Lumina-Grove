@@ -30,7 +30,7 @@ export function Journey() {
   ];
 
   return (
-    <div className="pt-24 min-h-screen bg-lumina-cream">
+    <div className="pt-12 min-h-screen bg-lumina-cream">
       <div className="px-6 mb-20 max-w-7xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

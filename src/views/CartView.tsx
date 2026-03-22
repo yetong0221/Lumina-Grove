@@ -9,9 +9,9 @@ export function CartView() {
 
   if (cart.length === 0) {
     return (
-      <div className="min-h-screen bg-lumina-cream pt-20 px-6 flex flex-col items-center justify-center text-center">
-        <h1 className="font-serif text-3xl text-lumina-green mb-2 w-full text-left absolute top-10 left-6">购物袋</h1>
-        <p className="text-gray-400 mb-20 w-full text-left absolute top-20 left-6">0 件商品</p>
+      <div className="min-h-screen bg-lumina-cream pt-8 px-6 flex flex-col items-center justify-center text-center">
+        <h1 className="font-serif text-3xl text-lumina-green mb-2 w-full text-left absolute top-4 left-6">购物袋</h1>
+        <p className="text-gray-400 mb-20 w-full text-left absolute top-12 left-6">0 件商品</p>
         
         <div className="flex flex-col items-center gap-4 opacity-30">
           <ShoppingBag size={80} strokeWidth={1} />
@@ -22,7 +22,7 @@ export function CartView() {
   }
 
   return (
-    <div className="min-h-screen bg-lumina-cream pt-20 pb-32 px-6">
+    <div className="min-h-screen bg-lumina-cream pt-8 pb-32 px-6">
       <div className="max-w-md mx-auto">
         <h1 className="font-serif text-3xl text-lumina-green mb-2">购物袋</h1>
         <p className="text-gray-400 mb-8">{cart.length} 件商品</p>

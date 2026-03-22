@@ -83,7 +83,7 @@ export default function App() {
       case 'add-address': return <AddAddress onBack={() => setCurrentView('address')} addresses={addresses} setAddresses={setAddresses} editingAddress={editingAddress} />;
       case 'notifications':
         return (
-          <div className="pt-48 px-6 text-center min-h-screen">
+          <div className="pt-12 px-6 text-center min-h-screen">
             <h2 className="text-3xl font-serif text-[#2D463E] mb-6">消息通知</h2>
             <div className="bg-white rounded-[32px] p-12 shadow-sm border border-black/5">
               <p className="text-black/40 text-lg">暂无新消息</p>
@@ -100,7 +100,6 @@ export default function App() {
   return (
     <CartProvider>
       <div className="min-h-screen bg-lumina-cream text-lumina-charcoal font-sans selection:bg-lumina-terracotta selection:text-white">
-        <Navigation currentView={currentView} onChangeView={setCurrentView} />
         
         <AnimatePresence mode="wait">
           <motion.div

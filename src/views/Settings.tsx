@@ -3,7 +3,7 @@ import { ChevronLeft } from 'lucide-react';
 
 export function Settings({ onBack, fontSize, setFontSize }: { onBack: () => void, fontSize: number, setFontSize: (size: number) => void }) {
   return (
-    <div className="min-h-screen bg-[#FDFCF9] pt-32 pb-20 px-6">
+    <div className="min-h-screen bg-[#FDFCF9] pt-12 pb-20 px-6">
       <div className="max-w-2xl mx-auto">
         <div className="flex items-center gap-4 mb-12">
           <button 

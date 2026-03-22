@@ -43,26 +43,30 @@ interface FruitConfig {
   split?: boolean;
 }
 
-const VARIETY_CONFIG: Record<Variety, { label: string; fruit: FruitConfig; decorations: string[] }> = {
+const VARIETY_CONFIG: Record<Variety, { label: string; fruit: FruitConfig; decorations: string[]; image?: string }> = {
   lychee: {
     label: '茂名荔枝',
     fruit: { color: '#81C784', ripeColor: '#E53935', shape: 'round', texture: true, split: true },
-    decorations: ['🎗️', '🏮'] // 红丝带, 小灯笼
+    decorations: ['🎗️', '🏮'], // 红丝带, 小灯笼
+    image: 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E8%8D%94%E6%9E%9D%E6%A0%91%E9%80%8F%E6%98%8E%E7%89%88.png'
   },
   longan: {
     label: '石硖龙眼',
     fruit: { color: '#A5D6A7', ripeColor: '#A1887F', shape: 'cluster' },
-    decorations: ['🏷️', '🎐'] // 祈福牌, 风铃
+    decorations: ['🏷️', '🎐'], // 祈福牌, 风铃
+    image: 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E9%BE%99%E7%9C%BC%E6%A0%91%E9%80%8F%E6%98%8E%E7%89%88.png'
   },
   mango: {
     label: '金煌芒果',
     fruit: { color: '#C5E1A5', ripeColor: '#FDD835', shape: 'oval' },
-    decorations: ['👒', '🧺'] // 草帽, 果篮
+    decorations: ['👒', '🧺'], // 草帽, 果篮
+    image: 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E8%8A%92%E6%9E%9C%E6%A0%91%E9%80%8F%E6%98%8E%E7%89%88.png'
   },
   huangpi: {
     label: '鸡心黄皮',
     fruit: { color: '#DCE775', ripeColor: '#FBC02D', shape: 'heart' },
-    decorations: ['🧧', '🧶'] // 香囊, 彩绳
+    decorations: ['🧧', '🧶'], // 香囊, 彩绳
+    image: 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E9%BB%84%E7%9A%AE%E6%A0%91%E9%80%8F%E6%98%8E%E7%89%88.png'
   }
 };
 
@@ -186,7 +190,50 @@ const TreeIllustration = ({
     return 'harvest';
   }, [growth]);
 
-  const config = VARIETY_CONFIG[variety].fruit;
+  const config = VARIETY_CONFIG[variety];
+
+  if (config.image) {
+    return (
+      <motion.div 
+        className="relative w-full h-full flex items-center justify-center p-4"
+        animate={isShaking ? { 
+          rotate: [-1, 1, -1, 1, 0], 
+          x: [-2, 2, -2, 2, 0],
+          scale: [1, 1.01, 1]
+        } : {}}
+        transition={{ duration: 0.5 }}
+      >
+        <img 
+          src={config.image} 
+          alt={config.label} 
+          className="w-full h-full object-contain drop-shadow-2xl"
+          referrerPolicy="no-referrer"
+          style={{ 
+            transform: `scale(${0.6 + (growth / 100) * 0.4})`
+          }}
+        />
+        {/* Decorations */}
+        <div className="absolute inset-0 pointer-events-none">
+          {equippedAccs.map((acc, i) => (
+            <motion.div
+              key={i}
+              initial={{ scale: 0, rotate: -20 }}
+              animate={{ scale: 1, rotate: 0 }}
+              className="absolute text-4xl md:text-5xl drop-shadow-lg"
+              style={{
+                left: i % 2 === 0 ? '20%' : '70%',
+                top: 20 + (i % 3) * 25 + '%'
+              }}
+            >
+              {acc}
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+    );
+  }
+
+  const fruitConfig = config.fruit;
 
   return (
     <motion.div 
@@ -287,34 +334,34 @@ const TreeIllustration = ({
                 { x: 135, y: 60, r: 8 }, { x: 75, y: 145, r: 7 }
               ].map((f, i) => (
                 <motion.g key={i} initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: i * 0.08 }}>
-                  {config.shape === 'round' && (
+                  {fruitConfig.shape === 'round' && (
                     <circle 
                       cx={f.x} cy={f.y} r={f.r} 
-                      fill={stage === 'harvest' ? config.ripeColor : config.color} 
+                      fill={stage === 'harvest' ? fruitConfig.ripeColor : fruitConfig.color} 
                       stroke={stage === 'harvest' ? '#B71C1C' : '#43A047'}
                       strokeWidth="0.8"
                       filter="url(#softShadow)"
                     />
                   )}
-                  {config.shape === 'cluster' && (
+                  {fruitConfig.shape === 'cluster' && (
                     <g transform={`translate(${f.x}, ${f.y})`} filter="url(#softShadow)">
-                      <circle cx="-4" cy="-4" r={f.r/1.4} fill={stage === 'harvest' ? config.ripeColor : config.color} />
-                      <circle cx="4" cy="-3" r={f.r/1.4} fill={stage === 'harvest' ? config.ripeColor : config.color} />
-                      <circle cx="0" cy="4" r={f.r/1.4} fill={stage === 'harvest' ? config.ripeColor : config.color} />
+                      <circle cx="-4" cy="-4" r={f.r/1.4} fill={stage === 'harvest' ? fruitConfig.ripeColor : fruitConfig.color} />
+                      <circle cx="4" cy="-3" r={f.r/1.4} fill={stage === 'harvest' ? fruitConfig.ripeColor : fruitConfig.color} />
+                      <circle cx="0" cy="4" r={f.r/1.4} fill={stage === 'harvest' ? fruitConfig.ripeColor : fruitConfig.color} />
                     </g>
                   )}
-                  {config.shape === 'oval' && (
+                  {fruitConfig.shape === 'oval' && (
                     <ellipse 
                       cx={f.x} cy={f.y} rx={f.r * 1.3} ry={f.r * 0.9} 
-                      fill={stage === 'harvest' ? config.ripeColor : config.color} 
+                      fill={stage === 'harvest' ? fruitConfig.ripeColor : fruitConfig.color} 
                       transform={`rotate(35, ${f.x}, ${f.y})`}
                       filter="url(#softShadow)"
                     />
                   )}
-                  {config.shape === 'heart' && (
+                  {fruitConfig.shape === 'heart' && (
                     <path 
                       d={`M${f.x},${f.y+f.r} Q${f.x-f.r},${f.y-f.r/2} ${f.x},${f.y-f.r} Q${f.x+f.r},${f.y-f.r/2} ${f.x},${f.y+f.r}`}
-                      fill={stage === 'harvest' ? config.ripeColor : config.color} 
+                      fill={stage === 'harvest' ? fruitConfig.ripeColor : fruitConfig.color} 
                       filter="url(#softShadow)"
                     />
                   )}
@@ -466,7 +513,7 @@ export function MyTree({ onChangeView }: { onChangeView?: (view: string) => void
 
   if (!isAdopted) {
     return (
-      <div className="min-h-screen bg-[#FFFBF5] pt-28 pb-32 px-4 md:px-6 font-sans">
+      <div className="min-h-screen bg-[#FFFBF5] pt-12 pb-32 px-4 md:px-6 font-sans">
         <div className="max-w-5xl mx-auto text-center">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -561,7 +608,7 @@ export function MyTree({ onChangeView }: { onChangeView?: (view: string) => void
   };
 
   return (
-    <div className="min-h-screen bg-[#FFFBF5] pt-20 pb-32 px-4 md:px-6 font-sans selection:bg-orange-200">
+    <div className="min-h-screen bg-[#FFFBF5] pt-12 pb-32 px-4 md:px-6 font-sans selection:bg-orange-200">
       <AnimatePresence>
         {toast && (
           <motion.div
