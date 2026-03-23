@@ -48,7 +48,7 @@ const VARIETY_CONFIG: Record<Variety, { label: string; fruit: FruitConfig; decor
     label: '茂名荔枝',
     fruit: { color: '#81C784', ripeColor: '#E53935', shape: 'round', texture: true, split: true },
     decorations: ['🎗️', '🏮'], // 红丝带, 小灯笼
-    image: 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E8%8D%94%E6%9E%9D%E6%A0%91%E9%80%8F%E6%98%8E%E7%89%88.png'
+    image: 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E8%8D%94%E6%9E%9D%E6%A0%914.png'
   },
   longan: {
     label: '石硖龙眼',
@@ -192,7 +192,39 @@ const TreeIllustration = ({
 
   const config = VARIETY_CONFIG[variety];
 
-  if (config.image) {
+  const displayImage = useMemo(() => {
+    if (variety === 'lychee') {
+      if (growth <= 25) return 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E8%8D%94%E6%9E%9D%E6%A0%911.png';
+      if (growth <= 50) return 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E8%8D%94%E6%9E%9D%E6%A0%912.png';
+      if (growth <= 75) return 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E8%8D%94%E6%9E%9D%E6%A0%913.png';
+      if (growth <= 99) return 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E8%8D%94%E6%9E%9D%E6%A0%914.png';
+      return 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E8%8D%94%E6%9E%9D%E6%A0%915.png';
+    }
+    if (variety === 'huangpi') {
+      if (growth <= 25) return 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E9%BB%84%E7%9A%AE%E6%A0%911.png';
+      if (growth <= 50) return 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E9%BB%84%E7%9A%AE%E6%A0%912.png';
+      if (growth <= 75) return 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E9%BB%84%E7%9A%AE%E6%A0%913.png';
+      if (growth <= 99) return 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E9%BB%84%E7%9A%AE%E6%A0%914.png';
+      return 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E9%BB%84%E7%9A%AE%E6%A0%915.png';
+    }
+    if (variety === 'longan') {
+      if (growth <= 25) return 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E9%BE%99%E7%9C%BC%E6%A0%911.png';
+      if (growth <= 50) return 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E9%BE%99%E7%9C%BC%E6%A0%912.png';
+      if (growth <= 75) return 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E9%BE%99%E7%9C%BC%E6%A0%913.png';
+      if (growth <= 99) return 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E9%BE%99%E7%9C%BC%E6%A0%914.png';
+      return 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E9%BE%99%E7%9C%BC%E6%A0%915.png';
+    }
+    if (variety === 'mango') {
+      if (growth <= 25) return 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E8%8A%92%E6%9E%9C%E6%A0%911.png';
+      if (growth <= 50) return 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E8%8A%92%E6%9E%9C%E6%A0%912.png';
+      if (growth <= 75) return 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E8%8A%92%E6%9E%9C%E6%A0%913.png';
+      if (growth <= 99) return 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E8%8A%92%E6%9E%9C%E6%A0%914.png';
+      return 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E8%8A%92%E6%9E%9C%E6%A0%915.png';
+    }
+    return config.image;
+  }, [variety, growth, config.image]);
+
+  if (displayImage) {
     return (
       <motion.div 
         className="relative w-full h-full flex items-center justify-center p-4"
@@ -204,7 +236,7 @@ const TreeIllustration = ({
         transition={{ duration: 0.5 }}
       >
         <img 
-          src={config.image} 
+          src={displayImage} 
           alt={config.label} 
           className="w-full h-full object-contain drop-shadow-2xl"
           referrerPolicy="no-referrer"
@@ -422,7 +454,9 @@ export function MyTree({ onChangeView }: { onChangeView?: (view: string) => void
   const [isEditingName, setIsEditingName] = useState(false);
   const [points, setPoints] = useState(500);
   const [waterLevel, setWaterLevel] = useState(60);
-  const [growth, setGrowth] = useState(15);
+  const [fertilizerLevel, setFertilizerLevel] = useState(40);
+  const [pestLevel, setPestLevel] = useState(30);
+  const [growth, setGrowth] = useState(0);
   const [activeBg, setActiveBg] = useState('https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E8%8C%82%E5%90%8D%E4%B9%A1%E6%9D%91%E7%94%B0%E5%9B%AD.png');
   const [equippedAccs, setEquippedAccs] = useState<string[]>([]);
   const [checkedIn, setCheckedIn] = useState(false);
@@ -475,6 +509,7 @@ export function MyTree({ onChangeView }: { onChangeView?: (view: string) => void
   const handleFertilize = () => {
     if (points >= 30) {
       setPoints(prev => prev - 30);
+      setFertilizerLevel(prev => Math.min(100, prev + 20));
       setGrowth(prev => Math.min(100, prev + 8));
       setFertilized(true);
       triggerEffect('fertilize');
@@ -484,6 +519,7 @@ export function MyTree({ onChangeView }: { onChangeView?: (view: string) => void
   const handlePestControl = () => {
     if (points >= 20) {
       setPoints(prev => prev - 20);
+      setPestLevel(prev => Math.min(100, prev + 25));
       setGrowth(prev => Math.min(100, prev + 5));
       setPestControlled(true);
       triggerEffect('pest');
@@ -744,16 +780,16 @@ export function MyTree({ onChangeView }: { onChangeView?: (view: string) => void
           {/* Growth HUD & Actions */}
           <div className="absolute bottom-12 left-10 right-10 flex flex-col md:flex-row justify-between items-center md:items-end gap-10">
             {/* Status Bars */}
-            <div className="space-y-6 w-full md:w-72 bg-white/30 backdrop-blur-xl p-7 rounded-[40px] border border-white/40 shadow-inner">
+            <div className="space-y-4 w-full md:w-72 bg-white/30 backdrop-blur-xl p-6 rounded-[40px] border border-white/40 shadow-inner">
               <div>
-                <div className="flex items-center justify-between text-[11px] font-bold uppercase tracking-widest text-white mb-2.5 drop-shadow-md">
+                <div className="flex items-center justify-between text-[11px] font-bold uppercase tracking-widest text-white mb-2 drop-shadow-md">
                   <div className="flex items-center gap-2">
                     <Droplets size={14} className="text-blue-200" />
                     <span>水分含量</span>
                   </div>
                   <span>{waterLevel}%</span>
                 </div>
-                <div className="h-3 bg-white/20 rounded-full overflow-hidden border border-white/10 p-0.5">
+                <div className="h-2.5 bg-white/20 rounded-full overflow-hidden border border-white/10 p-0.5">
                   <motion.div 
                     initial={{ width: 0 }}
                     animate={{ width: `${waterLevel}%` }}
@@ -761,19 +797,54 @@ export function MyTree({ onChangeView }: { onChangeView?: (view: string) => void
                   />
                 </div>
               </div>
+
               <div>
-                <div className="flex items-center justify-between text-[11px] font-bold uppercase tracking-widest text-white mb-2.5 drop-shadow-md">
+                <div className="flex items-center justify-between text-[11px] font-bold uppercase tracking-widest text-white mb-2 drop-shadow-md">
                   <div className="flex items-center gap-2">
-                    <Sprout size={14} className="text-green-200" />
+                    <Sparkles size={14} className="text-yellow-200" />
+                    <span>施肥进度</span>
+                  </div>
+                  <span>{fertilizerLevel}%</span>
+                </div>
+                <div className="h-2.5 bg-white/20 rounded-full overflow-hidden border border-white/10 p-0.5">
+                  <motion.div 
+                    initial={{ width: 0 }}
+                    animate={{ width: `${fertilizerLevel}%` }}
+                    className="h-full bg-gradient-to-r from-yellow-400 to-yellow-300 rounded-full"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <div className="flex items-center justify-between text-[11px] font-bold uppercase tracking-widest text-white mb-2 drop-shadow-md">
+                  <div className="flex items-center gap-2">
+                    <Bug size={14} className="text-green-200" />
+                    <span>除虫进度</span>
+                  </div>
+                  <span>{pestLevel}%</span>
+                </div>
+                <div className="h-2.5 bg-white/20 rounded-full overflow-hidden border border-white/10 p-0.5">
+                  <motion.div 
+                    initial={{ width: 0 }}
+                    animate={{ width: `${pestLevel}%` }}
+                    className="h-full bg-gradient-to-r from-green-400 to-green-300 rounded-full"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <div className="flex items-center justify-between text-[11px] font-bold uppercase tracking-widest text-white mb-2 drop-shadow-md">
+                  <div className="flex items-center gap-2">
+                    <Sprout size={14} className="text-emerald-200" />
                     <span>生长进度</span>
                   </div>
                   <span>{growth}%</span>
                 </div>
-                <div className="h-3 bg-white/20 rounded-full overflow-hidden border border-white/10 p-0.5">
+                <div className="h-2.5 bg-white/20 rounded-full overflow-hidden border border-white/10 p-0.5">
                   <motion.div 
                     initial={{ width: 0 }}
                     animate={{ width: `${growth}%` }}
-                    className="h-full bg-gradient-to-r from-green-400 to-green-300 rounded-full"
+                    className="h-full bg-gradient-to-r from-emerald-400 to-emerald-300 rounded-full"
                   />
                 </div>
               </div>
