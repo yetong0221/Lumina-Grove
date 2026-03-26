@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 
-export function About() {
+export function About({ onChangeView }: { onChangeView: (view: string) => void }) {
   return (
     <div className="pt-12 min-h-screen bg-lumina-cream">
       {/* Hero */}
@@ -10,8 +10,21 @@ export function About() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <span className="text-lumina-terracotta text-xs uppercase tracking-widest mb-4 block">我们的故事</span>
-          <h1 className="font-serif text-5xl md:text-6xl text-lumina-green mb-8">果园的守护者</h1>
+          <span className="text-lumina-terracotta text-xs uppercase tracking-widest mb-4 block">品牌故事与资质</span>
+          <h1 className="font-serif text-5xl md:text-6xl text-lumina-green mb-8">果到心 · 品牌守护</h1>
+          
+          <button 
+            onClick={() => onChangeView('company-profile')}
+            className="inline-flex items-center gap-2 bg-lumina-green text-white px-8 py-4 rounded-sm hover:bg-lumina-terracotta transition-colors group"
+          >
+            <span className="text-sm uppercase tracking-widest font-medium">了解更多：关于我们</span>
+            <motion.span 
+              animate={{ x: [0, 5, 0] }} 
+              transition={{ repeat: Infinity, duration: 1.5 }}
+            >
+              →
+            </motion.span>
+          </button>
         </motion.div>
       </div>
 
@@ -21,10 +34,10 @@ export function About() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="prose prose-lg prose-headings:font-serif prose-headings:text-lumina-green prose-p:text-lumina-charcoal/80 prose-p:font-light prose-p:leading-relaxed mx-auto"
+          className="prose prose-lg prose-headings:font-serif prose-headings:text-lumina-green prose-p:text-lumina-charcoal/80 prose-p:font-light prose-p:leading-loose mx-auto"
         >
-          <p className="text-xl md:text-2xl leading-relaxed text-lumina-green font-serif italic mb-12 text-center">
-            "我们不是从祖先那里继承了地球，而是从子孙那里借来的。"
+          <p className="text-xl md:text-2xl leading-loose text-lumina-green font-serif italic mb-12 text-center">
+            "连接城市餐桌与乡村果园，守护每一颗果实的初心。"
           </p>
 
           <p>
@@ -32,51 +45,75 @@ export function About() {
           </p>
 
           <p>
-            然而，现代市场往往低估了照料这些巨树所需的辛勤劳动。果农面临价格波动和使用工业方法以牺牲风味和土壤健康为代价来最大化产量的压力。
+            现代市场往往低估了照料这些巨树所需的辛勤劳动。果农面临价格波动和使用工业方法以牺牲风味和土壤健康为代价来最大化产量的压力。
           </p>
 
-          <img 
-            src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2000&auto=format&fit=crop" 
-            alt="Maoming Landscape" 
-            className="w-full h-96 object-cover rounded-sm my-12"
-          />
+          <div className="my-16 space-y-12">
+            <section>
+              <h3 className="text-2xl font-serif text-lumina-green border-b border-lumina-green/20 pb-2 mb-6">一种新的农业模式</h3>
+              <p className="mb-8 leading-loose">
+                通过认养一棵树，您不仅仅是在购买水果；您是在投资一个可持续的未来。您的支持使我们的果农能够：
+              </p>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 list-none pl-0">
+                <li className="bg-white/50 p-6 rounded-sm border-l-2 border-lumina-terracotta leading-loose">实践有机、再生农业方法。</li>
+                <li className="bg-white/50 p-6 rounded-sm border-l-2 border-lumina-terracotta leading-loose">保护稀有的传统品种。</li>
+                <li className="bg-white/50 p-6 rounded-sm border-l-2 border-lumina-terracotta leading-loose">维护果园生态系统的生物多样性。</li>
+                <li className="bg-white/50 p-6 rounded-sm border-l-2 border-lumina-terracotta leading-loose">获得体面、稳定的收入。</li>
+              </ul>
+            </section>
 
-          <h3>一种新的农业模式</h3>
-          <p>
-            通过认养一棵树，您不仅仅是在购买水果；您是在投资一个可持续的未来。您的支持使我们的果农能够：
-          </p>
-          <ul>
-            <li>实践有机、再生农业方法。</li>
-            <li>保护因不适合大规模运输而稀有的传统品种。</li>
-            <li>维护果园生态系统的生物多样性。</li>
-            <li>获得尊重其专业知识的体面、稳定的收入。</li>
-          </ul>
+            <section className="bg-lumina-green text-white p-8 rounded-sm shadow-xl">
+              <h3 className="text-2xl font-serif text-white mb-6">品牌资质与授权</h3>
+              <div className="space-y-6 text-sm md:text-base opacity-90">
+                <div className="flex flex-col md:flex-row md:justify-between border-b border-white/20 pb-4">
+                  <span className="font-semibold">品牌名称</span>
+                  <span>果到心 (商标注册号: 60309380)</span>
+                </div>
+                <div className="flex flex-col md:flex-row md:justify-between border-b border-white/20 pb-4">
+                  <span className="font-semibold">合法持有者</span>
+                  <span>高州市燊荔农业科技有限公司</span>
+                </div>
+                <div className="flex flex-col md:flex-row md:justify-between border-b border-white/20 pb-4">
+                  <span className="font-semibold">授权分销商</span>
+                  <span>华南农业大学茂名现代农业研究院</span>
+                </div>
+                <div className="flex flex-col md:flex-row md:justify-between border-b border-white/20 pb-4">
+                  <span className="font-semibold">授权期限</span>
+                  <span>2026年03月22日 至 2030年03月22日</span>
+                </div>
+                <p className="text-xs italic mt-4 leading-loose">
+                  * 本品牌所售产品均为正品，受国家法律保护。
+                </p>
+              </div>
+            </section>
 
-          <h3>茂名市农业局支持</h3>
-          <p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-4">
+                <p className="text-xs uppercase tracking-widest text-lumina-terracotta font-bold">代理授权书</p>
+                <img 
+                  src="https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E6%8E%88%E6%9D%83%E4%B9%A6.jpeg" 
+                  alt="代理授权书" 
+                  className="w-full rounded-sm shadow-lg hover:scale-[1.02] transition-transform duration-500 cursor-zoom-in"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="space-y-4">
+                <p className="text-xs uppercase tracking-widest text-lumina-terracotta font-bold">商标注册证</p>
+                <img 
+                  src="https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E5%95%86%E6%A0%87%E6%B3%A8%E5%86%8C%E8%AF%81.png" 
+                  alt="商标注册证" 
+                  className="w-full rounded-sm shadow-lg hover:scale-[1.02] transition-transform duration-500 cursor-zoom-in"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            </div>
+          </div>
+
+          <h3 className="text-center mt-20">茂名市农业局支持</h3>
+          <p className="text-center leading-loose">
             Lumina Grove 与当地政府倡议携手合作，振兴乡村社区。我们很自豪能成为“数字农业”的试点项目，利用技术为食品系统带来透明度和连接。
           </p>
         </motion.div>
-
-        {/* Team */}
-        <div className="mt-24">
-          <h3 className="font-serif text-3xl text-lumina-green text-center mb-12">辛勤耕耘的双手</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { name: "林师傅", role: "首席果农", img: "https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E6%9E%97%E5%B8%88%E5%82%85%E5%A4%B4%E5%83%8F.png" },
-              { name: "许沁", role: "可持续发展总监", img: "https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E5%8F%AF%E6%8C%81%E7%BB%AD%E5%8F%91%E5%B1%95%E6%80%BB%E7%9B%91.png" },
-              { name: "王博士", role: "农学家", img: "https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E7%8E%8B%E5%8D%9A%E5%A3%AB%E5%A4%B4%E5%83%8F.png" }
-            ].map((member, i) => (
-              <div key={i} className="text-center">
-                <div className="w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 grayscale hover:grayscale-0 transition-all duration-500">
-                  <img src={member.img} alt={member.name} className="w-full h-full object-cover" />
-                </div>
-                <h4 className="font-serif text-xl text-lumina-green">{member.name}</h4>
-                <p className="text-xs uppercase tracking-widest text-lumina-terracotta">{member.role}</p>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </div>
   );

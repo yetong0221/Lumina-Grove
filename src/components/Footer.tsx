@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { ArrowUpRight, Instagram, Twitter, Facebook, Mail } from 'lucide-react';
 
-export function Footer() {
+export function Footer({ onChangeView }: { onChangeView?: (view: string) => void }) {
   return (
     <footer className="bg-lumina-green text-lumina-cream pt-24 pb-12 px-6">
       <div className="max-w-7xl mx-auto">
@@ -21,9 +21,10 @@ export function Footer() {
           <div>
             <h3 className="text-xs font-bold uppercase tracking-widest text-lumina-gold mb-8">探索</h3>
             <ul className="space-y-4 font-light text-white/80">
-              <li className="hover:text-white cursor-pointer transition-colors">我们的果园</li>
-              <li className="hover:text-white cursor-pointer transition-colors">认养计划</li>
-              <li className="hover:text-white cursor-pointer transition-colors">果园日记</li>
+              <li onClick={() => onChangeView?.('home')} className="hover:text-white cursor-pointer transition-colors">我们的果园</li>
+              <li onClick={() => onChangeView?.('adopt')} className="hover:text-white cursor-pointer transition-colors">认养计划</li>
+              <li onClick={() => onChangeView?.('journal')} className="hover:text-white cursor-pointer transition-colors">果园日记</li>
+              <li onClick={() => onChangeView?.('company-about')} className="hover:text-white cursor-pointer transition-colors">关于我们</li>
               <li className="hover:text-white cursor-pointer transition-colors">可持续发展</li>
             </ul>
           </div>

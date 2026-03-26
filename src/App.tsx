@@ -28,6 +28,7 @@ declare global {
 }
 
 import { MyTree } from '@/views/MyTree';
+import { CompanyAbout } from '@/views/CompanyAbout';
 
 export interface Address {
   id: string;
@@ -75,6 +76,7 @@ export default function App() {
       case 'journey': return <Journey />;
       case 'journal': return <Journal />;
       case 'about': return <About />;
+      case 'company-about': return <CompanyAbout onBack={() => setCurrentView('home')} />;
       case 'cart': return <Cart />;
       case 'orders': return <Orders onBack={() => setCurrentView('my')} />;
       case 'my': return <My onChangeView={setCurrentView} userEmail="yetong0221@gmail.com" />;
@@ -113,7 +115,7 @@ export default function App() {
           </motion.div>
         </AnimatePresence>
 
-        <Footer />
+        <Footer onChangeView={setCurrentView} />
         <BottomNav currentView={currentView} onChangeView={setCurrentView} />
         <Toast message={toastMessage} onClose={() => setToastMessage(null)} />
       </div>
