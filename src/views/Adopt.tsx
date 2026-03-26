@@ -16,8 +16,8 @@ export function Adopt({ onChangeView }: { onChangeView: (view: string) => void }
   const tiers = [
     {
       name: "观察者",
-      subtitle: "AI 测运 · 签文解锁",
-      price: "AI 测运 · 签文解锁",
+      subtitle: "鸡心黄皮树",
+      price: "AI 测运\n签文解锁",
       description: "通过“抽签桶”小游戏获得鸡心黄皮树的认养资格。每天一次机会，好运降临，开启您的守护之旅。",
       icon: <Sprout size={24} />,
       features: [
@@ -58,7 +58,7 @@ export function Adopt({ onChangeView }: { onChangeView: (view: string) => void }
     {
       name: "培育者",
       subtitle: "石峡龙眼树",
-      price: "声音认养 · 方言挑战解锁",
+      price: "声音认养\n方言挑战解锁",
       description: "通过收录方言解锁石峡龙眼树的认养资格。用乡音传递温情，守护百年古树。",
       icon: <Heart size={24} />,
       features: [
@@ -239,7 +239,7 @@ export function Adopt({ onChangeView }: { onChangeView: (view: string) => void }
               <h3 className="font-serif text-2xl mb-1">{tier.name}</h3>
               <p className="text-xs uppercase tracking-wider opacity-60 mb-6">{tier.subtitle}</p>
               
-              <div className="text-3xl font-serif mb-6">{tier.price}</div>
+              <div className="text-3xl font-serif mb-6 whitespace-pre-line">{tier.price}</div>
               
               <p className="text-sm leading-relaxed opacity-80 mb-8 flex-grow">
                 {tier.description}
