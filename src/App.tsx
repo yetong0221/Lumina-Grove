@@ -72,7 +72,7 @@ export default function App() {
     switch (currentView) {
       case 'home': return <Home onChangeView={setCurrentView} />;
       case 'grove': return <Grove onShowToast={showToast} />;
-      case 'adopt': return <Adopt />;
+      case 'adopt': return <Adopt onChangeView={setCurrentView} />;
       case 'journey': return <Journey />;
       case 'journal': return <Journal />;
       case 'about': return <About />;

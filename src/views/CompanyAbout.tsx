@@ -9,7 +9,7 @@ export function CompanyAbout({ onBack }: CompanyAboutProps) {
   return (
     <div className="min-h-screen bg-lumina-cream pt-12 pb-24">
       {/* Header */}
-      <div className="px-6 mb-12 max-w-7xl mx-auto">
+      <div className="px-6 mb-12 w-full">
         <button 
           onClick={onBack}
           className="flex items-center gap-2 text-lumina-green hover:text-lumina-terracotta transition-colors mb-8 group"
@@ -27,14 +27,14 @@ export function CompanyAbout({ onBack }: CompanyAboutProps) {
           <h1 className="font-serif text-4xl md:text-6xl text-lumina-green mb-6 leading-tight">
             高州市燊荔农业科技有限公司
           </h1>
-          <p className="text-lumina-charcoal/60 text-lg max-w-2xl font-light leading-relaxed">
+          <p className="text-lumina-charcoal/60 text-lg w-full font-light leading-relaxed">
             集科研、开发、生产、加工、文旅、培训于一体的现代化农业科技企业，致力于为消费者提供安全、健康、高品质的农产品。
           </p>
         </motion.div>
       </div>
 
       {/* Hero Images */}
-      <div className="px-6 mb-24 max-w-7xl mx-auto">
+      <div className="px-6 mb-24 w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -67,7 +67,7 @@ export function CompanyAbout({ onBack }: CompanyAboutProps) {
       </div>
 
       {/* Basic Info Cards */}
-      <div className="px-6 mb-24 max-w-7xl mx-auto">
+      <div className="px-6 mb-24 w-full">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="bg-white p-8 rounded-sm border border-black/5 shadow-sm">
             <Building2 className="text-lumina-terracotta mb-6" size={32} />
@@ -98,14 +98,14 @@ export function CompanyAbout({ onBack }: CompanyAboutProps) {
       </div>
 
       {/* Detailed Content */}
-      <div className="px-6 max-w-4xl mx-auto space-y-24">
+      <div className="px-6 w-full space-y-24">
         {/* Production Capacity */}
         <section>
           <h2 className="font-serif text-3xl text-lumina-green mb-8 flex items-center gap-3">
             <Award className="text-lumina-terracotta" />
             产品产量与品牌
           </h2>
-          <div className="prose prose-lg prose-p:text-lumina-charcoal/80 prose-p:leading-loose">
+          <div className="prose prose-lg max-w-none prose-p:text-lumina-charcoal/80 prose-p:leading-loose">
             <p>
               公司年产桂味荔枝鲜果 300 多吨，龙眼鲜果 800 多吨。其中获得“中国 A 级绿色食品”认定的荔枝鲜果达 200 多吨，龙眼鲜果 360 多吨。
             </p>

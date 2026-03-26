@@ -29,10 +29,10 @@ export function My({ onChangeView, userEmail }: MyProps) {
   ];
 
   return (
-    <div className="min-h-screen bg-[#FDFCF9] pb-32">
+    <div className="min-h-screen bg-[#FDFCF9] pb-32 w-full">
       {/* Dark Green Header */}
-      <div className="bg-[#2D463E] pt-12 pb-12 px-8 rounded-b-[40px] text-white">
-        <div className="max-w-2xl mx-auto">
+      <div className="bg-[#2D463E] pt-12 pb-12 px-8 rounded-b-[40px] text-white w-full">
+        <div className="w-full">
           <div className="flex items-center gap-6 mb-12">
             <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-white/20">
               <img 
@@ -66,7 +66,7 @@ export function My({ onChangeView, userEmail }: MyProps) {
       </div>
 
       {/* Menu Sections */}
-      <div className="max-w-2xl mx-auto px-6 -mt-6">
+      <div className="w-full px-6 -mt-6">
         <div className="space-y-6">
           {menuSections.map((section, sIdx) => (
             <div key={sIdx} className="bg-white rounded-[32px] shadow-sm border border-black/5 overflow-hidden">
@@ -108,7 +108,7 @@ export function My({ onChangeView, userEmail }: MyProps) {
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
               className="fixed bottom-0 left-0 right-0 bg-white rounded-t-[40px] z-[101] p-10"
             >
-              <div className="max-w-2xl mx-auto">
+              <div className="w-full">
                 <div className="text-center mb-10">
                   <h3 className="text-sm font-medium text-black/40 uppercase tracking-widest">分享至</h3>
                 </div>

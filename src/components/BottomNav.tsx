@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Home, Store, Leaf, Map, BookOpen, TreeDeciduous, Info } from 'lucide-react';
+import { Home, Store, Leaf, Map, BookOpen, TreeDeciduous, Info, ShoppingCart, User } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 
 interface BottomNavProps {
@@ -17,12 +17,14 @@ export function BottomNav({ currentView, onChangeView }: BottomNavProps) {
     { id: 'journey', label: '旅程', icon: Map },
     { id: 'journal', label: '日记', icon: BookOpen },
     { id: 'trees', label: '我的果树', icon: TreeDeciduous },
+    { id: 'cart', label: '购物车', icon: ShoppingCart },
+    { id: 'my', label: '我的', icon: User },
     { id: 'about', label: '关于', icon: Info },
   ];
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl border-t border-black/5 px-1 pb-safe z-50">
-      <div className="flex items-center justify-between py-3 max-w-lg mx-auto">
+      <div className="flex items-center justify-between py-3 w-full px-4">
         {tabs.map((tab) => (
           <button
             key={tab.id}

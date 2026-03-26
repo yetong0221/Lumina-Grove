@@ -1,42 +1,29 @@
 import { motion } from 'motion/react';
 
-export function About({ onChangeView }: { onChangeView: (view: string) => void }) {
+export function About() {
   return (
     <div className="pt-12 min-h-screen bg-lumina-cream">
       {/* Hero */}
-      <div className="px-6 mb-20 max-w-7xl mx-auto text-center">
+      <div className="px-6 mb-0 w-full text-left">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           <span className="text-lumina-terracotta text-xs uppercase tracking-widest mb-4 block">品牌故事与资质</span>
-          <h1 className="font-serif text-5xl md:text-6xl text-lumina-green mb-8">果到心 · 品牌守护</h1>
-          
-          <button 
-            onClick={() => onChangeView('company-profile')}
-            className="inline-flex items-center gap-2 bg-lumina-green text-white px-8 py-4 rounded-sm hover:bg-lumina-terracotta transition-colors group"
-          >
-            <span className="text-sm uppercase tracking-widest font-medium">了解更多：关于我们</span>
-            <motion.span 
-              animate={{ x: [0, 5, 0] }} 
-              transition={{ repeat: Infinity, duration: 1.5 }}
-            >
-              →
-            </motion.span>
-          </button>
+          <h1 className="font-serif text-5xl md:text-6xl text-lumina-green mb-4">果到心 · 品牌守护</h1>
         </motion.div>
       </div>
 
       {/* Content */}
-      <div className="max-w-4xl mx-auto px-6 pb-32">
+      <div className="w-full px-6 pb-32">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="prose prose-lg prose-headings:font-serif prose-headings:text-lumina-green prose-p:text-lumina-charcoal/80 prose-p:font-light prose-p:leading-loose mx-auto"
+          className="prose prose-xl max-w-none prose-headings:font-serif prose-headings:text-lumina-green prose-p:text-lumina-charcoal/80 prose-p:font-light prose-p:leading-loose text-left"
         >
-          <p className="text-xl md:text-2xl leading-loose text-lumina-green font-serif italic mb-12 text-center">
+          <p className="text-xl md:text-2xl leading-loose text-lumina-green font-serif italic mb-12 text-left mt-0">
             "连接城市餐桌与乡村果园，守护每一颗果实的初心。"
           </p>
 
@@ -109,8 +96,8 @@ export function About({ onChangeView }: { onChangeView: (view: string) => void }
             </div>
           </div>
 
-          <h3 className="text-center mt-20">茂名市农业局支持</h3>
-          <p className="text-center leading-loose">
+          <h3 className="text-left mt-20">茂名市农业农村局指导 华南农业大学茂名现代农业研究院指导</h3>
+          <p className="text-left leading-loose">
             Lumina Grove 与当地政府倡议携手合作，振兴乡村社区。我们很自豪能成为“数字农业”的试点项目，利用技术为食品系统带来透明度和连接。
           </p>
         </motion.div>

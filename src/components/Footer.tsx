@@ -3,8 +3,8 @@ import { ArrowUpRight, Instagram, Twitter, Facebook, Mail } from 'lucide-react';
 
 export function Footer({ onChangeView }: { onChangeView?: (view: string) => void }) {
   return (
-    <footer className="bg-lumina-green text-lumina-cream pt-24 pb-12 px-6">
-      <div className="max-w-7xl mx-auto">
+    <footer className="bg-lumina-green text-lumina-cream pt-24 pb-12 px-6 w-full">
+      <div className="w-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
           <div className="col-span-1 md:col-span-1">
             <h2 className="font-serif text-3xl mb-6">Lumina Grove</h2>

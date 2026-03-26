@@ -39,25 +39,25 @@ export function Cart() {
 
   if (cart.length === 0 && !isPaying) {
     return (
-      <div className="pt-12 pb-20 px-6 max-w-2xl mx-auto min-h-[80vh] flex flex-col items-center justify-center text-center">
+      <div className="pt-12 pb-20 px-6 w-full min-h-[80vh] flex flex-col items-center justify-center text-center">
         <div className="w-24 h-24 bg-black/5 rounded-full flex items-center justify-center mb-6">
           <ShoppingBag size={40} className="text-lumina-green/30" />
         </div>
-        <h2 className="font-serif text-3xl text-lumina-green mb-2">购物袋</h2>
+        <h2 className="font-serif text-3xl text-lumina-green mb-2">购物车</h2>
         <p className="text-lumina-green/50 mb-8">0 件商品</p>
         <div className="w-full h-px bg-black/5 mb-20" />
         <div className="flex flex-col items-center opacity-40">
            <ShoppingBag size={64} strokeWidth={1} className="mb-4" />
-           <p className="text-lg">您的购物袋是空的</p>
+           <p className="text-lg">您的购物车是空的</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="pt-12 pb-32 px-6 max-w-2xl mx-auto min-h-screen">
+    <div className="pt-12 pb-48 px-6 w-full min-h-screen">
       <div className="mb-10">
-        <h2 className="font-serif text-4xl text-lumina-green mb-2">购物袋</h2>
+        <h2 className="font-serif text-4xl text-lumina-green mb-2">购物车</h2>
         <p className="text-lumina-green/60">{totalItems} 件商品</p>
       </div>
 
@@ -116,8 +116,8 @@ export function Cart() {
       </div>
 
       {/* Checkout Bar */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-2xl border-t border-black/5 p-8 z-40">
-        <div className="max-w-2xl mx-auto">
+      <div className="fixed bottom-[72px] left-0 right-0 bg-white/90 backdrop-blur-2xl border-t border-black/5 p-8 z-40">
+        <div className="w-full">
           <div className="flex items-center justify-between mb-6">
             <span className="text-2xl font-bold text-lumina-green">总计</span>
             <span className="font-serif text-3xl text-lumina-green">¥ {totalPrice.toFixed(2)}</span>

@@ -3,22 +3,28 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Check, Star, Crown, Heart, Sprout, Truck, Gift, ShoppingBag, X, ArrowRight, Calendar, MapPin, Shield, Users } from 'lucide-react';
 import { HarvestProjectionChart } from '@/components/HarvestProjectionChart';
 import { RepurchaseInfographic } from '@/components/RepurchaseInfographic';
+import { LotteryGame } from '@/components/LotteryGame';
+import { LonganPhonograph } from '@/components/LonganPhonograph';
 
-export function Adopt() {
+export function Adopt({ onChangeView }: { onChangeView: (view: string) => void }) {
   const [selectedPlan, setSelectedPlan] = useState<any | null>(null);
+  const [showLottery, setShowLottery] = useState(false);
+  const [showPhonograph, setShowPhonograph] = useState(false);
+  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [isLonganUnlocked, setIsLonganUnlocked] = useState(false);
 
   const tiers = [
     {
       name: "观察者",
-      subtitle: "通过商店购买激活",
-      price: "随购赠送",
-      description: "从品尝果实开始您的旅程。凡在我们的商店购买产品，即可获得当季数字果园的访问权限。",
+      subtitle: "AI 测运 · 签文解锁",
+      price: "AI 测运 · 签文解锁",
+      description: "通过“抽签桶”小游戏获得鸡心黄皮树的认养资格。每天一次机会，好运降临，开启您的守护之旅。",
       icon: <Sprout size={24} />,
       features: [
+        "鸡心黄皮树认养资格",
         "数字果园访问权",
-        "季节性通讯",
-        "丰收季优先购买权",
-        "数字徽章"
+        "当季果实优先权",
+        "专属电子运程签"
       ],
       color: "bg-lumina-stone",
       textColor: "text-lumina-green",
@@ -51,12 +57,14 @@ export function Adopt() {
     },
     {
       name: "培育者",
-      subtitle: "季度体验",
-      price: "¥ 388 / 季度",
-      description: "感受四季更迭。每季度收到一份精选礼盒，包含当季农产品和手工艺品。",
+      subtitle: "石峡龙眼树",
+      price: "声音认养 · 方言挑战解锁",
+      description: "通过收录方言解锁石峡龙眼树的认养资格。用乡音传递温情，守护百年古树。",
       icon: <Heart size={24} />,
       features: [
         "包含所有观察者权益",
+        "石峡龙眼树认养资格",
+        "方言留声机互动权",
         "季度礼盒 (4次/年)",
         "果树生长日记",
         "商店 9 折优惠"
@@ -92,11 +100,12 @@ export function Adopt() {
     },
     {
       name: "守护者",
-      subtitle: "年度果树卫士",
-      price: "¥ 1,280 / 年",
-      description: "认养一棵专属果树一整年。整树的收成归您所有，新鲜直达您的餐桌。",
+      subtitle: "茂名荔枝树",
+      price: "购买任意商品解锁",
+      description: "通过购买商城任意商品，即可解锁茂名荔枝树的认养资格。开启您的甜蜜守护之旅。",
       icon: <Star size={24} />,
       features: [
+        "茂名荔枝树认养资格",
         "整树认养 (保底 30kg+)",
         "个性化树牌",
         "24/7 实时监控权限",
@@ -107,28 +116,28 @@ export function Adopt() {
       textColor: "text-white",
       highlight: true,
       details: {
-        concept: "拥有一棵树的完整生命周期",
+        concept: "拥有一棵荔枝树的完整生命周期",
         article: {
-          title: "守护者：成为土地的契约伙伴",
-          intro: "守护者计划是一份庄严的承诺。当您认养一棵树，您便与这片古老的果园建立了一种神圣的契约关系。",
+          title: "守护者：成为荔枝林的契约伙伴",
+          intro: "守护者计划是一份庄严的承诺。当您认养一棵荔枝树，您便与这片古老的果园建立了一种神圣的契约关系。",
           sections: [
             {
-              title: "您的专属古树",
+              title: "您的专属古荔枝树",
               content: "我们将为您挑选一棵树龄超过50年的古荔枝树。树干上将挂起刻有您名字或家族寄语的木质牌匾，它将代您在茂名的阳光下静静伫立。",
               image: "https://images.unsplash.com/photo-1591206369811-4eeb2f04bc95?q=80&w=1000&auto=format&fit=crop"
             },
             {
               title: "透明的守护",
-              content: "通过24小时不间断的高清直播，您可以随时观察您的果树。无论是深夜的细雨还是清晨的微光，您与您的树始终在一起。",
+              content: "通过24小时不间断的高清直播，您可以随时观察您的荔枝树。无论是深夜的细雨还是清晨的微光，您与您的树始终在一起。",
               video: "https://assets.mixkit.co/videos/preview/mixkit-rain-falling-on-green-leaves-4007-large.mp4"
             },
             {
               title: "丰收的喜悦",
-              content: "整棵树的收成（保底30公斤）都属于您。我们会根据您的要求，分批次采摘并冷链直达，让您与亲友共享这份最纯粹的喜悦。",
+              content: "整棵树的收成（保底30公斤）都属于您。我们会根据您的要求，分批次采摘并冷链直达，让您与亲友共享这份最纯粹的鲜甜。",
               image: "https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?q=80&w=1000&auto=format&fit=crop"
             }
           ],
-          footer: "守护一棵树，就是守护一份自然的传承。"
+          footer: "守护一棵荔枝树，就是守护一份自然的传承。"
         },
         fullPlan: [
           { title: "整树认养", desc: "为您标记一棵专属古荔枝树，保底收成30kg，多出部分全部赠送，让您实现“荔枝自由”。" },
@@ -140,11 +149,12 @@ export function Adopt() {
     },
     {
       name: "传承者",
-      subtitle: "家族传承",
-      price: "¥ 5,000 / 年",
-      description: "适合家庭和企业。守护一片包含5棵树的果林，在茂名留下一份长久的绿色遗产。",
+      subtitle: "金煌芒果树",
+      price: "购买满188元解锁",
+      description: "在商城消费满188元，即可解锁金煌芒果树的认养资格。让这份金色的甜蜜成为您的专属遗产。",
       icon: <Crown size={24} />,
       features: [
+        "金煌芒果树认养资格",
         "5棵树认养 (150kg+ 收成)",
         "私人丰收活动举办权",
         "企业/家族现场品牌展示",
@@ -154,19 +164,19 @@ export function Adopt() {
       color: "bg-lumina-charcoal",
       textColor: "text-white",
       details: {
-        concept: "家族荣耀与绿色遗产",
+        concept: "家族荣耀与金色遗产",
         article: {
-          title: "传承者：书写绿色的家族篇章",
-          intro: "传承者计划是为那些追求卓越、关注长远价值的家庭和企业量身定制的。这不仅是认养，更是一份可以跨越时间的绿色遗产。",
+          title: "传承者：书写金色的家族篇章",
+          intro: "传承者计划是为那些追求卓越、关注长远价值的家庭和企业量身定制的。这不仅是认养，更是一份可以跨越时间的金色遗产。",
           sections: [
             {
-              title: "私属果林领地",
-              content: "您将拥有一片独立的果林区域。在这里，我们将为您设立永久性的纪念标识，记录您对生态保护和乡村振兴的卓越贡献。",
+              title: "私属芒果林领地",
+              content: "您将拥有一片独立的芒果林区域。在这里，我们将为您设立永久性的纪念标识，记录您对生态保护和乡村振兴的卓越贡献。",
               image: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?q=80&w=1000&auto=format&fit=crop"
             },
             {
               title: "定制化的丰收盛宴",
-              content: "作为传承者，您享有在果园举办私人丰收节的权利。无论是家庭聚会还是企业团建，我们都将为您提供管家式的定制服务。",
+              content: "作为传承者，您享有在芒果园举办私人丰收节的权利。无论是家庭聚会还是企业团建，我们都将为您提供管家式的定制服务。",
               video: "https://assets.mixkit.co/videos/preview/mixkit-friends-having-a-picnic-in-a-park-4009-large.mp4"
             },
             {
@@ -175,10 +185,10 @@ export function Adopt() {
               image: "https://images.unsplash.com/photo-1542601906990-b4d3fb7d5c73?q=80&w=1000&auto=format&fit=crop"
             }
           ],
-          footer: "让绿色成为家族最珍贵的传承。"
+          footer: "让金色成为家族最珍贵的传承。"
         },
         fullPlan: [
-          { title: "专属果林", desc: "认养一片包含5棵古树的独立区域，设立家族/企业纪念碑，成为这片土地的永久守护者。" },
+          { title: "专属果林", desc: "认养一片包含5棵金煌芒果树的独立区域，设立家族/企业纪念碑，成为这片土地的永久守护者。" },
           { title: "私人盛宴", desc: "每年丰收季，为您举办一场定制的果园私宴或团建活动，在树荫下品味最纯正的岭南风情。" },
           { title: "VIP管家", desc: "专属客服团队，为您处理所有物流、分装赠礼及个性化定制需求，省心尊享。" },
           { title: "影响力报告", desc: "年度碳中和贡献证书及可持续农业支持报告，记录您为生态保护做出的卓越贡献。" }
@@ -245,15 +255,49 @@ export function Adopt() {
               </ul>
 
               <button 
-                onClick={() => setSelectedPlan(tier)}
+                onClick={() => {
+                  if (tier.name === "观察者") {
+                    setShowLottery(true);
+                  } else if (tier.name === "培育者") {
+                    setShowPhonograph(true);
+                  } else {
+                    setSelectedPlan(tier);
+                  }
+                }}
                 className="w-full py-4 rounded-lg text-xs uppercase tracking-widest font-bold transition-all duration-300 bg-white text-lumina-green hover:bg-lumina-gold"
               >
-                查看计划
+                {tier.name === "观察者" ? "开始抽签" : tier.name === "培育者" ? "查看计划" : "查看计划"}
               </button>
             </motion.div>
           ))}
         </div>
       </div>
+
+      {/* Lottery Game Modal */}
+      <AnimatePresence>
+        {showLottery && (
+          <LotteryGame 
+            onClose={() => setShowLottery(false)} 
+            onUnlock={() => {
+              setIsUnlocked(true);
+              // You could add a toast or redirect here
+            }} 
+            onChangeView={onChangeView}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Longan Phonograph Modal */}
+      <AnimatePresence>
+        {showPhonograph && (
+          <LonganPhonograph 
+            onClose={() => setShowPhonograph(false)} 
+            onUnlock={() => {
+              setIsLonganUnlocked(true);
+            }} 
+          />
+        )}
+      </AnimatePresence>
 
       {/* Lumina Lifestyle Section */}
       <section className="py-32 bg-lumina-cream relative overflow-hidden">
