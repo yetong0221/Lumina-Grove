@@ -66,7 +66,6 @@ interface GroveProps {
 }
 
 export function Grove({ onShowToast }: GroveProps) {
-  const [accumulated] = useState(0);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const { addToCart } = useCart();
 
@@ -78,17 +77,8 @@ export function Grove({ onShowToast }: GroveProps) {
 
   return (
     <div className="pt-12 min-h-screen bg-lumina-cream relative">
-      {/* Floating Banner */}
-      <div className="fixed top-0 left-0 right-0 z-40 bg-lumina-green text-lumina-cream py-3 px-6 shadow-md">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs sm:text-sm tracking-widest">
-          <Gift size={16} className="text-lumina-gold" />
-          <span>每笔消费自动累计 · 满¥780 即可解锁云认养权益</span>
-          <span className="text-lumina-gold font-medium">（当前已累计：¥{accumulated}）</span>
-        </div>
-      </div>
-
       {/* Header */}
-      <div className="px-6 mt-16 mb-20 max-w-7xl mx-auto text-center">
+      <div className="px-6 mt-12 mb-20 max-w-7xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -123,10 +113,6 @@ export function Grove({ onShowToast }: GroveProps) {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 text-[10px] uppercase tracking-widest font-medium text-lumina-green shadow-sm border border-lumina-stone/30 flex items-center gap-1.5">
-                  <Gift size={12} className="text-lumina-terracotta" />
-                  购买满¥780 可免费激活中级认养权益
-                </div>
                 <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <div className="bg-white/90 backdrop-blur-sm p-4 rounded-full text-lumina-green">
                     <Info size={24} />
@@ -270,16 +256,6 @@ export function Grove({ onShowToast }: GroveProps) {
                           建议 0-4℃ 冷藏
                         </div>
                       </div>
-                    </section>
-
-                    <section className="bg-white/50 p-8 rounded-2xl border border-lumina-stone/20">
-                      <div className="flex items-center gap-4 mb-4">
-                        <Gift className="text-lumina-terracotta" size={24} />
-                        <h4 className="text-sm font-bold uppercase tracking-widest text-lumina-green">认养权益激活</h4>
-                      </div>
-                      <p className="text-xs text-lumina-charcoal/60 leading-relaxed">
-                        购买此商品将自动计入您的消费总额。累计满 ¥780 即可免费激活“云认养”权益，拥有属于您的专属荔枝树。
-                      </p>
                     </section>
                   </div>
 
