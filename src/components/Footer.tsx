@@ -3,7 +3,7 @@ import { ArrowUpRight, Instagram, Twitter, Facebook, Mail } from 'lucide-react';
 
 export function Footer({ onChangeView }: { onChangeView?: (view: string) => void }) {
   return (
-    <footer className="bg-lumina-green text-lumina-cream pt-24 pb-12 px-6 w-full">
+    <footer className="bg-lumina-green/90 text-lumina-cream pt-24 pb-12 px-6 w-full">
       <div className="w-full">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
           <div className="col-span-1 md:col-span-1">
@@ -23,7 +23,7 @@ export function Footer({ onChangeView }: { onChangeView?: (view: string) => void
             <ul className="space-y-4 font-light text-white/80">
               <li onClick={() => onChangeView?.('home')} className="hover:text-white cursor-pointer transition-colors">我们的果园</li>
               <li onClick={() => onChangeView?.('adopt')} className="hover:text-white cursor-pointer transition-colors">认养计划</li>
-              <li onClick={() => onChangeView?.('journal')} className="hover:text-white cursor-pointer transition-colors">果园日记</li>
+              <li onClick={() => onChangeView?.('explore')} className="hover:text-white cursor-pointer transition-colors">探索</li>
               <li onClick={() => onChangeView?.('company-about')} className="hover:text-white cursor-pointer transition-colors">关于我们</li>
               <li className="hover:text-white cursor-pointer transition-colors">可持续发展</li>
             </ul>

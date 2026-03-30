@@ -1,10 +1,37 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { JOURNAL_ENTRIES } from '@/data/mock';
-import { Calendar, User, X, ArrowLeft } from 'lucide-react';
+import { Calendar, User, ArrowLeft, Sprout, Camera, Gift, Truck } from 'lucide-react';
 
-export function Journal() {
+export function Explore() {
   const [selectedEntry, setSelectedEntry] = useState<any | null>(null);
+
+  const steps = [
+    {
+      title: "选择与激活",
+      desc: "选择您的果树或通过商店购买激活您的观察者身份。接收您的数字证书并访问果园仪表板。",
+      icon: <Sprout size={24} />,
+      image: "https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E9%80%89%E6%8B%A9%E4%B8%8E%E6%BF%80%E6%B4%BB.png"
+    },
+    {
+      title: "生长与监控",
+      desc: "见证您的果树随季节繁茂。访问 24/7 实时摄像头，阅读每周果农日记，并追踪环境数据。",
+      icon: <Camera size={24} />,
+      image: "https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E7%94%9F%E9%95%BF%E4%B8%8E%E7%9B%91%E6%8E%A7.png"
+    },
+    {
+      title: "季节性好礼",
+      desc: "对于培育者及以上等级，每季度接收包含手工艺品、果园蜂蜜 and 季节性美食的关怀礼包。",
+      icon: <Gift size={24} />,
+      image: "https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E5%AD%A3%E8%8A%82%E6%80%A7%E5%A5%BD%E7%A4%BC.png"
+    },
+    {
+      title: "丰收时刻",
+      desc: "当果实成熟时，丰收属于您。我们会精心手工采摘您的份额，并在24小时内通过冷链送达您家门口。",
+      icon: <Truck size={24} />,
+      image: "https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E4%B8%B0%E6%94%B6%E6%97%B6%E5%88%BB.png"
+    }
+  ];
 
   const featuredEntry = {
     title: "荔枝嫁接的古老艺术",
@@ -39,7 +66,6 @@ export function Journal() {
       { type: 'text', value: '根子镇家家户户种荔枝，但愿意学嫁接的年轻人，越来越少。' },
       { type: 'text', value: '“嫁接要弯腰，一弯就是一天，腰酸背痛。要晒太阳，晒得比荔枝皮还黑。要磨性子，一刀下去不对，就废了。”林师傅说，他儿子在城里打工，一个月挣五六千，不愿意回来。“我也不强求，这活确实苦。”' },
       { type: 'text', value: '去年，有个从东莞回来的年轻人找上门，说想学嫁接，回家种荔枝。林师傅教了三个月，年轻人学得不错。“他有文化，学得快，就是坐不住，老想用手机查资料，看视频。”林师傅说，嫁接这东西，视频上看一百遍，不如自己削一刀。' },
-      { type: 'text', value: '他不知道那个年轻人现在还在不在种荔枝，但他说，只要有人愿意学，他就愿意教。' },
       { type: 'image', value: 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E6%9E%97%E5%B8%88%E5%82%85%E4%B8%8E%E5%B9%B4%E8%BD%BB%E4%BA%BA.png' },
       { type: 'heading', value: '柏桥村的荔枝，今年的花很好' },
       { type: 'text', value: '四月的柏桥村，荔枝树已经挂满了小小的果胎。林师傅站在自家果园的山坡上，看着漫山遍野的荔枝林，说了一句：“今年的花很好。”' },
@@ -50,17 +76,17 @@ export function Journal() {
   };
 
   return (
-    <div className="pt-12 min-h-screen bg-lumina-cream">
+    <div className="pt-12 min-h-screen bg-lumina-cream/60">
       <div className="px-6 mb-16 max-w-7xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <span className="text-lumina-terracotta text-xs uppercase tracking-widest mb-4 block">果园日记</span>
+          <span className="text-lumina-terracotta text-xs uppercase tracking-widest mb-4 block">探索</span>
           <h1 className="font-serif text-5xl md:text-6xl text-lumina-green mb-8">泥土的故事</h1>
           <p className="text-lumina-charcoal/70 max-w-2xl mx-auto font-light leading-relaxed text-lg">
-            关于生长、季节以及耕耘这片土地的人们的记录。
+            关于生长、季节以及耕耘这片土地的人们的记录与旅程。
           </p>
         </motion.div>
       </div>
@@ -93,7 +119,7 @@ export function Journal() {
       </div>
 
       {/* Grid */}
-      <div className="max-w-7xl mx-auto px-6 pb-32">
+      <div className="max-w-7xl mx-auto px-6 mb-32">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
           {JOURNAL_ENTRIES.map((entry) => (
             <motion.div 
@@ -131,6 +157,65 @@ export function Journal() {
         </div>
       </div>
 
+      {/* Journey Section */}
+      <div className="bg-white/30 py-24 mb-32">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-20">
+            <span className="text-lumina-terracotta text-xs uppercase tracking-widest mb-4 block">运作方式</span>
+            <h2 className="font-serif text-4xl md:text-5xl text-lumina-green mb-6">一季的旅程</h2>
+            <p className="text-lumina-charcoal/70 max-w-2xl mx-auto font-light leading-relaxed">
+              从第一颗花蕾到最后的丰收，像亲自漫步在果园行间一样体验您果树的生命周期。
+            </p>
+          </div>
+
+          <div className="max-w-5xl mx-auto">
+            <div className="relative">
+              <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-lumina-green/20 -translate-x-1/2 hidden md:block" />
+              
+              {steps.map((step, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                  className={`flex flex-col md:flex-row gap-8 md:gap-16 items-center mb-24 ${i % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
+                >
+                  <div className="w-full md:w-1/2">
+                    <div className="aspect-[4/3] overflow-hidden rounded-sm shadow-lg relative group">
+                      <img 
+                        src={step.image} 
+                        alt={step.title} 
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        referrerPolicy="no-referrer"
+                      />
+                      <div className="absolute inset-0 bg-lumina-green/10 group-hover:bg-transparent transition-colors duration-500" />
+                    </div>
+                  </div>
+
+                  <div className="absolute left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-lumina-cream border border-lumina-green/20 flex items-center justify-center text-lumina-green z-10 hidden md:flex">
+                    {step.icon}
+                  </div>
+
+                  <div className="w-full md:w-1/2 text-left md:text-center">
+                    <div className={`md:px-8 ${i % 2 === 0 ? 'md:text-left' : 'md:text-right'}`}>
+                      <div className="flex items-center gap-3 mb-4 md:hidden text-lumina-green">
+                        {step.icon}
+                        <span className="text-xs uppercase tracking-widest font-bold">步骤 {i + 1}</span>
+                      </div>
+                      <h3 className="font-serif text-3xl text-lumina-green mb-4">{step.title}</h3>
+                      <p className="text-lumina-charcoal/70 font-light leading-relaxed">
+                        {step.desc}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Article Detail Overlay */}
       <AnimatePresence>
         {selectedEntry && (
@@ -138,7 +223,7 @@ export function Journal() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[300] bg-lumina-cream overflow-y-auto"
+            className="fixed inset-0 z-[300] bg-lumina-cream/90 backdrop-blur-md overflow-y-auto"
           >
             <div className="max-w-3xl mx-auto px-6 py-20 relative">
               <button 
@@ -149,7 +234,7 @@ export function Journal() {
               </button>
 
               <div className="mb-12 text-center">
-                <span className="text-lumina-terracotta text-xs uppercase tracking-widest mb-4 block">果园日记</span>
+                <span className="text-lumina-terracotta text-xs uppercase tracking-widest mb-4 block">探索</span>
                 <h1 className="font-serif text-4xl md:text-6xl text-lumina-green mb-6 leading-tight">
                   {selectedEntry.title}
                 </h1>
@@ -194,7 +279,7 @@ export function Journal() {
                   onClick={() => setSelectedEntry(null)}
                   className="px-8 py-3 bg-lumina-green text-white rounded-full text-sm uppercase tracking-widest font-bold hover:bg-lumina-terracotta transition-colors"
                 >
-                  返回日记列表
+                  返回探索列表
                 </button>
               </div>
             </div>

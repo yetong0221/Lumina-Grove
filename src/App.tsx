@@ -5,8 +5,7 @@ import { Footer } from '@/components/Footer';
 import { Home } from '@/views/Home';
 import { Grove } from '@/views/Grove';
 import { Adopt } from '@/views/Adopt';
-import { Journey } from '@/views/Journey';
-import { Journal } from '@/views/Journal';
+import { Explore } from '@/views/Explore';
 import { About } from '@/views/About';
 import { Cart } from '@/views/Cart';
 import { Orders } from '@/views/Orders';
@@ -73,8 +72,7 @@ export default function App() {
       case 'home': return <Home onChangeView={setCurrentView} />;
       case 'grove': return <Grove onShowToast={showToast} />;
       case 'adopt': return <Adopt onChangeView={setCurrentView} />;
-      case 'journey': return <Journey />;
-      case 'journal': return <Journal />;
+      case 'explore': return <Explore />;
       case 'about': return <About />;
       case 'company-about': return <CompanyAbout onBack={() => setCurrentView('home')} />;
       case 'cart': return <Cart />;
@@ -101,8 +99,55 @@ export default function App() {
 
   return (
     <CartProvider>
-      <div className="min-h-screen bg-lumina-cream text-lumina-charcoal font-sans selection:bg-lumina-terracotta selection:text-white">
+      <div className="min-h-screen bg-lumina-cream text-lumina-charcoal font-sans selection:bg-lumina-terracotta selection:text-white relative overflow-x-hidden">
         
+        {/* Exquisite Background Texture/Gradient */}
+        <div className="fixed inset-0 pointer-events-none z-[-1]">
+          {/* Subtle paper-like texture */}
+          <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/paper-fibers.png')]" />
+          {/* Noise texture for more refinement */}
+          <div className="absolute inset-0 opacity-[0.02] bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] mix-blend-overlay" />
+          {/* Dot pattern */}
+          <div className="absolute inset-0 bg-[radial-gradient(#d1d5db_1px,transparent_1px)] [background-size:40px_40px] opacity-30" />
+          {/* Soft atmospheric gradients */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-lumina-gold/10 via-transparent to-lumina-terracotta/10" />
+          <div className="absolute inset-0 bg-gradient-to-bl from-lumina-green/5 via-transparent to-transparent" />
+        </div>
+
+        {/* Decorative Lady Xian Images - Adjusted for better visibility */}
+        <motion.img 
+          src="https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E7%B2%89%E8%89%B2%E5%86%BC%E5%A4%AB%E4%BA%BA.png"
+          alt="Lady Xian Pink"
+          className="fixed left-8 top-1/4 w-80 h-auto opacity-[0.25] pointer-events-none z-0 hidden xl:block"
+          animate={{ 
+            y: [0, -30, 0],
+            rotate: [0, 3, 0],
+            scale: [1, 1.05, 1]
+          }}
+          transition={{ 
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          referrerPolicy="no-referrer"
+        />
+        <motion.img 
+          src="https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E6%A3%95%E8%89%B2%E5%86%BC%E5%A4%AB%E4%BA%BA.png"
+          alt="Lady Xian Brown"
+          className="fixed right-8 bottom-1/4 w-80 h-auto opacity-[0.25] pointer-events-none z-0 hidden xl:block"
+          animate={{ 
+            y: [0, 30, 0],
+            rotate: [0, -3, 0],
+            scale: [1, 1.05, 1]
+          }}
+          transition={{ 
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          referrerPolicy="no-referrer"
+        />
+
         <AnimatePresence mode="wait">
           <motion.div
             key={currentView}

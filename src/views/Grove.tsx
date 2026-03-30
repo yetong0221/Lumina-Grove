@@ -6,13 +6,34 @@ import { Product } from '@/types';
 
 const PRODUCTS: Product[] = [
   {
+    id: 101,
+    name: '季度鲜果订阅包',
+    subtitle: 'Quarterly Fresh Fruit Subscription',
+    price: 399,
+    desc: '每个季度为您精选当季最优质的茂名鲜果，顺丰冷链直达。',
+    image: 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E5%AD%A3%E5%BA%A6%E9%B2%9C%E6%9E%9C%E8%AE%A2%E9%98%85%E5%8C%85.jpg',
+    details: '订阅我们的鲜果包，您将按季度收到来自茂名的顶级馈赠。春季荔枝、夏季龙眼、秋季芒果、冬季特色柑橘。每一份都代表了那个季节土地最纯粹的味道。',
+    category: 'subscription'
+  },
+  {
+    id: 102,
+    name: '季度果干订阅包',
+    subtitle: 'Quarterly Dried Fruit Subscription',
+    price: 299,
+    desc: '精选古法烘干果干，锁住原果精华，四季皆可品尝的甜蜜。',
+    image: 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E6%9E%9C%E5%B9%B2%E5%90%88%E9%9B%86.jpg',
+    details: '订阅我们的果干包，您将收到包括荔枝干、龙眼干、芒果干等在内的多种精选果干。采用传统工艺，无添加，是您健康生活的甜蜜伴侣。',
+    category: 'subscription'
+  },
+  {
     id: 1,
     name: '茂名鲜荔枝礼盒（5斤）',
     subtitle: 'Maoming Fresh Lychee Box',
     price: 188,
     desc: '核心产区清晨采摘，冷链直达，保留枝头初熟的清甜。',
     image: 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E8%8C%82%E5%90%8D%E9%B2%9C%E8%8D%94%E6%9E%9D%E7%A4%BC%E7%9B%92.png',
-    details: '我们的荔枝产自茂名核心产区，每一颗都经过人工精挑细选。清晨带露采摘，通过专业的冷链物流，在最短时间内送达您的手中，确保您能品尝到如在枝头般的鲜甜。'
+    details: '我们的荔枝产自茂名核心产区，每一颗都经过人工精挑细选。清晨带露采摘，通过专业的冷链物流，在最短时间内送达您的手中，确保您能品尝到如在枝头般的鲜甜。',
+    category: 'product'
   },
   {
     id: 2,
@@ -20,8 +41,9 @@ const PRODUCTS: Product[] = [
     subtitle: 'Premium Longan Box',
     price: 120,
     desc: '肉厚核小，汁水丰盈，每一颗都蕴含着南国阳光的温暖。',
-    image: 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E8%8C%82%E5%90%8D%E4%BC%98%E8%B4%A8%E9%BE%99%E7%9C%BC%E7%A4%BC%E7%9B%92.png',
-    details: '精选优质石硖龙眼，果肉晶莹剔透，口感爽脆，甜度适中。富含多种营养成分，是滋补身体、馈赠亲友的佳品。'
+    image: 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E9%BE%99%E7%9C%BC%E5%B9%B2.jpg',
+    details: '精选优质石硖龙眼，果肉晶莹剔透，口感爽脆，甜度适中。富含多种营养成分，是滋补身体、馈赠亲友的佳品。',
+    category: 'product'
   },
   {
     id: 3,
@@ -30,7 +52,8 @@ const PRODUCTS: Product[] = [
     price: 136,
     desc: '荔枝与龙眼的完美邂逅，一次品尝两种岭南风味。',
     image: 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E5%9B%9B%E5%AD%A3%E6%B7%B7%E5%90%88%E6%B0%B4%E6%9E%9C%E7%AE%B1.png',
-    details: '集合了当季最优质的荔枝与龙眼，让您一次性体验岭南两大名果的魅力。精美包装，适合全家共享或作为高端商务礼赠。'
+    details: '集合了当季最优质的荔枝与龙眼，让您一次性体验岭南两大名果的魅力。精美包装，适合全家共享或作为高端商务礼赠。',
+    category: 'product'
   },
   {
     id: 4,
@@ -39,7 +62,8 @@ const PRODUCTS: Product[] = [
     price: 130,
     desc: '联名限量包装，内含精选果品与定制周边，送礼收藏佳品。',
     image: 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E8%8C%82%E5%90%8D%E7%86%8A%E5%87%BA%E6%B2%A1IP%E5%AE%9A%E5%88%B6%E7%A4%BC%E7%9B%92.png',
-    details: '跨界联名，将传统农业与现代潮流文化结合。礼盒内除了顶级鲜果，还包含限量版定制周边，极具收藏价值。'
+    details: '跨界联名，将传统农业与现代潮流文化结合。礼盒内除了顶级鲜果，还包含限量版定制周边，极具收藏价值。',
+    category: 'product'
   },
   {
     id: 5,
@@ -47,8 +71,9 @@ const PRODUCTS: Product[] = [
     subtitle: 'Maoming Gaozhou Dried Longan Box',
     price: 158,
     desc: '传统古法烘焙，锁住原果精华，四季皆可品尝的甜蜜。',
-    image: 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E8%8C%82%E5%90%8D%E9%AB%98%E5%B7%9E%E6%A1%82%E5%9C%86%E8%82%89%E7%A4%BC%E7%9B%92.png',
-    details: '采用传统古法烘干工艺，不添加任何防腐剂，完美保留了水果的天然风味和营养。口感柔韧，甜而不腻，是办公室零食或茶歇的最佳选择。'
+    image: 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E6%A1%82%E5%9C%86%E8%82%89.jpg',
+    details: '采用传统古法烘干工艺，不添加任何防腐剂，完美保留了水果的天然风味和营养。口感柔韧，甜而不腻，是办公室零食或茶歇的最佳选择。',
+    category: 'product'
   },
   {
     id: 6,
@@ -57,7 +82,8 @@ const PRODUCTS: Product[] = [
     price: 119,
     desc: '茂名特产沉香与顶级鲜果的奢华碰撞，尊享非凡品味。',
     image: 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E6%B2%89%E9%A6%99%2B%E6%B0%B4%E6%9E%9C%E7%A4%BC%E7%9B%92.png',
-    details: '将茂名两大国宝级特产——沉香与荔枝完美结合。礼盒包含高等级沉香线香及顶级鲜果，为您带来视觉、嗅觉与味觉的三重盛宴。'
+    details: '将茂名两大国宝级特产——沉香与荔枝完美结合。礼盒包含高等级沉香线香及顶级鲜果，为您带来视觉、嗅觉与味觉的三重盛宴。',
+    category: 'product'
   }
 ];
 
@@ -67,7 +93,12 @@ interface GroveProps {
 
 export function Grove({ onShowToast }: GroveProps) {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [activeCategory, setActiveCategory] = useState<'all' | 'subscription' | 'product'>('all');
   const { addToCart } = useCart();
+
+  const filteredProducts = activeCategory === 'all' 
+    ? PRODUCTS 
+    : PRODUCTS.filter(p => p.category === activeCategory);
 
   const handleAddToCart = (e: React.MouseEvent, product: Product) => {
     e.stopPropagation();
@@ -76,37 +107,66 @@ export function Grove({ onShowToast }: GroveProps) {
   };
 
   return (
-    <div className="pt-12 min-h-screen bg-lumina-cream relative">
+    <div className="pt-12 min-h-screen bg-lumina-cream/60 relative">
       {/* Header */}
-      <div className="px-6 mt-12 mb-20 max-w-7xl mx-auto text-center">
+      <div className="px-6 mt-12 mb-12 max-w-7xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           <h1 className="font-serif text-5xl md:text-6xl text-lumina-green mb-4">光林市集</h1>
-          <span className="text-lumina-terracotta text-sm uppercase tracking-[0.2em] mb-6 block">Lumina Market – 时令鲜果直购</span>
+          <span className="text-lumina-terracotta text-sm uppercase tracking-[0.2em] mb-6 block font-medium">Lumina Market – 时令鲜果直购</span>
           <p className="text-lumina-charcoal/70 max-w-2xl mx-auto font-light leading-relaxed">
             通过直接购买茂名新鲜水果与周边，即可自然激活认养权益 · 支持本地果农
           </p>
         </motion.div>
       </div>
 
+      {/* Category Filter */}
+      <div className="max-w-7xl mx-auto px-6 mb-16">
+        <div className="flex items-center justify-center gap-8 border-b border-lumina-stone/30 pb-4">
+          {[
+            { id: 'all', label: '全部' },
+            { id: 'subscription', label: '季度订阅包' },
+            { id: 'product', label: '商品' }
+          ].map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id as any)}
+              className={`text-sm tracking-widest uppercase transition-all duration-300 relative pb-4 ${
+                activeCategory === cat.id 
+                  ? 'text-lumina-terracotta font-bold' 
+                  : 'text-lumina-green/60 hover:text-lumina-green'
+              }`}
+            >
+              {cat.label}
+              {activeCategory === cat.id && (
+                <motion.div 
+                  layoutId="activeCategory"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-lumina-terracotta"
+                />
+              )}
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* Product Grid */}
       <div className="max-w-7xl mx-auto px-6 pb-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
-          {PRODUCTS.map((product, index) => (
+          {filteredProducts.map((product, index) => (
             <motion.div 
               key={product.id}
+              layout
               initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1, duration: 0.8 }}
               onClick={() => setSelectedProduct(product)}
               className="group flex flex-col bg-white rounded-sm overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-lumina-stone/20 cursor-pointer"
             >
               {/* Image Container */}
-              <div className="aspect-[4/5] overflow-hidden relative">
+              <div className="aspect-[3/4] overflow-hidden relative bg-white">
                 <img 
                   src={product.image} 
                   alt={product.name} 
@@ -200,7 +260,7 @@ export function Grove({ onShowToast }: GroveProps) {
               </button>
 
               {/* Image Section */}
-              <div className="md:w-1/2 h-[40vh] md:h-auto relative">
+              <div className="md:w-1/2 h-[40vh] md:h-auto relative bg-white">
                 <img 
                   src={selectedProduct.image} 
                   alt={selectedProduct.name} 

@@ -62,11 +62,10 @@ export function Adopt({ onChangeView }: { onChangeView: (view: string) => void }
       description: "通过收录方言解锁石峡龙眼树的认养资格。用乡音传递温情，守护百年古树。",
       icon: <Heart size={24} />,
       features: [
-        "包含所有观察者权益",
         "石峡龙眼树认养资格",
+        "数字果园访问权",
+        "当季果实优先权",
         "方言留声机互动权",
-        "季度礼盒 (4次/年)",
-        "果树生长日记",
         "商店 9 折优惠"
       ],
       color: "bg-lumina-green",
@@ -91,10 +90,11 @@ export function Adopt({ onChangeView }: { onChangeView: (view: string) => void }
           footer: "培育一份耐心，收获一份自然的宁静。"
         },
         fullPlan: [
-          { title: "四季礼盒", desc: "春季花蜜、夏季鲜果、秋季果干、冬季沉香周边，将茂名的四季装进盒子寄给您。" },
-          { title: "生长日记", desc: "专属您的果树成长档案，通过影像记录从开花、授粉到挂果的每一个生命瞬间。" },
-          { title: "专属优惠", desc: "全店商品终身9折，并享有会员专属新品试吃机会，成为我们的首席品鉴官。" },
-          { title: "线下活动", desc: "受邀参加果园开放日，亲身感受泥土的芬芳，体验亲手采摘的乐趣。" }
+          { title: "认养资格", desc: "获得石峡龙眼树的专属认养权，见证百年古树的四季更迭。" },
+          { title: "数字果园", desc: "24小时访问数字果园，通过实时传感器数据监控果树生长状态。" },
+          { title: "优先权", desc: "享有当季果实的优先采摘与购买权，锁定第一口鲜甜。" },
+          { title: "留声机互动", desc: "获得方言留声机互动权，用乡音传递温情，守护文化根脉。" },
+          { title: "商店优惠", desc: "全店商品享有 9 折优惠，成为我们的首席品鉴官。" }
         ]
       }
     },
@@ -106,11 +106,9 @@ export function Adopt({ onChangeView }: { onChangeView: (view: string) => void }
       icon: <Star size={24} />,
       features: [
         "茂名荔枝树认养资格",
-        "整树认养 (保底 30kg+)",
-        "个性化树牌",
-        "24/7 实时监控权限",
-        "果园探访券 (1日通票)",
-        "定制礼品包装"
+        "数字果园访问权",
+        "商店 9 折优惠",
+        "赠送“季度订阅包”一张半价券"
       ],
       color: "bg-lumina-terracotta",
       textColor: "text-white",
@@ -140,10 +138,10 @@ export function Adopt({ onChangeView }: { onChangeView: (view: string) => void }
           footer: "守护一棵荔枝树，就是守护一份自然的传承。"
         },
         fullPlan: [
-          { title: "整树认养", desc: "为您标记一棵专属古荔枝树，保底收成30kg，多出部分全部赠送，让您实现“荔枝自由”。" },
-          { title: "实时监控", desc: "24小时高清摄像头权限，随时随地在手机端“看护”您的树，见证它的每一次成长。" },
-          { title: "探访权益", desc: "包含茂名果园双人一日通票，含专业导览、古树讲解及现场采摘体验。" },
-          { title: "定制礼遇", desc: "果实采摘后，使用印有您名字或家族寄语的专属礼盒包装，顺丰冷链直达。" }
+          { title: "认养资格", desc: "获得茂名荔枝树的专属认养权，开启您的甜蜜守护之旅。" },
+          { title: "数字果园", desc: "24小时访问数字果园，实时监控果树生长，见证每一刻的成长。" },
+          { title: "商店优惠", desc: "全店商品享有 9 折优惠，尊享会员专属礼遇。" },
+          { title: "订阅包优惠", desc: "赠送“季度订阅包”一张半价券，分享丰收的喜悦。" }
         ]
       }
     },
@@ -155,11 +153,9 @@ export function Adopt({ onChangeView }: { onChangeView: (view: string) => void }
       icon: <Crown size={24} />,
       features: [
         "金煌芒果树认养资格",
-        "5棵树认养 (150kg+ 收成)",
-        "私人丰收活动举办权",
-        "企业/家族现场品牌展示",
-        "VIP 管家服务",
-        "可持续发展影响力报告"
+        "数字果园访问权",
+        "商店 85 折优惠",
+        "赠送当前”季度果干订阅包“（包邮到家）"
       ],
       color: "bg-lumina-charcoal",
       textColor: "text-white",
@@ -188,17 +184,17 @@ export function Adopt({ onChangeView }: { onChangeView: (view: string) => void }
           footer: "让金色成为家族最珍贵的传承。"
         },
         fullPlan: [
-          { title: "专属果林", desc: "认养一片包含5棵金煌芒果树的独立区域，设立家族/企业纪念碑，成为这片土地的永久守护者。" },
-          { title: "私人盛宴", desc: "每年丰收季，为您举办一场定制的果园私宴或团建活动，在树荫下品味最纯正的岭南风情。" },
-          { title: "VIP管家", desc: "专属客服团队，为您处理所有物流、分装赠礼及个性化定制需求，省心尊享。" },
-          { title: "影响力报告", desc: "年度碳中和贡献证书及可持续农业支持报告，记录您为生态保护做出的卓越贡献。" }
+          { title: "认养资格", desc: "获得金煌芒果树的专属认养权，让这份金色的甜蜜成为您的专属遗产。" },
+          { title: "数字果园", desc: "24小时访问数字果园，深度参与果园管理与生态保护。" },
+          { title: "商店优惠", desc: "全店商品享有 85 折优惠，尊享最高等级会员礼遇。" },
+          { title: "订阅包赠送", desc: "赠送当前“季度果干订阅包”（包邮到家），品味大自然的馈赠。" }
         ]
       }
     }
   ];
 
   return (
-    <div className="pt-12 min-h-screen bg-lumina-cream">
+    <div className="pt-12 min-h-screen bg-lumina-cream/60">
       {/* Hero */}
       <div className="px-6 mb-20 max-w-7xl mx-auto text-center">
         <motion.div
@@ -300,7 +296,7 @@ export function Adopt({ onChangeView }: { onChangeView: (view: string) => void }
       </AnimatePresence>
 
       {/* Lumina Lifestyle Section */}
-      <section className="py-32 bg-lumina-cream relative overflow-hidden">
+      <section className="py-32 bg-lumina-cream/60 relative overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="text-center mb-20">
             <motion.h2 

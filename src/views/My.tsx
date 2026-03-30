@@ -29,7 +29,7 @@ export function My({ onChangeView, userEmail }: MyProps) {
   ];
 
   return (
-    <div className="min-h-screen bg-[#FDFCF9] pb-32 w-full">
+    <div className="min-h-screen bg-[#FDFCF9]/60 pb-32 w-full">
       {/* Dark Green Header */}
       <div className="bg-[#2D463E] pt-12 pb-12 px-8 rounded-b-[40px] text-white w-full">
         <div className="w-full">

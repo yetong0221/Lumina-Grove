@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 
 export function About() {
   return (
-    <div className="pt-12 min-h-screen bg-lumina-cream">
+    <div className="pt-12 min-h-screen bg-lumina-cream/60">
       {/* Hero */}
       <div className="px-6 mb-0 w-full text-left">
         <motion.div
@@ -49,7 +49,7 @@ export function About() {
               </ul>
             </section>
 
-            <section className="bg-lumina-green text-white p-8 rounded-sm shadow-xl">
+            <section className="bg-lumina-green/90 text-white p-8 rounded-sm shadow-xl">
               <h3 className="text-2xl font-serif text-white mb-6">品牌资质与授权</h3>
               <div className="space-y-6 text-sm md:text-base opacity-90">
                 <div className="flex flex-col md:flex-row md:justify-between border-b border-white/20 pb-4">

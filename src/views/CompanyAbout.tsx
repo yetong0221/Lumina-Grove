@@ -7,7 +7,7 @@ interface CompanyAboutProps {
 
 export function CompanyAbout({ onBack }: CompanyAboutProps) {
   return (
-    <div className="min-h-screen bg-lumina-cream pt-12 pb-24">
+    <div className="min-h-screen bg-lumina-cream/60 pt-12 pb-24">
       {/* Header */}
       <div className="px-6 mb-12 w-full">
         <button 
@@ -119,7 +119,7 @@ export function CompanyAbout({ onBack }: CompanyAboutProps) {
         </section>
 
         {/* Longan Features */}
-        <section className="bg-lumina-green text-white p-12 rounded-sm shadow-xl">
+        <section className="bg-lumina-green/90 text-white p-12 rounded-sm shadow-xl">
           <h2 className="font-serif text-3xl mb-8">金牌龙眼 · 储良之珍</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="space-y-6">

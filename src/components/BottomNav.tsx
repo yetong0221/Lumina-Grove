@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Home, Store, Leaf, Map, BookOpen, TreeDeciduous, Info, ShoppingCart, User } from 'lucide-react';
+import { Home, Store, Leaf, Compass, TreeDeciduous, Info, ShoppingCart, User } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 
 interface BottomNavProps {
@@ -14,8 +14,7 @@ export function BottomNav({ currentView, onChangeView }: BottomNavProps) {
     { id: 'home', label: '首页', icon: Home },
     { id: 'grove', label: '光林市集', icon: Store },
     { id: 'adopt', label: '认养', icon: Leaf },
-    { id: 'journey', label: '旅程', icon: Map },
-    { id: 'journal', label: '日记', icon: BookOpen },
+    { id: 'explore', label: '探索', icon: Compass },
     { id: 'trees', label: '我的果树', icon: TreeDeciduous },
     { id: 'cart', label: '购物车', icon: ShoppingCart },
     { id: 'my', label: '我的', icon: User },

@@ -6,6 +6,7 @@ export interface Product {
   desc: string;
   image: string;
   details?: string;
+  category?: 'subscription' | 'product';
 }
 
 export interface CartItem extends Product {

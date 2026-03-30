@@ -13,8 +13,7 @@ export function Navigation({ currentView, onChangeView }: NavigationProps) {
     { id: 'home', label: '首页' },
     { id: 'grove', label: '光林市集' },
     { id: 'adopt', label: '认养' },
-    { id: 'journey', label: '旅程' },
-    { id: 'journal', label: '日记' },
+    { id: 'explore', label: '探索' },
     { id: 'trees', label: '我的果树' },
     { id: 'about', label: '关于' },
   ];

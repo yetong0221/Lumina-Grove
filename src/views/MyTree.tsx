@@ -549,7 +549,7 @@ export function MyTree({ onChangeView }: { onChangeView?: (view: string) => void
 
   if (!isAdopted) {
     return (
-      <div className="min-h-screen bg-[#FFFBF5] pt-12 pb-32 px-4 md:px-6 font-sans">
+      <div className="min-h-screen bg-[#FFFBF5]/60 pt-12 pb-32 px-4 md:px-6 font-sans">
         <div className="max-w-5xl mx-auto text-center">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -644,7 +644,7 @@ export function MyTree({ onChangeView }: { onChangeView?: (view: string) => void
   };
 
   return (
-    <div className="min-h-screen bg-[#FFFBF5] pt-12 pb-32 px-4 md:px-6 font-sans selection:bg-orange-200">
+    <div className="min-h-screen bg-[#FFFBF5]/60 pt-12 pb-32 px-4 md:px-6 font-sans selection:bg-orange-200">
       <AnimatePresence>
         {toast && (
           <motion.div
@@ -933,7 +933,7 @@ export function MyTree({ onChangeView }: { onChangeView?: (view: string) => void
                       { name: '阅读日记', reward: 20, done: readDiary, action: () => {
                         setReadDiary(true);
                         setPoints(prev => prev + 20);
-                        if (onChangeView) onChangeView('journal');
+                        if (onChangeView) onChangeView('explore');
                       }},
                       { name: '分享果园动态', reward: 40, done: false, action: handleShare },
                     ].map((task, i) => (

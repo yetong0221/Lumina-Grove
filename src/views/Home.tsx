@@ -60,7 +60,7 @@ export function Home({ onChangeView }: HomeProps) {
       </div>
 
       {/* Narrative Section */}
-      <section className="py-32 px-6 bg-lumina-cream">
+      <section className="py-32 px-6 bg-lumina-cream/60">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
             <motion.div 
@@ -111,7 +111,7 @@ export function Home({ onChangeView }: HomeProps) {
       </section>
 
       {/* Our Promise – Science & Legacy */}
-      <section className="py-32 px-6 bg-white relative overflow-hidden">
+      <section className="py-32 px-6 bg-white/60 relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-20">
@@ -235,7 +235,7 @@ export function Home({ onChangeView }: HomeProps) {
       </section>
 
       {/* Features / Teaser */}
-      <section className="py-32 bg-lumina-green text-lumina-cream relative overflow-hidden">
+      <section className="py-32 bg-lumina-green/85 text-lumina-cream relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-white/5 blur-3xl rounded-full translate-x-1/2" />
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -282,7 +282,7 @@ export function Home({ onChangeView }: HomeProps) {
       </section>
 
       {/* Trust Bar */}
-      <div className="bg-lumina-stone py-6 px-6 overflow-hidden">
+      <div className="bg-lumina-stone/60 py-6 px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-lumina-green/60 text-xs uppercase tracking-widest">
           <span>茂名市农业农村局指导 华南农业大学茂名现代农业研究院指导</span>
           <div className="flex items-center gap-8">

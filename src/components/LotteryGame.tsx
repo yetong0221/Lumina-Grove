@@ -67,7 +67,7 @@ export function LotteryGame({ onClose, onUnlock, onChangeView }: LotteryGameProp
       baseDraws = 0;
     }
 
-    const readStatus = localStorage.getItem(`read_journal_${today}`) === 'true';
+    const readStatus = localStorage.getItem(`read_explore_${today}`) === 'true';
     const shareStatus = localStorage.getItem(`shared_${today}`) === 'true';
     
     setHasReadJournal(readStatus);
@@ -139,11 +139,11 @@ export function LotteryGame({ onClose, onUnlock, onChangeView }: LotteryGameProp
 
   const handleGoRead = () => {
     const today = new Date().toDateString();
-    localStorage.setItem(`read_journal_${today}`, 'true');
+    localStorage.setItem(`read_explore_${today}`, 'true');
     setHasReadJournal(true);
     setDrawsLeft(prev => prev + 1);
     onClose();
-    onChangeView('journal');
+    onChangeView('explore');
   };
 
   const handleGoShare = () => {
@@ -215,7 +215,7 @@ export function LotteryGame({ onClose, onUnlock, onChangeView }: LotteryGameProp
                   }`}
                 >
                   <BookOpen size={14} />
-                  {hasReadJournal ? '已阅读日记' : '去阅读日记 +1'}
+                  {hasReadJournal ? '已阅读探索' : '去阅读探索 +1'}
                 </button>
                 <button
                   onClick={handleGoShare}
