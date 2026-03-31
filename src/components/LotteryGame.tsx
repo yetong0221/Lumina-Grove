@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Sparkles, Calendar, Trophy, Share2, RefreshCw, ArrowLeft, BookOpen, UserPlus } from 'lucide-react';
+import { X, Sparkles, Calendar, Trophy, Share2, RefreshCw, ArrowLeft, ArrowRight, BookOpen, UserPlus } from 'lucide-react';
 
 interface Fortune {
   type: '上上签' | '大吉' | '中吉' | '小吉' | '中平';
@@ -47,43 +47,44 @@ const FORTUNES: Fortune[] = [
 interface LotteryGameProps {
   onClose: () => void;
   onUnlock: () => void;
+  onConfirmUnlock: () => void;
   onChangeView: (view: string) => void;
 }
 
-export function LotteryGame({ onClose, onUnlock, onChangeView }: LotteryGameProps) {
+export function LotteryGame({ onClose, onUnlock, onConfirmUnlock, onChangeView }: LotteryGameProps) {
   const [isDrawing, setIsDrawing] = useState(false);
   const [result, setResult] = useState<Fortune | null>(null);
   const [drawsLeft, setDrawsLeft] = useState(0);
+  const [totalDraws, setTotalDraws] = useState(1);
   const [pityCount, setPityCount] = useState(0);
   const [hasReadJournal, setHasReadJournal] = useState(false);
   const [hasShared, setHasShared] = useState(false);
 
   useEffect(() => {
-    const lastDrawDate = localStorage.getItem('last_draw_date');
     const today = new Date().toDateString();
     
-    let baseDraws = 1;
-    if (lastDrawDate === today) {
-      baseDraws = 0;
-    }
-
     const readStatus = localStorage.getItem(`read_explore_${today}`) === 'true';
     const shareStatus = localStorage.getItem(`shared_${today}`) === 'true';
     
     setHasReadJournal(readStatus);
     setHasShared(shareStatus);
 
-    let totalDraws = baseDraws;
-    if (readStatus) totalDraws += 1;
-    if (shareStatus) totalDraws += 1;
+    // Base draws is always 1 per day
+    let total = 1;
+    if (readStatus) total += 1;
+    if (shareStatus) total += 1;
+    setTotalDraws(total);
 
     // Subtract already used draws today
     const usedDrawsToday = parseInt(localStorage.getItem('used_draws_today') || '0');
+    const lastDrawDate = localStorage.getItem('last_draw_date');
+    
     if (lastDrawDate !== today) {
+      // New day, reset used draws
       localStorage.setItem('used_draws_today', '0');
-      setDrawsLeft(totalDraws);
+      setDrawsLeft(total);
     } else {
-      setDrawsLeft(Math.max(0, totalDraws - usedDrawsToday));
+      setDrawsLeft(Math.max(0, total - usedDrawsToday));
     }
 
     const savedPity = localStorage.getItem('lottery_pity_count');
@@ -140,6 +141,7 @@ export function LotteryGame({ onClose, onUnlock, onChangeView }: LotteryGameProp
   const handleGoRead = () => {
     const today = new Date().toDateString();
     localStorage.setItem(`read_explore_${today}`, 'true');
+    localStorage.setItem('resume_lottery', 'true');
     setHasReadJournal(true);
     setDrawsLeft(prev => prev + 1);
     onClose();
@@ -238,7 +240,7 @@ export function LotteryGame({ onClose, onUnlock, onChangeView }: LotteryGameProp
                     : 'bg-gray-200 text-gray-400 cursor-not-allowed'
                 }`}
               >
-                {isDrawing ? '正在摇晃签筒...' : drawsLeft > 0 ? `开始抽签 (余${drawsLeft}次)` : '次数已用完'}
+                {isDrawing ? '正在摇晃签筒...' : drawsLeft > 0 ? (drawsLeft < totalDraws ? `再抽一次 (余${drawsLeft}次)` : `开始抽签 (余${drawsLeft}次)`) : '次数已用完'}
               </button>
               
               {drawsLeft <= 0 && (
@@ -292,11 +294,17 @@ export function LotteryGame({ onClose, onUnlock, onChangeView }: LotteryGameProp
 
                 <div className="flex gap-4">
                   <button
-                    onClick={() => setResult(null)}
+                    onClick={() => {
+                      if (result.isUnlock) {
+                        onConfirmUnlock();
+                      } else {
+                        setResult(null);
+                      }
+                    }}
                     className="flex-1 py-4 bg-lumina-cream text-lumina-green rounded-xl font-bold text-sm hover:bg-black/5 transition-colors flex items-center justify-center gap-2"
                   >
-                    <RefreshCw size={16} />
-                    返回
+                    {result.isUnlock ? <ArrowRight size={16} /> : <RefreshCw size={16} />}
+                    {result.isUnlock ? '立即开启' : ((!result.isUnlock && drawsLeft > 0) ? '再抽一次' : '返回')}
                   </button>
                   <button
                     className="flex-1 py-4 bg-[#2D463E] text-white rounded-xl font-bold text-sm hover:bg-[#243831] transition-colors flex items-center justify-center gap-2"

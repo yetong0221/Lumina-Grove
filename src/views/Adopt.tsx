@@ -1,17 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Check, Star, Crown, Heart, Sprout, Truck, Gift, ShoppingBag, X, ArrowRight, Calendar, MapPin, Shield, Users } from 'lucide-react';
 import { HarvestProjectionChart } from '@/components/HarvestProjectionChart';
 import { RepurchaseInfographic } from '@/components/RepurchaseInfographic';
 import { LotteryGame } from '@/components/LotteryGame';
 import { LonganPhonograph } from '@/components/LonganPhonograph';
+import { AdoptionCertificate } from '@/components/AdoptionCertificate';
 
 export function Adopt({ onChangeView }: { onChangeView: (view: string) => void }) {
   const [selectedPlan, setSelectedPlan] = useState<any | null>(null);
   const [showLottery, setShowLottery] = useState(false);
   const [showPhonograph, setShowPhonograph] = useState(false);
+  const [showCertificate, setShowCertificate] = useState(false);
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [isLonganUnlocked, setIsLonganUnlocked] = useState(false);
+
+  useEffect(() => {
+    const resumeLottery = localStorage.getItem('resume_lottery');
+    if (resumeLottery === 'true') {
+      setShowLottery(true);
+      localStorage.removeItem('resume_lottery');
+    }
+  }, []);
 
   const tiers = [
     {
@@ -276,8 +286,11 @@ export function Adopt({ onChangeView }: { onChangeView: (view: string) => void }
             onClose={() => setShowLottery(false)} 
             onUnlock={() => {
               setIsUnlocked(true);
-              // You could add a toast or redirect here
             }} 
+            onConfirmUnlock={() => {
+              setShowLottery(false);
+              setSelectedPlan(tiers[0]);
+            }}
             onChangeView={onChangeView}
           />
         )}
@@ -291,6 +304,10 @@ export function Adopt({ onChangeView }: { onChangeView: (view: string) => void }
             onUnlock={() => {
               setIsLonganUnlocked(true);
             }} 
+            onConfirmUnlock={() => {
+              setShowPhonograph(false);
+              setSelectedPlan(tiers[1]);
+            }}
           />
         )}
       </AnimatePresence>
@@ -438,13 +455,32 @@ export function Adopt({ onChangeView }: { onChangeView: (view: string) => void }
                 </div>
                 <div className="flex flex-col items-end gap-4">
                   <div className="text-white text-3xl font-serif">{selectedPlan.price}</div>
-                  <button className="bg-[#D4B595] text-[#1A3329] px-8 py-3 rounded-full font-bold text-sm hover:bg-[#C4A585] transition-colors">
+                  <button 
+                    onClick={() => {
+                      setShowCertificate(true);
+                    }}
+                    className="bg-[#D4B595] text-[#1A3329] px-8 py-3 rounded-full font-bold text-sm hover:bg-[#C4A585] transition-colors"
+                  >
                     立即开启
                   </button>
                 </div>
               </div>
             </motion.div>
           </div>
+        )}
+      </AnimatePresence>
+
+      {/* Adoption Certificate Modal */}
+      <AnimatePresence>
+        {showCertificate && selectedPlan && (
+          <AdoptionCertificate 
+            onClose={() => {
+              setShowCertificate(false);
+              setSelectedPlan(null);
+            }}
+            planName={selectedPlan.name}
+            treeType={selectedPlan.subtitle}
+          />
         )}
       </AnimatePresence>
     </div>

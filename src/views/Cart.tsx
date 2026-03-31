@@ -3,6 +3,7 @@ import { useCart } from '@/context/CartContext';
 import { X, Plus, Minus, ShoppingBag, Loader2, CheckCircle2 } from 'lucide-react';
 import { useState } from 'react';
 import { Order } from '@/types';
+import { EmptyState } from '@/components/EmptyState';
 
 export function Cart() {
   const { cart, updateQuantity, removeFromCart, totalPrice, totalItems, clearCart, addOrder } = useCart();
@@ -39,16 +40,11 @@ export function Cart() {
 
   if (cart.length === 0 && !isPaying) {
     return (
-      <div className="pt-12 pb-20 px-6 w-full min-h-[80vh] flex flex-col items-center justify-center text-center">
-        <div className="w-24 h-24 bg-black/5 rounded-full flex items-center justify-center mb-6">
-          <ShoppingBag size={40} className="text-lumina-green/30" />
-        </div>
-        <h2 className="font-serif text-3xl text-lumina-green mb-2">购物车</h2>
-        <p className="text-lumina-green/50 mb-8">0 件商品</p>
-        <div className="w-full h-px bg-black/5 mb-20" />
-        <div className="flex flex-col items-center opacity-40">
-           <ShoppingBag size={64} strokeWidth={1} className="mb-4" />
-           <p className="text-lg">您的购物车是空的</p>
+      <div className="pt-12 pb-20 px-6 w-full min-h-[80vh] flex flex-col items-center justify-center">
+        <div className="w-full max-w-md">
+          <h2 className="font-serif text-4xl text-lumina-green mb-2 text-center">购物车</h2>
+          <p className="text-lumina-green/40 mb-12 text-center">您的个人好物清单</p>
+          <EmptyState message="购物车空空如也，好物正在赶来的路上..." type="pink" />
         </div>
       </div>
     );

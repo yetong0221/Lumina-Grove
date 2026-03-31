@@ -16,6 +16,7 @@ import { AddAddress } from '@/views/AddAddress';
 import { AnimatePresence, motion } from 'motion/react';
 import { CartProvider } from '@/context/CartContext';
 import { Toast } from '@/components/Toast';
+import { Loading } from '@/components/Loading';
 
 declare global {
   interface Window {
@@ -39,6 +40,7 @@ export interface Address {
 
 export default function App() {
   const [currentView, setCurrentView] = useState('home');
+  const [isLoading, setIsLoading] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [globalFontSize, setGlobalFontSize] = useState(16);
   const [addresses, setAddresses] = useState<Address[]>([
@@ -55,6 +57,11 @@ export default function App() {
   // Global Scroll-to-Top Fix
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    
+    // Simulate loading on view change
+    setIsLoading(true);
+    const timer = setTimeout(() => setIsLoading(false), 800);
+    return () => clearTimeout(timer);
   }, [currentView]);
 
   // Global Font Size Fix
@@ -114,40 +121,6 @@ export default function App() {
           <div className="absolute inset-0 bg-gradient-to-bl from-lumina-green/5 via-transparent to-transparent" />
         </div>
 
-        {/* Decorative Lady Xian Images - Adjusted for better visibility */}
-        <motion.img 
-          src="https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E7%B2%89%E8%89%B2%E5%86%BC%E5%A4%AB%E4%BA%BA.png"
-          alt="Lady Xian Pink"
-          className="fixed left-8 top-1/4 w-80 h-auto opacity-[0.25] pointer-events-none z-0 hidden xl:block"
-          animate={{ 
-            y: [0, -30, 0],
-            rotate: [0, 3, 0],
-            scale: [1, 1.05, 1]
-          }}
-          transition={{ 
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          referrerPolicy="no-referrer"
-        />
-        <motion.img 
-          src="https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E6%A3%95%E8%89%B2%E5%86%BC%E5%A4%AB%E4%BA%BA.png"
-          alt="Lady Xian Brown"
-          className="fixed right-8 bottom-1/4 w-80 h-auto opacity-[0.25] pointer-events-none z-0 hidden xl:block"
-          animate={{ 
-            y: [0, 30, 0],
-            rotate: [0, -3, 0],
-            scale: [1, 1.05, 1]
-          }}
-          transition={{ 
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          referrerPolicy="no-referrer"
-        />
-
         <AnimatePresence mode="wait">
           <motion.div
             key={currentView}
@@ -163,6 +136,9 @@ export default function App() {
         <Footer onChangeView={setCurrentView} />
         <BottomNav currentView={currentView} onChangeView={setCurrentView} />
         <Toast message={toastMessage} onClose={() => setToastMessage(null)} />
+        <AnimatePresence>
+          {isLoading && <Loading />}
+        </AnimatePresence>
       </div>
     </CartProvider>
   );

@@ -3,8 +3,11 @@ import { motion, AnimatePresence } from 'motion/react';
 import { ShoppingBag, ArrowRight, Gift, X, Info } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { Product } from '@/types';
+import { EmptyState } from '@/components/EmptyState';
+import { Search } from 'lucide-react';
 
 const PRODUCTS: Product[] = [
+// ... existing products ...
   {
     id: 101,
     name: '季度鲜果订阅包',
@@ -94,11 +97,15 @@ interface GroveProps {
 export function Grove({ onShowToast }: GroveProps) {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [activeCategory, setActiveCategory] = useState<'all' | 'subscription' | 'product'>('all');
+  const [searchQuery, setSearchQuery] = useState('');
   const { addToCart } = useCart();
 
-  const filteredProducts = activeCategory === 'all' 
-    ? PRODUCTS 
-    : PRODUCTS.filter(p => p.category === activeCategory);
+  const filteredProducts = PRODUCTS.filter(p => {
+    const matchesCategory = activeCategory === 'all' || p.category === activeCategory;
+    const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                         p.subtitle.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   const handleAddToCart = (e: React.MouseEvent, product: Product) => {
     e.stopPropagation();
@@ -123,88 +130,105 @@ export function Grove({ onShowToast }: GroveProps) {
         </motion.div>
       </div>
 
-      {/* Category Filter */}
+      {/* Search and Category Filter */}
       <div className="max-w-7xl mx-auto px-6 mb-16">
-        <div className="flex items-center justify-center gap-8 border-b border-lumina-stone/30 pb-4">
-          {[
-            { id: 'all', label: '全部' },
-            { id: 'subscription', label: '季度订阅包' },
-            { id: 'product', label: '商品' }
-          ].map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setActiveCategory(cat.id as any)}
-              className={`text-sm tracking-widest uppercase transition-all duration-300 relative pb-4 ${
-                activeCategory === cat.id 
-                  ? 'text-lumina-terracotta font-bold' 
-                  : 'text-lumina-green/60 hover:text-lumina-green'
-              }`}
-            >
-              {cat.label}
-              {activeCategory === cat.id && (
-                <motion.div 
-                  layoutId="activeCategory"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-lumina-terracotta"
-                />
-              )}
-            </button>
-          ))}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8 border-b border-lumina-stone/30 pb-8">
+          <div className="flex items-center gap-8">
+            {[
+              { id: 'all', label: '全部' },
+              { id: 'subscription', label: '季度订阅包' },
+              { id: 'product', label: '商品' }
+            ].map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id as any)}
+                className={`text-sm tracking-widest uppercase transition-all duration-300 relative pb-4 ${
+                  activeCategory === cat.id 
+                    ? 'text-lumina-terracotta font-bold' 
+                    : 'text-lumina-green/60 hover:text-lumina-green'
+                }`}
+              >
+                {cat.label}
+                {activeCategory === cat.id && (
+                  <motion.div 
+                    layoutId="activeCategory"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-lumina-terracotta"
+                  />
+                )}
+              </button>
+            ))}
+          </div>
+
+          <div className="relative w-full md:w-64">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-lumina-green/30" size={18} />
+            <input 
+              type="text"
+              placeholder="搜索好物..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-white border border-lumina-stone/20 rounded-full py-3 pl-12 pr-6 text-sm focus:outline-none focus:ring-2 focus:ring-lumina-terracotta/20 transition-all"
+            />
+          </div>
         </div>
       </div>
 
       {/* Product Grid */}
       <div className="max-w-7xl mx-auto px-6 pb-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
-          {filteredProducts.map((product, index) => (
-            <motion.div 
-              key={product.id}
-              layout
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.8 }}
-              onClick={() => setSelectedProduct(product)}
-              className="group flex flex-col bg-white rounded-sm overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-lumina-stone/20 cursor-pointer"
-            >
-              {/* Image Container */}
-              <div className="aspect-[3/4] overflow-hidden relative bg-white">
-                <img 
-                  src={product.image} 
-                  alt={product.name} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="bg-white/90 backdrop-blur-sm p-4 rounded-full text-lumina-green">
-                    <Info size={24} />
+        {filteredProducts.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+            {filteredProducts.map((product, index) => (
+              <motion.div 
+                key={product.id}
+                layout
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.8 }}
+                onClick={() => setSelectedProduct(product)}
+                className="group flex flex-col bg-white rounded-sm overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-lumina-stone/20 cursor-pointer"
+              >
+                {/* Image Container */}
+                <div className="aspect-[3/4] overflow-hidden relative bg-white">
+                  <img 
+                    src={product.image} 
+                    alt={product.name} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="bg-white/90 backdrop-blur-sm p-4 rounded-full text-lumina-green">
+                      <Info size={24} />
+                    </div>
                   </div>
                 </div>
-              </div>
-              
-              {/* Content */}
-              <div className="p-8 flex flex-col flex-grow">
-                <div className="mb-4">
-                  <h3 className="font-serif text-2xl text-lumina-green mb-1">{product.name}</h3>
-                  <p className="text-[10px] uppercase tracking-widest text-lumina-charcoal/40">{product.subtitle}</p>
-                </div>
                 
-                <p className="text-sm text-lumina-charcoal/70 font-light leading-relaxed mb-8 flex-grow">
-                  {product.desc}
-                </p>
+                {/* Content */}
+                <div className="p-8 flex flex-col flex-grow">
+                  <div className="mb-4">
+                    <h3 className="font-serif text-2xl text-lumina-green mb-1">{product.name}</h3>
+                    <p className="text-[10px] uppercase tracking-widest text-lumina-charcoal/40">{product.subtitle}</p>
+                  </div>
+                  
+                  <p className="text-sm text-lumina-charcoal/70 font-light leading-relaxed mb-8 flex-grow">
+                    {product.desc}
+                  </p>
 
-                <div className="flex items-center justify-between mt-auto pt-6 border-t border-lumina-stone/30">
-                  <span className="text-xl font-serif text-lumina-terracotta">¥{product.price}</span>
-                  <button 
-                    onClick={(e) => handleAddToCart(e, product)}
-                    className="flex items-center gap-2 bg-lumina-green text-white px-6 py-3 rounded-full hover:bg-lumina-terracotta transition-colors duration-300 text-xs tracking-widest uppercase font-medium"
-                  >
-                    <ShoppingBag size={14} />
-                    加入购物车
-                  </button>
+                  <div className="flex items-center justify-between mt-auto pt-6 border-t border-lumina-stone/30">
+                    <span className="text-xl font-serif text-lumina-terracotta">¥{product.price}</span>
+                    <button 
+                      onClick={(e) => handleAddToCart(e, product)}
+                      className="flex items-center gap-2 bg-lumina-green text-white px-6 py-3 rounded-full hover:bg-lumina-terracotta transition-colors duration-300 text-xs tracking-widest uppercase font-medium"
+                    >
+                      <ShoppingBag size={14} />
+                      加入购物车
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </div>
+        ) : (
+          <EmptyState message="搜索无结果，好物正在赶来的路上..." type="brown" />
+        )}
       </div>
 
       {/* External Market Entry Point */}

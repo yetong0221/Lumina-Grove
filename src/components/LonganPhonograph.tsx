@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Mic, Play, Pause, Heart, Share2, Trophy, Music, Disc, Volume2, ArrowLeft } from 'lucide-react';
+import { X, Mic, Play, Pause, Heart, Share2, Trophy, Music, Disc, Volume2, ArrowLeft, ArrowRight } from 'lucide-react';
 
 interface Recording {
   id: string;
@@ -23,10 +23,12 @@ const MOCK_RECORDINGS: Recording[] = [
 interface LonganPhonographProps {
   onClose: () => void;
   onUnlock: () => void;
+  onConfirmUnlock: () => void;
 }
 
-export function LonganPhonograph({ onClose, onUnlock }: LonganPhonographProps) {
+export function LonganPhonograph({ onClose, onUnlock, onConfirmUnlock }: LonganPhonographProps) {
   const [isRecording, setIsRecording] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const [recordingTime, setRecordingTime] = useState(0);
   const [recordings, setRecordings] = useState<Recording[]>([]);
   const [userRecording, setUserRecording] = useState<Recording | null>(null);
@@ -77,7 +79,7 @@ export function LonganPhonograph({ onClose, onUnlock }: LonganPhonographProps) {
     
     // Unlock qualification
     onUnlock();
-    alert('录制成功！您已获得石峡龙眼树认养资格');
+    setShowSuccess(true);
   };
 
   const handleLike = (id: string) => {
@@ -117,7 +119,31 @@ export function LonganPhonograph({ onClose, onUnlock }: LonganPhonographProps) {
         </div>
 
         <div className="flex-1 overflow-y-auto px-8 pb-12 custom-scrollbar">
-          {/* Phonograph Visual */}
+          {showSuccess ? (
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="py-12 flex flex-col items-center text-center"
+            >
+              <div className="w-24 h-24 bg-lumina-gold rounded-full flex items-center justify-center mb-8 shadow-2xl">
+                <Trophy size={48} className="text-[#2D463E]" />
+              </div>
+              <h3 className="text-3xl font-serif text-white mb-4">恭喜解锁！</h3>
+              <p className="text-white/60 mb-12 max-w-sm">
+                您的乡音已录入留声机，并成功获得“石峡龙眼树”认养资格。
+              </p>
+              
+              <button
+                onClick={onConfirmUnlock}
+                className="w-full py-5 bg-lumina-gold text-[#2D463E] rounded-2xl font-bold text-lg shadow-xl hover:bg-white transition-all flex items-center justify-center gap-2"
+              >
+                <ArrowRight size={24} />
+                立即开启
+              </button>
+            </motion.div>
+          ) : (
+            <>
+              {/* Phonograph Visual */}
           <div className="relative py-12 flex flex-col items-center">
             <motion.div 
               animate={{ rotate: isRecording || isPlaying ? 360 : 0 }}
@@ -235,6 +261,8 @@ export function LonganPhonograph({ onClose, onUnlock }: LonganPhonographProps) {
               ))}
             </div>
           </div>
+          </>
+          )}
         </div>
       </motion.div>
     </div>

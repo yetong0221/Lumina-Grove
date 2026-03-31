@@ -10,6 +10,9 @@ interface BottomNavProps {
 export function BottomNav({ currentView, onChangeView }: BottomNavProps) {
   const { totalItems } = useCart();
 
+  const PINK_LADY = "https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E7%B2%89%E8%89%B2%E5%86%BC%E5%A4%AB%E4%BA%BA.png";
+  const BROWN_LADY = "https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E6%A3%95%E8%89%B2%E5%86%BC%E5%A4%AB%E4%BA%BA.png";
+
   const tabs = [
     { id: 'home', label: '首页', icon: Home },
     { id: 'grove', label: '光林市集', icon: Store },
@@ -24,7 +27,7 @@ export function BottomNav({ currentView, onChangeView }: BottomNavProps) {
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl border-t border-black/5 px-1 pb-safe z-50">
       <div className="flex items-center justify-between py-3 w-full px-4">
-        {tabs.map((tab) => (
+        {tabs.map((tab, index) => (
           <button
             key={tab.id}
             onClick={() => onChangeView(tab.id)}
@@ -32,8 +35,20 @@ export function BottomNav({ currentView, onChangeView }: BottomNavProps) {
               currentView === tab.id ? 'text-[#2D463E]' : 'text-black/20'
             }`}
           >
-            <div className="relative">
-              <tab.icon size={20} strokeWidth={currentView === tab.id ? 2.5 : 1.5} />
+            <div className="relative flex items-center justify-center h-6 w-6">
+              {currentView === tab.id ? (
+                <motion.img 
+                  initial={{ scale: 0.5, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  src={index % 2 === 0 ? PINK_LADY : BROWN_LADY} 
+                  alt={tab.label}
+                  className="w-full h-full object-contain"
+                  referrerPolicy="no-referrer"
+                />
+              ) : (
+                <tab.icon size={20} strokeWidth={1.5} />
+              )}
+              
               {tab.id === 'cart' && totalItems > 0 && (
                 <span className="absolute -top-1 -right-2 bg-lumina-terracotta text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-white">
                   {totalItems}
