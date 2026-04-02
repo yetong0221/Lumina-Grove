@@ -44,7 +44,7 @@ export function Cart() {
         <div className="w-full max-w-md">
           <h2 className="font-serif text-4xl text-lumina-green mb-2 text-center">购物车</h2>
           <p className="text-lumina-green/40 mb-12 text-center">您的个人好物清单</p>
-          <EmptyState message="购物车空空如也，好物正在赶来的路上..." type="pink" />
+          <EmptyState message="购物车空空如也，好物正在赶来的路上..." type="brown" />
         </div>
       </div>
     );

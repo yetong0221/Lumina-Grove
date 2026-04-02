@@ -314,6 +314,27 @@ export function Adopt({ onChangeView }: { onChangeView: (view: string) => void }
 
       {/* Lumina Lifestyle Section */}
       <section className="py-32 bg-lumina-cream/60 relative overflow-hidden">
+        {/* Floating Mascot */}
+        <motion.div 
+          className="absolute top-20 right-10 w-32 h-32 md:w-48 md:h-48 z-10 hidden lg:block"
+          animate={{ 
+            y: [0, -15, 0],
+            rotate: [0, 5, -5, 0]
+          }}
+          transition={{ 
+            duration: 4, 
+            repeat: Infinity, 
+            ease: "easeInOut" 
+          }}
+        >
+          <img 
+            src="https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E5%86%BC%E5%A4%AB%E4%BA%BA.png" 
+            alt="Lady Xian Mascot" 
+            className="w-full h-full object-contain opacity-60 grayscale-[0.2]"
+            referrerPolicy="no-referrer"
+          />
+        </motion.div>
+
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="text-center mb-20">
             <motion.h2 

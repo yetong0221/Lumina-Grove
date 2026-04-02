@@ -227,7 +227,7 @@ export function Grove({ onShowToast }: GroveProps) {
             ))}
           </div>
         ) : (
-          <EmptyState message="搜索无结果，好物正在赶来的路上..." type="brown" />
+          <EmptyState message="搜索无结果，好物正在赶来的路上..." />
         )}
       </div>
 
@@ -294,8 +294,18 @@ export function Grove({ onShowToast }: GroveProps) {
               </div>
 
               {/* Content Section */}
-              <div className="md:w-1/2 p-10 md:p-16 lg:p-20 overflow-y-auto">
-                <div className="max-w-md mx-auto md:mx-0">
+              <div className="md:w-1/2 relative overflow-hidden flex flex-col">
+                <div className="flex-grow overflow-y-auto p-10 md:p-16 lg:p-20 relative">
+                  <div className="max-w-md mx-auto md:mx-0 relative z-10">
+                    {/* Background Illustration - Scrolls with content */}
+                    <div className="absolute inset-0 pointer-events-none flex items-center justify-center opacity-[0.15] -z-10 overflow-hidden">
+                      <img 
+                        src="https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E5%86%BC%E5%A4%AB%E4%BA%BA.png" 
+                        alt="" 
+                        className="w-[120%] h-[120%] object-contain"
+                        referrerPolicy="no-referrer"
+                      />
+                    </div>
                   <span className="text-lumina-terracotta text-sm uppercase tracking-[0.2em] mb-4 block font-medium">Lumina Selection</span>
                   <h2 className="font-serif text-4xl md:text-5xl text-lumina-green mb-4 leading-tight">
                     {selectedProduct.name}
@@ -357,6 +367,7 @@ export function Grove({ onShowToast }: GroveProps) {
                     >
                       继续浏览市集
                     </button>
+                  </div>
                   </div>
                 </div>
               </div>

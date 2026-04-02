@@ -42,8 +42,25 @@ export function Settings({ onBack, fontSize, setFontSize }: { onBack: () => void
               className="text-black/60 leading-relaxed transition-all duration-300"
               style={{ fontSize: `${fontSize}px` }}
             >
-              预览文本：Pomona 高端水果买手店，为您挑选全球各地的时令鲜果。
+              预览文本：Lumina Grove 与一棵树，结一季缘。
             </p>
+          </div>
+
+          <div className="mt-12 flex items-center gap-6 p-6 bg-black/[0.02] rounded-3xl border border-black/5">
+            <div className="w-16 h-16 flex-shrink-0">
+              <img 
+                src="https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E5%86%BC%E5%A4%AB%E4%BA%BA.png" 
+                alt="Lady Xian Mascot" 
+                className="w-full h-full object-contain opacity-40"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+            <div>
+              <h4 className="text-sm font-bold text-lumina-green mb-1 uppercase tracking-widest">需要帮助？</h4>
+              <p className="text-xs text-black/40 leading-relaxed">
+                如果您在调节字体或使用过程中有任何疑问，欢迎随时联系我们的果园管家。
+              </p>
+            </div>
           </div>
         </div>
       </div>

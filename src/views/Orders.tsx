@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { useCart } from '@/context/CartContext';
 import { ChevronLeft, Package, Clock, CreditCard } from 'lucide-react';
+import { EmptyState } from '@/components/EmptyState';
 
 export function Orders({ onBack }: { onBack: () => void }) {
   const { orders } = useCart();
@@ -18,9 +19,8 @@ export function Orders({ onBack }: { onBack: () => void }) {
       </div>
 
       {orders.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-20 opacity-30">
-          <Package size={64} strokeWidth={1} className="mb-4" />
-          <p className="text-lg">暂无订单</p>
+        <div className="flex flex-col items-center justify-center py-20">
+          <EmptyState message="您的好物清单还在酝酿中..." type="brown" />
         </div>
       ) : (
         <div className="space-y-6">

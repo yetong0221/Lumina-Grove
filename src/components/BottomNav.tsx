@@ -10,8 +10,7 @@ interface BottomNavProps {
 export function BottomNav({ currentView, onChangeView }: BottomNavProps) {
   const { totalItems } = useCart();
 
-  const PINK_LADY = "https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E7%B2%89%E8%89%B2%E5%86%BC%E5%A4%AB%E4%BA%BA.png";
-  const BROWN_LADY = "https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E6%A3%95%E8%89%B2%E5%86%BC%E5%A4%AB%E4%BA%BA.png";
+  const LADY_XIAN = "https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E5%86%BC%E5%A4%AB%E4%BA%BA.png";
 
   const tabs = [
     { id: 'home', label: '首页', icon: Home },
@@ -27,7 +26,7 @@ export function BottomNav({ currentView, onChangeView }: BottomNavProps) {
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl border-t border-black/5 px-1 pb-safe z-50">
       <div className="flex items-center justify-between py-3 w-full px-4">
-        {tabs.map((tab, index) => (
+        {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => onChangeView(tab.id)}
@@ -40,7 +39,7 @@ export function BottomNav({ currentView, onChangeView }: BottomNavProps) {
                 <motion.img 
                   initial={{ scale: 0.5, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  src={index % 2 === 0 ? PINK_LADY : BROWN_LADY} 
+                  src={LADY_XIAN} 
                   alt={tab.label}
                   className="w-full h-full object-contain"
                   referrerPolicy="no-referrer"

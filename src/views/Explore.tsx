@@ -216,6 +216,39 @@ export function Explore() {
         </div>
       </div>
 
+      {/* Message from Xian Furen */}
+      <div className="max-w-4xl mx-auto px-6 pb-32">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="bg-white rounded-[32px] p-12 md:p-16 shadow-xl border border-black/5 relative overflow-hidden flex flex-col md:flex-row items-center gap-12"
+        >
+          <div className="absolute top-0 right-0 w-64 h-64 bg-lumina-gold/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
+          
+          <div className="relative z-10 w-48 h-48 md:w-64 md:h-64 flex-shrink-0">
+            <motion.img 
+              src="https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E5%86%BC%E5%A4%AB%E4%BA%BA.png"
+              alt="Lady Xian Mascot"
+              className="w-full h-full object-contain"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              referrerPolicy="no-referrer"
+            />
+          </div>
+
+          <div className="relative z-10 text-center md:text-left">
+            <span className="text-lumina-terracotta text-xs uppercase tracking-widest mb-4 block font-bold">守护者的寄语</span>
+            <h2 className="font-serif text-3xl md:text-4xl text-lumina-green mb-6 leading-tight">
+              “每一棵树，都是大地的呼吸，<br className="hidden md:block" /> 也是我们共同的记忆。”
+            </h2>
+            <p className="text-lumina-charcoal/60 font-light leading-loose text-lg italic">
+              在光林，我们不只是在种树，更是在守护一种跨越千年的生活方式。愿这份来自泥土的芬芳，能带给您片刻的宁静与喜悦。
+            </p>
+          </div>
+        </motion.div>
+      </div>
+
       {/* Article Detail Overlay */}
       <AnimatePresence>
         {selectedEntry && (
