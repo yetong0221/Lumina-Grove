@@ -204,17 +204,17 @@ export function Adopt({ onChangeView }: { onChangeView: (view: string) => void }
   ];
 
   return (
-    <div className="pt-12 min-h-screen bg-lumina-cream/60">
+    <div className="pt-8 md:pt-12 min-h-screen bg-lumina-cream/60">
       {/* Hero */}
-      <div className="px-6 mb-20 max-w-7xl mx-auto text-center">
+      <div className="px-6 mb-12 md:mb-20 max-w-7xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <span className="text-lumina-terracotta text-xs uppercase tracking-widest mb-4 block">认养页面 · 会员计划</span>
-          <h1 className="font-serif text-5xl md:text-6xl text-lumina-green mb-8">选择您的果树故事</h1>
-          <p className="text-lumina-charcoal/70 max-w-2xl mx-auto font-light leading-relaxed text-lg">
+          <span className="text-lumina-terracotta text-[10px] md:text-xs uppercase tracking-widest mb-2 md:mb-4 block">认养页面 · 会员计划</span>
+          <h1 className="font-serif text-3xl md:text-6xl text-lumina-green mb-4 md:mb-8">选择您的果树故事</h1>
+          <p className="text-lumina-charcoal/70 max-w-2xl mx-auto font-light leading-relaxed text-sm md:text-lg">
             无论您是想品尝当季鲜果，还是传承一份绿色遗产，这里都有一条连接您与土地的路径。
           </p>
         </motion.div>
@@ -224,8 +224,8 @@ export function Adopt({ onChangeView }: { onChangeView: (view: string) => void }
       <HarvestProjectionChart />
 
       {/* Tiers */}
-      <div className="max-w-7xl mx-auto px-6 pb-32">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 pb-32">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
           {tiers.map((tier, i) => (
             <motion.div
               key={i}
@@ -233,29 +233,29 @@ export function Adopt({ onChangeView }: { onChangeView: (view: string) => void }
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.6 }}
-              className={`relative p-8 rounded-xl flex flex-col ${tier.color} ${tier.textColor} ${tier.highlight ? 'ring-2 ring-lumina-gold shadow-2xl scale-105 z-10' : ''}`}
+              className={`relative p-4 md:p-8 rounded-xl flex flex-col ${tier.color} ${tier.textColor} ${tier.highlight ? 'ring-2 ring-lumina-gold shadow-2xl scale-105 z-10' : ''}`}
             >
               {tier.highlight && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-lumina-gold text-lumina-green text-xs font-bold uppercase tracking-widest px-4 py-1 rounded-full">
+                <div className="absolute -top-3 md:-top-4 left-1/2 -translate-x-1/2 bg-lumina-gold text-lumina-green text-[8px] md:text-xs font-bold uppercase tracking-widest px-2 md:px-4 py-0.5 md:py-1 rounded-full whitespace-nowrap">
                   最受欢迎
                 </div>
               )}
               
-              <div className="mb-6 opacity-80">{tier.icon}</div>
-              <h3 className="font-serif text-2xl mb-1">{tier.name}</h3>
-              <p className="text-xs uppercase tracking-wider opacity-60 mb-6">{tier.subtitle}</p>
+              <div className="mb-4 md:mb-6 opacity-80 scale-75 md:scale-100 origin-left">{tier.icon}</div>
+              <h3 className="font-serif text-lg md:text-2xl mb-0.5 md:mb-1">{tier.name}</h3>
+              <p className="text-[8px] md:text-xs uppercase tracking-wider opacity-60 mb-4 md:mb-6">{tier.subtitle}</p>
               
-              <div className="text-3xl font-serif mb-6 whitespace-pre-line">{tier.price}</div>
+              <div className="text-xl md:text-3xl font-serif mb-4 md:mb-6 whitespace-pre-line leading-tight">{tier.price}</div>
               
-              <p className="text-sm leading-relaxed opacity-80 mb-8 flex-grow">
+              <p className="text-[10px] md:text-sm leading-relaxed opacity-80 mb-6 md:mb-8 flex-grow line-clamp-3 md:line-clamp-none">
                 {tier.description}
               </p>
 
-              <ul className="space-y-4 mb-8">
+              <ul className="space-y-2 md:space-y-4 mb-6 md:mb-8">
                 {tier.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-sm">
-                    <Check size={16} className="mt-0.5 opacity-60 flex-shrink-0" />
-                    <span className="opacity-90">{feature}</span>
+                  <li key={idx} className="flex items-start gap-2 md:gap-3 text-[10px] md:text-sm">
+                    <Check size={12} md:size={16} className="mt-0.5 opacity-60 flex-shrink-0" />
+                    <span className="opacity-90 line-clamp-1 md:line-clamp-none">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -270,9 +270,9 @@ export function Adopt({ onChangeView }: { onChangeView: (view: string) => void }
                     setSelectedPlan(tier);
                   }
                 }}
-                className="w-full py-4 rounded-lg text-xs uppercase tracking-widest font-bold transition-all duration-300 bg-white text-lumina-green hover:bg-lumina-gold"
+                className="w-full py-2 md:py-4 rounded-lg text-[10px] md:text-xs uppercase tracking-widest font-bold transition-all duration-300 bg-white text-lumina-green hover:bg-lumina-gold"
               >
-                {tier.name === "观察者" ? "开始抽签" : tier.name === "培育者" ? "查看计划" : "查看计划"}
+                {tier.name === "观察者" ? "开始抽签" : "查看计划"}
               </button>
             </motion.div>
           ))}
@@ -313,7 +313,7 @@ export function Adopt({ onChangeView }: { onChangeView: (view: string) => void }
       </AnimatePresence>
 
       {/* Lumina Lifestyle Section */}
-      <section className="py-32 bg-lumina-cream/60 relative overflow-hidden">
+      <section className="pt-8 pb-16 md:py-32 bg-lumina-cream/60 relative overflow-hidden">
         {/* Floating Mascot */}
         <motion.div 
           className="absolute top-20 right-10 w-32 h-32 md:w-48 md:h-48 z-10 hidden lg:block"
@@ -336,28 +336,28 @@ export function Adopt({ onChangeView }: { onChangeView: (view: string) => void }
         </motion.div>
 
         <div className="max-w-[1400px] mx-auto px-6">
-          <div className="text-center mb-20">
+          <div className="text-center mb-10 md:mb-20">
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="font-serif text-4xl md:text-5xl text-lumina-green mb-6"
+              className="font-serif text-3xl md:text-5xl text-lumina-green mb-4 md:mb-6"
             >
               光林生活方式<br/>
-              <span className="text-2xl md:text-3xl font-light mt-4 block">Lumina Lifestyle – 认养不止一棵树</span>
+              <span className="text-xl md:text-3xl font-light mt-2 md:mt-4 block">Lumina Lifestyle – 认养不止一棵树</span>
             </motion.h2>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="text-lumina-charcoal/70 text-lg font-light max-w-2xl mx-auto"
+              className="text-lumina-charcoal/70 text-sm md:text-lg font-light max-w-2xl mx-auto"
             >
               从科学守护到社区共创，我们邀请您成为这片土地真正的一部分。
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
             {[
               {
                 title: "科学守护",
@@ -390,7 +390,7 @@ export function Adopt({ onChangeView }: { onChangeView: (view: string) => void }
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15, duration: 0.8 }}
-                className="group relative aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer"
+                className="group relative aspect-[2/3] md:aspect-[3/4] rounded-lg md:rounded-2xl overflow-hidden cursor-pointer"
               >
                 <img 
                   src={card.image} 
@@ -401,11 +401,11 @@ export function Adopt({ onChangeView }: { onChangeView: (view: string) => void }
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent transition-opacity duration-500" />
                 
-                <div className="absolute inset-x-0 bottom-0 p-8 flex flex-col justify-end h-full">
-                  <div className="transform transition-transform duration-500 translate-y-8 group-hover:translate-y-0">
-                    <h3 className="font-serif text-2xl text-white mb-1">{card.title}</h3>
-                    <p className="text-lumina-gold text-xs uppercase tracking-widest mb-4">{card.subtitle}</p>
-                    <p className="text-white/90 text-sm font-light leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                <div className="absolute inset-x-0 bottom-0 p-2 md:p-8 flex flex-col justify-end h-full">
+                  <div className="transform transition-transform duration-500 translate-y-4 md:translate-y-8 group-hover:translate-y-0">
+                    <h3 className="font-serif text-[10px] md:text-2xl text-white mb-0.5 md:mb-1">{card.title}</h3>
+                    <p className="text-lumina-gold text-[6px] md:text-xs uppercase tracking-widest mb-2 md:mb-4">{card.subtitle}</p>
+                    <p className="text-white/90 text-[8px] md:text-sm font-light leading-tight md:leading-relaxed opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 block">
                       {card.text}
                     </p>
                   </div>
@@ -434,53 +434,53 @@ export function Adopt({ onChangeView }: { onChangeView: (view: string) => void }
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-4xl bg-[#FDFCF9] rounded-[32px] p-10 md:p-12 shadow-2xl overflow-hidden"
+              className="relative w-full max-w-4xl bg-[#FDFCF9] rounded-[24px] md:rounded-[32px] p-6 md:p-12 shadow-2xl overflow-hidden max-h-[95vh] overflow-y-auto"
             >
               <button 
                 onClick={() => setSelectedPlan(null)}
-                className="absolute top-8 right-8 w-10 h-10 bg-white rounded-full flex items-center justify-center text-[#2D463E] hover:bg-black/5 transition-colors border border-black/5 shadow-sm z-10"
+                className="absolute top-4 right-4 md:top-8 md:right-8 w-8 h-8 md:w-10 md:h-10 bg-white rounded-full flex items-center justify-center text-[#2D463E] hover:bg-black/5 transition-colors border border-black/5 shadow-sm z-10"
               >
-                <X size={20} />
+                <X size={16} md:size={20} />
               </button>
 
-              <div className="flex items-center gap-6 mb-12">
-                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center ${selectedPlan.color} ${selectedPlan.textColor}`}>
-                  {selectedPlan.icon}
+              <div className="flex items-center gap-4 md:gap-6 mb-6 md:mb-12">
+                <div className={`w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl flex items-center justify-center ${selectedPlan.color} ${selectedPlan.textColor}`}>
+                  {React.cloneElement(selectedPlan.icon as React.ReactElement, { size: 24 })}
                 </div>
                 <div>
-                  <h2 className="text-3xl font-serif text-[#2D463E] mb-2">{selectedPlan.name}计划</h2>
-                  <p className="text-[#D48C6A] text-sm">{selectedPlan.details.concept}</p>
+                  <h2 className="text-xl md:text-3xl font-serif text-[#2D463E] mb-1 md:mb-2">{selectedPlan.name}计划</h2>
+                  <p className="text-[#D48C6A] text-xs md:text-sm">{selectedPlan.details.concept}</p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 mb-6 md:mb-12">
                 {selectedPlan.details.fullPlan.map((item: any, idx: number) => (
-                  <div key={idx} className="bg-white rounded-2xl p-8 border border-black/5 shadow-sm">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="w-8 h-8 rounded-full bg-[#2D463E]/5 flex items-center justify-center text-[#2D463E] font-serif text-sm">
+                  <div key={idx} className="bg-white rounded-xl md:rounded-2xl p-4 md:p-8 border border-black/5 shadow-sm">
+                    <div className="flex items-center gap-3 md:gap-4 mb-2 md:mb-4">
+                      <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-[#2D463E]/5 flex items-center justify-center text-[#2D463E] font-serif text-xs md:text-sm">
                         0{idx + 1}
                       </div>
-                      <h3 className="text-lg font-serif text-[#2D463E]">{item.title}</h3>
+                      <h3 className="text-base md:text-lg font-serif text-[#2D463E]">{item.title}</h3>
                     </div>
-                    <p className="text-black/40 text-sm leading-relaxed">
+                    <p className="text-black/40 text-xs md:text-sm leading-relaxed">
                       {item.desc}
                     </p>
                   </div>
                 ))}
               </div>
 
-              <div className="bg-[#1A3329] rounded-[24px] p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8">
-                <div>
-                  <h3 className="text-white text-xl font-serif mb-2">准备好开启您的旅程了吗？</h3>
-                  <p className="text-white/60 text-sm">加入光林，与我们一同守护这片土地。</p>
+              <div className="bg-[#1A3329] rounded-[16px] md:rounded-[24px] p-6 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
+                <div className="text-center md:text-left">
+                  <h3 className="text-white text-lg md:text-xl font-serif mb-1 md:mb-2">准备好开启您的旅程了吗？</h3>
+                  <p className="text-white/60 text-xs md:text-sm">加入光林，与我们一同守护这片土地。</p>
                 </div>
-                <div className="flex flex-col items-end gap-4">
-                  <div className="text-white text-3xl font-serif">{selectedPlan.price}</div>
+                <div className="flex flex-col items-center md:items-end gap-3 md:gap-4">
+                  <div className="text-white text-2xl md:text-3xl font-serif">{selectedPlan.price}</div>
                   <button 
                     onClick={() => {
                       setShowCertificate(true);
                     }}
-                    className="bg-[#D4B595] text-[#1A3329] px-8 py-3 rounded-full font-bold text-sm hover:bg-[#C4A585] transition-colors"
+                    className="bg-[#D4B595] text-[#1A3329] px-6 md:px-8 py-2 md:py-3 rounded-full font-bold text-xs md:text-sm hover:bg-[#C4A585] transition-colors"
                   >
                     立即开启
                   </button>

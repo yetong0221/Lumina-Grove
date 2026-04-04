@@ -47,27 +47,27 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 
 export function HarvestProjectionChart() {
   return (
-    <section className="py-24 px-6 bg-white">
+    <section className="py-12 md:py-24 px-4 md:px-6 bg-white">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="mb-12 text-center md:text-left">
-          <h2 className="font-serif text-3xl md:text-4xl text-stone-800 mb-2 tracking-tight">
+        <div className="mb-8 md:mb-12 text-center md:text-left">
+          <h2 className="font-serif text-xl md:text-4xl text-stone-800 mb-1 md:mb-2 tracking-tight">
             你的茂名荔枝树 · 预计季产趋势
           </h2>
-          <p className="text-stone-500 font-light text-sm tracking-wide uppercase font-sans">
-            One Tree · 5-Year Harvest Projection (Actual yield based on real-time photos)
+          <p className="text-stone-500 font-light text-[10px] md:text-sm tracking-wide uppercase font-sans">
+            One Tree · 5-Year Harvest Projection
           </p>
         </div>
 
         {/* Chart Container */}
-        <div className="w-full h-[500px] bg-white border border-stone-100 rounded-sm p-4 md:p-8 relative">
+        <div className="w-full h-[300px] md:h-[500px] bg-white border border-stone-100 rounded-sm p-2 md:p-8 relative">
           
-          {/* Phase Labels (Absolute positioning for cleaner look over chart) */}
-          <div className="absolute top-4 left-16 md:left-24 text-xs font-sans text-stone-400 uppercase tracking-widest">
-            早期建立期 (Early Growth)
+          {/* Phase Labels */}
+          <div className="absolute top-2 left-10 md:left-24 text-[8px] md:text-xs font-sans text-stone-400 uppercase tracking-widest">
+            早期 (Early)
           </div>
-          <div className="absolute top-4 right-16 md:right-32 text-xs font-sans text-stone-400 uppercase tracking-widest">
-            成熟丰产期 (Golden Harvest)
+          <div className="absolute top-2 right-10 md:right-32 text-[8px] md:text-xs font-sans text-stone-400 uppercase tracking-widest">
+            丰产期 (Golden)
           </div>
 
           <ResponsiveContainer width="100%" height="100%">
@@ -137,35 +137,35 @@ export function HarvestProjectionChart() {
         </div>
 
         {/* Legend & Footnote */}
-        <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-6 border-t border-stone-100 pt-6">
+        <div className="mt-4 md:mt-8 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6 border-t border-stone-100 pt-4 md:pt-6">
           
           {/* Legend */}
-          <div className="flex items-center gap-8">
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-emerald-500"></span>
-              <span className="text-xs text-stone-600 font-medium flex items-center gap-1">
-                乐观情景 <Sun size={10} className="text-emerald-500" />
+          <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8">
+            <div className="flex items-center gap-1.5 md:gap-2">
+              <span className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-emerald-500"></span>
+              <span className="text-[10px] md:text-xs text-stone-600 font-medium flex items-center gap-1">
+                乐观 <Sun size={8} md:size={10} className="text-emerald-500" />
               </span>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-green-800"></span>
-              <span className="text-xs text-stone-600 font-medium flex items-center gap-1">
-                正常情景 <Cloud size={10} className="text-green-800" />
+            <div className="flex items-center gap-1.5 md:gap-2">
+              <span className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-green-800"></span>
+              <span className="text-[10px] md:text-xs text-stone-600 font-medium flex items-center gap-1">
+                正常 <Cloud size={8} md:size={10} className="text-green-800" />
               </span>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-amber-500"></span>
-              <span className="text-xs text-stone-600 font-medium flex items-center gap-1">
-                保守情景 <CloudRain size={10} className="text-amber-500" />
+            <div className="flex items-center gap-1.5 md:gap-2">
+              <span className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-amber-500"></span>
+              <span className="text-[10px] md:text-xs text-stone-600 font-medium flex items-center gap-1">
+                保守 <CloudRain size={8} md:size={10} className="text-amber-500" />
               </span>
             </div>
           </div>
 
           {/* Footnote */}
-          <div className="flex items-center gap-2 text-stone-400">
-            <Info size={12} />
-            <p className="text-[10px] font-sans tracking-tight">
-              基于2025-2026茂名农业局+市场真实数据 · 实际以树实拍为准 · 非收益承诺
+          <div className="flex items-center gap-1 md:gap-2 text-stone-400">
+            <Info size={10} md:size={12} />
+            <p className="text-[8px] md:text-[10px] font-sans tracking-tight">
+              基于2025-2026茂名农业局数据 · 实际以树实拍为准
             </p>
           </div>
         </div>

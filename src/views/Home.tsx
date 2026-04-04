@@ -60,7 +60,7 @@ export function Home({ onChangeView }: HomeProps) {
       </div>
 
       {/* Narrative Section */}
-      <section className="py-32 px-6 bg-lumina-cream/60">
+      <section className="py-16 md:py-32 px-6 bg-lumina-cream/60">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
             <motion.div 
@@ -69,13 +69,13 @@ export function Home({ onChangeView }: HomeProps) {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="font-serif text-4xl md:text-5xl text-lumina-green mb-8 leading-tight">
+              <h2 className="font-serif text-2xl md:text-5xl text-lumina-green mb-4 md:mb-8 leading-tight">
                 光与土的故事 <br/> <span className="italic text-lumina-terracotta">Light & Land</span>
               </h2>
-              <p className="text-lumina-charcoal/80 leading-relaxed mb-6 font-light">
+              <p className="text-lumina-charcoal/80 leading-snug md:leading-relaxed mb-4 md:mb-6 font-light text-sm md:text-base">
                 在茂名雾气缭绕的山丘中，时间的流逝似乎慢了下来。在这里，屹立百年的荔枝树饮着富含矿物质的泉水，沐浴在亚热带的阳光下。
               </p>
-              <p className="text-lumina-charcoal/80 leading-relaxed mb-10 font-light">
+              <p className="text-lumina-charcoal/80 leading-snug md:leading-relaxed mb-6 md:mb-10 font-light text-sm md:text-base">
                 Lumina Grove 不仅仅是一个农场，它是一份活着的遗产。我们邀请您成为这片土地的守护者，见证一棵树的生长、开花、结果，连接泥土与心灵的距离。
               </p>
               <div className="flex items-center gap-4 text-lumina-green/60">
@@ -111,16 +111,16 @@ export function Home({ onChangeView }: HomeProps) {
       </section>
 
       {/* Our Promise – Science & Legacy */}
-      <section className="py-32 px-6 bg-white/60 relative overflow-hidden">
+      <section className="py-16 md:py-32 px-6 bg-white/60 relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-20">
+          <div className="text-center mb-10 md:mb-20">
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="font-serif text-4xl md:text-5xl text-lumina-green mb-4"
+              className="font-serif text-2xl md:text-5xl text-lumina-green mb-2 md:mb-4"
             >
               光林承诺 · 科学守护
             </motion.h2>
@@ -129,7 +129,7 @@ export function Home({ onChangeView }: HomeProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-lumina-gold text-sm tracking-[0.2em] uppercase mb-8"
+              className="text-lumina-gold text-[10px] md:text-sm tracking-[0.2em] uppercase mb-4 md:mb-8"
             >
               Our Promise – Science & Legacy
             </motion.p>
@@ -138,32 +138,32 @@ export function Home({ onChangeView }: HomeProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="max-w-2xl mx-auto text-lumina-charcoal/70 font-light leading-relaxed text-lg"
+              className="max-w-2xl mx-auto text-lumina-charcoal/70 font-light leading-snug md:leading-relaxed text-sm md:text-lg"
             >
-              在茂名光林，我们不仅仅种植水果，更与华南农业大学和当地政府共同守护这片土地。用科学赋能传统，用承诺连接人心。
+              用科学赋能传统，用承诺连接人心。
             </motion.p>
           </div>
 
           {/* Benefit Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-12 md:mb-24">
             {[
               {
-                icon: <Microscope strokeWidth={1} className="w-8 h-8 text-lumina-terracotta" />,
+                icon: <Microscope strokeWidth={1} className="w-6 h-6 md:w-8 md:h-8 text-lumina-terracotta" />,
                 title: "科学守护",
                 desc: "华南农业大学提供全程技术支持与品种优化研究，确保每一棵树健康生长。"
               },
               {
-                icon: <TrendingUp strokeWidth={1} className="w-8 h-8 text-lumina-terracotta" />,
+                icon: <TrendingUp strokeWidth={1} className="w-6 h-6 md:w-8 md:h-8 text-lumina-terracotta" />,
                 title: "可持续丰产",
                 desc: "超越传统方式，通过生态循环与精准农业，实现更高产量与更优品质，同时保护土壤与生物多样性。"
               },
               {
-                icon: <Award strokeWidth={1} className="w-8 h-8 text-lumina-terracotta" />,
+                icon: <Award strokeWidth={1} className="w-6 h-6 md:w-8 md:h-8 text-lumina-terracotta" />,
                 title: "品质保障",
                 desc: "严格有机标准与可追溯体系，让每一颗荔枝、龙眼都承载着雨水与阳光的纯粹记忆。"
               },
               {
-                icon: <ShieldCheck strokeWidth={1} className="w-8 h-8 text-lumina-terracotta" />,
+                icon: <ShieldCheck strokeWidth={1} className="w-6 h-6 md:w-8 md:h-8 text-lumina-terracotta" />,
                 title: "风险共担",
                 desc: "自然灾害时我们共同面对，政府与大学共同提供技术与保障，让您的认养安心无忧。"
               }
@@ -174,17 +174,20 @@ export function Home({ onChangeView }: HomeProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.8 }}
-                className="group p-10 bg-lumina-cream/30 border border-lumina-stone/20 hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-500 rounded-sm"
+                className="group p-6 md:p-10 bg-lumina-cream/30 border border-lumina-stone/20 hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-500 rounded-sm flex flex-row md:flex-col items-center md:items-start gap-4 md:gap-0"
               >
-                <div className="mb-6 flex items-center gap-4">
-                  <div className="p-3 bg-white rounded-full shadow-sm group-hover:scale-110 transition-transform duration-500 border border-lumina-gold/20">
+                <div className="mb-0 md:mb-6 flex items-center gap-4 flex-shrink-0">
+                  <div className="p-2 md:p-3 bg-white rounded-full shadow-sm group-hover:scale-110 transition-transform duration-500 border border-lumina-gold/20">
                     {card.icon}
                   </div>
-                  <h3 className="font-serif text-2xl text-lumina-green">{card.title}</h3>
+                  <h3 className="font-serif text-lg md:text-2xl text-lumina-green md:hidden">{card.title}</h3>
                 </div>
-                <p className="text-lumina-charcoal/60 font-light leading-relaxed pl-16 border-l border-lumina-gold/20">
-                  {card.desc}
-                </p>
+                <div className="flex flex-col">
+                  <h3 className="font-serif text-lg md:text-2xl text-lumina-green hidden md:block md:mb-6">{card.title}</h3>
+                  <p className="text-lumina-charcoal/60 font-light leading-snug md:leading-relaxed md:pl-16 md:border-l md:border-lumina-gold/20 text-xs md:text-base">
+                    {card.desc}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -235,29 +238,29 @@ export function Home({ onChangeView }: HomeProps) {
       </section>
 
       {/* Features / Teaser */}
-      <section className="py-32 bg-lumina-green/85 text-lumina-cream relative overflow-hidden">
+      <section className="py-16 md:py-32 bg-lumina-green/85 text-lumina-cream relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-white/5 blur-3xl rounded-full translate-x-1/2" />
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-20">
-            <span className="text-lumina-gold text-xs uppercase tracking-widest mb-4 block">真实的树木，真实的连接</span>
-            <h2 className="font-serif text-4xl md:text-5xl text-white">耕耘你的传承</h2>
+          <div className="text-center mb-10 md:mb-20">
+            <span className="text-lumina-gold text-[10px] md:text-xs uppercase tracking-widest mb-2 md:mb-4 block">真实的树木，真实的连接</span>
+            <h2 className="font-serif text-2xl md:text-5xl text-white">耕耘你的传承</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {[
               {
-                icon: <Sprout className="w-8 h-8 text-lumina-gold" />,
+                icon: <Sprout className="w-6 h-6 md:w-8 md:h-8 text-lumina-gold" />,
                 title: "数字孪生",
                 desc: "通过实时传感器数据和生长日志，监控您的果树生长。"
               },
               {
-                icon: <Sun className="w-8 h-8 text-lumina-gold" />,
+                icon: <Sun className="w-6 h-6 md:w-8 md:h-8 text-lumina-gold" />,
                 title: "时令好礼",
                 desc: "不仅仅是收获，每季度还能收到来自果园的精选礼包。"
               },
               {
-                icon: <CloudRain className="w-8 h-8 text-lumina-gold" />,
+                icon: <CloudRain className="w-6 h-6 md:w-8 md:h-8 text-lumina-gold" />,
                 title: "采摘权益",
                 desc: "果实归您所有。选择直接配送或赠送给亲朋好友。"
               }
@@ -268,13 +271,15 @@ export function Home({ onChangeView }: HomeProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.2, duration: 0.6 }}
-                className="bg-white/5 p-10 border border-white/10 hover:bg-white/10 transition-colors duration-300 group"
+                className="bg-white/5 p-5 md:p-10 border border-white/10 hover:bg-white/10 transition-colors duration-300 group flex flex-row md:flex-col items-center md:items-start gap-5 md:gap-0"
               >
-                <div className="mb-6 bg-white/10 w-16 h-16 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <div className="mb-0 md:mb-6 bg-white/10 w-12 h-12 md:w-16 md:h-16 rounded-full flex-shrink-0 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                   {feature.icon}
                 </div>
-                <h3 className="font-serif text-2xl mb-4">{feature.title}</h3>
-                <p className="text-white/60 font-light leading-relaxed">{feature.desc}</p>
+                <div>
+                  <h3 className="font-serif text-lg md:text-2xl mb-1 md:mb-4">{feature.title}</h3>
+                  <p className="text-white/60 font-light leading-snug md:leading-relaxed text-xs md:text-base">{feature.desc}</p>
+                </div>
               </motion.div>
             ))}
           </div>

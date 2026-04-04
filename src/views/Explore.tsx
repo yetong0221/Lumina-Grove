@@ -92,27 +92,29 @@ export function Explore() {
       </div>
 
       {/* Featured Entry */}
-      <div className="max-w-7xl mx-auto px-6 mb-24">
+      <div className="max-w-7xl mx-auto px-6 mb-16 md:mb-24">
         <div 
           onClick={() => setSelectedEntry(featuredEntry)}
-          className="relative aspect-[21/9] overflow-hidden rounded-sm group cursor-pointer"
+          className="relative overflow-hidden rounded-sm group cursor-pointer bg-white md:bg-transparent flex flex-row md:block h-32 md:h-auto md:aspect-[21/9] border border-black/5 md:border-none"
         >
-          <img 
-            src={featuredEntry.image} 
-            alt="Featured" 
-            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-          <div className="absolute bottom-0 left-0 p-8 md:p-16 text-white max-w-3xl">
-            <span className="bg-lumina-gold text-lumina-green text-xs font-bold uppercase tracking-widest px-3 py-1 mb-4 inline-block">编辑精选</span>
-            <h2 className="font-serif text-3xl md:text-5xl mb-4 leading-tight">{featuredEntry.title}</h2>
-            <p className="text-white/80 font-light text-lg mb-6 line-clamp-2">
+          <div className="w-32 md:w-full h-full md:absolute md:inset-0 flex-shrink-0">
+            <img 
+              src={featuredEntry.image} 
+              alt="Featured" 
+              className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+          <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+          <div className="flex-1 md:absolute md:bottom-0 md:left-0 p-4 md:p-16 text-lumina-charcoal md:text-white flex flex-col justify-center">
+            <span className="bg-lumina-gold text-lumina-green text-[8px] md:text-xs font-bold uppercase tracking-widest px-1.5 py-0.5 md:px-3 md:py-1 mb-1 md:mb-4 inline-block w-fit">编辑精选</span>
+            <h2 className="font-serif text-sm md:text-5xl mb-1 md:mb-4 leading-tight line-clamp-2 md:line-clamp-none">{featuredEntry.title}</h2>
+            <p className="hidden md:block text-white/80 font-light text-lg mb-6 line-clamp-2">
               {featuredEntry.excerpt}
             </p>
-            <div className="flex items-center gap-6 text-xs uppercase tracking-widest text-white/60">
-              <span className="flex items-center gap-2"><Calendar size={14} /> {featuredEntry.date}</span>
-              <span className="flex items-center gap-2"><User size={14} /> {featuredEntry.author}</span>
+            <div className="flex items-center gap-3 md:gap-6 text-[8px] md:text-xs uppercase tracking-widest text-lumina-charcoal/40 md:text-white/60">
+              <span className="flex items-center gap-1.5"><Calendar size={10} /> {featuredEntry.date}</span>
+              <span className="flex items-center gap-1.5 line-clamp-1"><User size={10} /> {featuredEntry.author}</span>
             </div>
           </div>
         </div>
@@ -120,17 +122,17 @@ export function Explore() {
 
       {/* Grid */}
       <div className="max-w-7xl mx-auto px-6 mb-32">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-8 md:gap-y-16">
           {JOURNAL_ENTRIES.map((entry) => (
             <motion.div 
               key={entry.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="group cursor-pointer"
+              className="group cursor-pointer flex flex-row md:flex-col gap-4 md:gap-0"
               onClick={() => setSelectedEntry(entry)}
             >
-              <div className="aspect-[4/3] overflow-hidden mb-6 relative">
+              <div className="w-24 h-24 md:w-full md:aspect-[4/3] overflow-hidden mb-0 md:mb-6 relative flex-shrink-0 rounded-sm md:rounded-none">
                 <img 
                   src={entry.image} 
                   alt={entry.title} 
@@ -139,31 +141,33 @@ export function Explore() {
                 />
               </div>
               
-              <div className="flex items-center gap-4 text-xs uppercase tracking-widest text-lumina-charcoal/40 mb-3">
-                <span>{entry.date}</span>
-                <span className="w-1 h-1 bg-lumina-terracotta rounded-full" />
-                <span>{entry.author}</span>
-              </div>
+              <div className="flex-1 flex flex-col justify-center">
+                <div className="flex items-center gap-2 md:gap-4 text-[10px] md:text-xs uppercase tracking-widest text-lumina-charcoal/40 mb-1 md:mb-3">
+                  <span>{entry.date}</span>
+                  <span className="w-1 h-1 bg-lumina-terracotta rounded-full" />
+                  <span>{entry.author}</span>
+                </div>
 
-              <h3 className="font-serif text-2xl text-lumina-green mb-3 group-hover:text-lumina-terracotta transition-colors leading-tight">
-                {entry.title}
-              </h3>
-              
-              <p className="text-sm text-lumina-charcoal/70 font-light leading-relaxed line-clamp-3">
-                {entry.excerpt}
-              </p>
+                <h3 className="font-serif text-base md:text-2xl text-lumina-green mb-1 md:mb-3 group-hover:text-lumina-terracotta transition-colors leading-tight line-clamp-2">
+                  {entry.title}
+                </h3>
+                
+                <p className="hidden md:block text-sm text-lumina-charcoal/70 font-light leading-relaxed line-clamp-3">
+                  {entry.excerpt}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>
       </div>
 
       {/* Journey Section */}
-      <div className="bg-white/30 py-24 mb-32">
+      <div className="bg-white/30 pt-8 pb-16 md:py-24 mb-16 md:mb-32">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-20">
-            <span className="text-lumina-terracotta text-xs uppercase tracking-widest mb-4 block">运作方式</span>
-            <h2 className="font-serif text-4xl md:text-5xl text-lumina-green mb-6">一季的旅程</h2>
-            <p className="text-lumina-charcoal/70 max-w-2xl mx-auto font-light leading-relaxed">
+          <div className="text-center mb-10 md:mb-20">
+            <span className="text-lumina-terracotta text-xs uppercase tracking-widest mb-2 md:mb-4 block">运作方式</span>
+            <h2 className="font-serif text-2xl md:text-5xl text-lumina-green mb-4 md:mb-6">一季的旅程</h2>
+            <p className="text-lumina-charcoal/70 max-w-2xl mx-auto font-light leading-relaxed text-sm md:text-base">
               从第一颗花蕾到最后的丰收，像亲自漫步在果园行间一样体验您果树的生命周期。
             </p>
           </div>
@@ -172,61 +176,62 @@ export function Explore() {
             <div className="relative">
               <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-lumina-green/20 -translate-x-1/2 hidden md:block" />
               
-              {steps.map((step, i) => (
-                <motion.div 
-                  key={i}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8 }}
-                  className={`flex flex-col md:flex-row gap-8 md:gap-16 items-center mb-24 ${i % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
-                >
-                  <div className="w-full md:w-1/2">
-                    <div className="aspect-[4/3] overflow-hidden rounded-sm shadow-lg relative group">
-                      <img 
-                        src={step.image} 
-                        alt={step.title} 
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                        referrerPolicy="no-referrer"
-                      />
-                      <div className="absolute inset-0 bg-lumina-green/10 group-hover:bg-transparent transition-colors duration-500" />
-                    </div>
-                  </div>
-
-                  <div className="absolute left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-lumina-cream border border-lumina-green/20 flex items-center justify-center text-lumina-green z-10 hidden md:flex">
-                    {step.icon}
-                  </div>
-
-                  <div className="w-full md:w-1/2 text-left md:text-center">
-                    <div className={`md:px-8 ${i % 2 === 0 ? 'md:text-left' : 'md:text-right'}`}>
-                      <div className="flex items-center gap-3 mb-4 md:hidden text-lumina-green">
-                        {step.icon}
-                        <span className="text-xs uppercase tracking-widest font-bold">步骤 {i + 1}</span>
+              <div className="grid grid-cols-1 md:block gap-12">
+                {steps.map((step, i) => (
+                  <motion.div 
+                    key={i}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className={`flex flex-row md:flex-row gap-4 md:gap-16 items-center mb-0 md:mb-24 ${i % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
+                  >
+                    <div className="w-24 h-24 md:w-1/2 flex-shrink-0">
+                      <div className="w-full h-full md:aspect-[4/3] overflow-hidden rounded-sm shadow-lg relative group">
+                        <img 
+                          src={step.image} 
+                          alt={step.title} 
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                          referrerPolicy="no-referrer"
+                        />
+                        <div className="absolute inset-0 bg-lumina-green/10 group-hover:bg-transparent transition-colors duration-500" />
                       </div>
-                      <h3 className="font-serif text-3xl text-lumina-green mb-4">{step.title}</h3>
-                      <p className="text-lumina-charcoal/70 font-light leading-relaxed">
-                        {step.desc}
-                      </p>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
+
+                    <div className="absolute left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-lumina-cream border border-lumina-green/20 flex items-center justify-center text-lumina-green z-10 hidden md:flex">
+                      {step.icon}
+                    </div>
+
+                    <div className="flex-1 md:w-1/2 text-left md:text-center">
+                      <div className={`md:px-8 ${i % 2 === 0 ? 'md:text-left' : 'md:text-right'}`}>
+                        <div className="flex items-center gap-2 mb-1 md:hidden text-lumina-green">
+                          <span className="text-[10px] uppercase tracking-widest font-bold">步骤 {i + 1}</span>
+                        </div>
+                        <h3 className="font-serif text-base md:text-3xl text-lumina-green mb-1 md:mb-4">{step.title}</h3>
+                        <p className="text-xs md:text-base text-lumina-charcoal/70 font-light leading-relaxed line-clamp-2 md:line-clamp-none">
+                          {step.desc}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Message from Xian Furen */}
-      <div className="max-w-4xl mx-auto px-6 pb-32">
+      <div className="max-w-4xl mx-auto px-6 pb-16 md:pb-32">
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="bg-white rounded-[32px] p-12 md:p-16 shadow-xl border border-black/5 relative overflow-hidden flex flex-col md:flex-row items-center gap-12"
+          className="bg-white rounded-2xl md:rounded-[32px] p-6 md:p-16 shadow-xl border border-black/5 relative overflow-hidden flex flex-col md:flex-row items-center gap-6 md:gap-12"
         >
-          <div className="absolute top-0 right-0 w-64 h-64 bg-lumina-gold/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
+          <div className="absolute top-0 right-0 w-32 h-32 md:w-64 md:h-64 bg-lumina-gold/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
           
-          <div className="relative z-10 w-48 h-48 md:w-64 md:h-64 flex-shrink-0">
+          <div className="relative z-10 w-32 h-32 md:w-64 md:h-64 flex-shrink-0">
             <motion.img 
               src="https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E5%86%BC%E5%A4%AB%E4%BA%BA.png"
               alt="Lady Xian Mascot"
@@ -238,11 +243,11 @@ export function Explore() {
           </div>
 
           <div className="relative z-10 text-center md:text-left">
-            <span className="text-lumina-terracotta text-xs uppercase tracking-widest mb-4 block font-bold">守护者的寄语</span>
-            <h2 className="font-serif text-3xl md:text-4xl text-lumina-green mb-6 leading-tight">
+            <span className="text-lumina-terracotta text-[10px] md:text-xs uppercase tracking-widest mb-2 md:mb-4 block font-bold">守护者的寄语</span>
+            <h2 className="font-serif text-xl md:text-4xl text-lumina-green mb-4 md:mb-6 leading-tight">
               “每一棵树，都是大地的呼吸，<br className="hidden md:block" /> 也是我们共同的记忆。”
             </h2>
-            <p className="text-lumina-charcoal/60 font-light leading-loose text-lg italic">
+            <p className="text-lumina-charcoal/60 font-light leading-relaxed md:leading-loose text-sm md:text-lg italic">
               在光林，我们不只是在种树，更是在守护一种跨越千年的生活方式。愿这份来自泥土的芬芳，能带给您片刻的宁静与喜悦。
             </p>
           </div>

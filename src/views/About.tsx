@@ -21,32 +21,34 @@ export function About() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="prose prose-xl max-w-none prose-headings:font-serif prose-headings:text-lumina-green prose-p:text-lumina-charcoal/80 prose-p:font-light prose-p:leading-loose text-left"
+          className="max-w-none text-left"
         >
-          <p className="text-xl md:text-2xl leading-loose text-lumina-green font-serif italic mb-12 text-left mt-0">
-            "连接城市餐桌与乡村果园，守护每一颗果实的初心。"
-          </p>
+          <div className="prose prose-xl max-w-none prose-headings:font-serif prose-headings:text-lumina-green prose-p:text-lumina-charcoal/80 prose-p:font-light prose-p:leading-loose mb-12">
+            <p className="text-xl md:text-2xl leading-loose text-lumina-green font-serif italic mb-12 text-left mt-0">
+              "连接城市餐桌与乡村果园，守护每一颗果实的初心。"
+            </p>
 
-          <p>
-            Lumina Grove 诞生于一个简单的愿望：弥合城市餐桌与乡村果园之间日益扩大的鸿沟。在广东茂名——“荔枝之乡”的古老山丘上，果树种植已有两千多年的历史。我们照料的一些树木甚至是在唐朝时期种植的。
-          </p>
+            <p>
+              Lumina Grove 诞生于一个简单的愿望：弥合城市餐桌与乡村果园之间日益扩大的鸿沟。在广东茂名——“荔枝之乡”的古老山丘上，果树种植已有两千多年的历史。我们照料的一些树木甚至是在唐朝时期种植的。
+            </p>
 
-          <p>
-            现代市场往往低估了照料这些巨树所需的辛勤劳动。果农面临价格波动和使用工业方法以牺牲风味和土壤健康为代价来最大化产量的压力。
-          </p>
+            <p>
+              现代市场往往低估了照料这些巨树所需的辛勤劳动。果农面临价格波动和使用工业方法以牺牲风味和土壤健康为代价来最大化产量的压力。
+            </p>
+          </div>
 
           <div className="my-16 space-y-12">
             <section>
               <h3 className="text-2xl font-serif text-lumina-green border-b border-lumina-green/20 pb-2 mb-6">一种新的农业模式</h3>
-              <p className="mb-8 leading-loose">
+              <p className="mb-8 leading-loose text-lumina-charcoal/80 font-light">
                 通过认养一棵树，您不仅仅是在购买水果；您是在投资一个可持续的未来。您的支持使我们的果农能够：
               </p>
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 list-none pl-0">
-                <li className="bg-white/50 p-6 rounded-sm border-l-2 border-lumina-terracotta leading-loose">实践有机、再生农业方法。</li>
-                <li className="bg-white/50 p-6 rounded-sm border-l-2 border-lumina-terracotta leading-loose">保护稀有的传统品种。</li>
-                <li className="bg-white/50 p-6 rounded-sm border-l-2 border-lumina-terracotta leading-loose">维护果园生态系统的生物多样性。</li>
-                <li className="bg-white/50 p-6 rounded-sm border-l-2 border-lumina-terracotta leading-loose">获得体面、稳定的收入。</li>
-              </ul>
+              <div className="grid grid-cols-2 gap-3 md:gap-6">
+                <div className="bg-white/50 p-3 md:p-6 rounded-sm border-l-2 border-lumina-terracotta leading-relaxed md:leading-loose text-xs md:text-base text-lumina-charcoal/80 font-light">实践有机、再生农业方法。</div>
+                <div className="bg-white/50 p-3 md:p-6 rounded-sm border-l-2 border-lumina-terracotta leading-relaxed md:leading-loose text-xs md:text-base text-lumina-charcoal/80 font-light">保护稀有的传统品种。</div>
+                <div className="bg-white/50 p-3 md:p-6 rounded-sm border-l-2 border-lumina-terracotta leading-relaxed md:leading-loose text-xs md:text-base text-lumina-charcoal/80 font-light">维护果园生态系统的生物多样性。</div>
+                <div className="bg-white/50 p-3 md:p-6 rounded-sm border-l-2 border-lumina-terracotta leading-relaxed md:leading-loose text-xs md:text-base text-lumina-charcoal/80 font-light">获得体面、稳定的收入。</div>
+              </div>
             </section>
 
             <section className="bg-lumina-green/90 text-white p-8 rounded-sm shadow-xl">
@@ -74,9 +76,9 @@ export function About() {
               </div>
             </section>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-4">
-                <p className="text-xs uppercase tracking-widest text-lumina-terracotta font-bold">代理授权书</p>
+            <div className="grid grid-cols-2 gap-4 md:gap-8">
+              <div className="space-y-2 md:space-y-4">
+                <p className="text-[10px] md:text-xs uppercase tracking-widest text-lumina-terracotta font-bold">代理授权书</p>
                 <img 
                   src="https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E6%8E%88%E6%9D%83%E4%B9%A6.jpeg" 
                   alt="代理授权书" 
@@ -84,8 +86,8 @@ export function About() {
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <div className="space-y-4">
-                <p className="text-xs uppercase tracking-widest text-lumina-terracotta font-bold">商标注册证</p>
+              <div className="space-y-2 md:space-y-4">
+                <p className="text-[10px] md:text-xs uppercase tracking-widest text-lumina-terracotta font-bold">商标注册证</p>
                 <img 
                   src="https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E5%95%86%E6%A0%87%E6%B3%A8%E5%86%8C%E8%AF%81.png" 
                   alt="商标注册证" 
@@ -94,12 +96,14 @@ export function About() {
                 />
               </div>
             </div>
-          </div>
 
-          <h3 className="text-left mt-20">茂名市农业农村局指导 华南农业大学茂名现代农业研究院指导</h3>
-          <p className="text-left leading-loose">
-            Lumina Grove 与当地政府倡议携手合作，振兴乡村社区。我们很自豪能成为“数字农业”的试点项目，利用技术为食品系统带来透明度和连接。
-          </p>
+            <div className="prose prose-xl max-w-none prose-headings:font-serif prose-headings:text-lumina-green prose-p:text-lumina-charcoal/80 prose-p:font-light prose-p:leading-loose">
+              <h3 className="text-left mt-20">茂名市农业农村局指导 华南农业大学茂名现代农业研究院指导</h3>
+              <p className="text-left leading-loose">
+                Lumina Grove 与当地政府倡议携手合作，振兴乡村社区。我们很自豪能成为“数字农业”的试点项目，利用技术为食品系统带来透明度和连接。
+              </p>
+            </div>
+          </div>
         </motion.div>
       </div>
     </div>

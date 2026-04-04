@@ -560,28 +560,28 @@ export function MyTree({ onChangeView }: { onChangeView?: (view: string) => void
             <p className="text-orange-900/60 text-lg">选择一棵心仪的茂名特色果树，见证它的成长与收获</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mb-12 md:mb-16">
             {(['huangpi', 'longan', 'mango', 'lychee'] as Variety[]).map((v, i) => (
               <motion.div 
                 key={v}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-white rounded-[40px] p-8 shadow-xl border border-orange-50 hover:shadow-2xl transition-all group cursor-pointer"
+                className="bg-white rounded-2xl md:rounded-[40px] p-4 md:p-8 shadow-xl border border-orange-50 hover:shadow-2xl transition-all group cursor-pointer"
                 onClick={() => {
                   setVariety(v);
                   setTreeName(`我的${VARIETY_CONFIG[v].label}树`);
                   setIsAdopted(true);
                 }}
               >
-                <div className="aspect-square bg-orange-50 rounded-[32px] mb-6 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform">
-                  <div className="w-40 h-40">
+                <div className="aspect-square bg-orange-50 rounded-xl md:rounded-[32px] mb-3 md:mb-6 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform">
+                  <div className="w-24 h-24 md:w-40 md:h-40">
                     <TreeIllustration variety={v} growth={100} isShaking={false} equippedAccs={[]} />
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-orange-950 mb-2">{VARIETY_CONFIG[v].label}</h3>
-                <p className="text-sm text-orange-900/40 mb-6">茂名特色品种，口感极佳</p>
-                <button className="w-full py-3 bg-orange-500 text-white rounded-2xl font-bold group-hover:bg-orange-600 transition-colors shadow-lg shadow-orange-100">
+                <h3 className="text-sm md:text-xl font-bold text-orange-950 mb-1 md:mb-2">{VARIETY_CONFIG[v].label}</h3>
+                <p className="text-[10px] md:text-sm text-orange-900/40 mb-3 md:mb-6">茂名特色品种</p>
+                <button className="w-full py-2 md:py-3 bg-orange-500 text-white rounded-xl md:rounded-2xl text-xs md:text-base font-bold group-hover:bg-orange-600 transition-colors shadow-lg shadow-orange-100">
                   立即领养
                 </button>
               </motion.div>

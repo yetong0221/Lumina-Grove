@@ -131,51 +131,53 @@ export function Grove({ onShowToast }: GroveProps) {
       </div>
 
       {/* Search and Category Filter */}
-      <div className="max-w-7xl mx-auto px-6 mb-16">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 border-b border-lumina-stone/30 pb-8">
-          <div className="flex items-center gap-8">
-            {[
-              { id: 'all', label: '全部' },
-              { id: 'subscription', label: '季度订阅包' },
-              { id: 'product', label: '商品' }
-            ].map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setActiveCategory(cat.id as any)}
-                className={`text-sm tracking-widest uppercase transition-all duration-300 relative pb-4 ${
-                  activeCategory === cat.id 
-                    ? 'text-lumina-terracotta font-bold' 
-                    : 'text-lumina-green/60 hover:text-lumina-green'
-                }`}
-              >
-                {cat.label}
-                {activeCategory === cat.id && (
-                  <motion.div 
-                    layoutId="activeCategory"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-lumina-terracotta"
-                  />
-                )}
-              </button>
-            ))}
-          </div>
+      <div className="sticky top-0 z-40 bg-lumina-cream/90 backdrop-blur-md border-b border-lumina-stone/20 mb-16">
+        <div className="max-w-7xl mx-auto px-6 py-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="flex items-center gap-8">
+              {[
+                { id: 'all', label: '全部' },
+                { id: 'subscription', label: '季度订阅包' },
+                { id: 'product', label: '商品' }
+              ].map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveCategory(cat.id as any)}
+                  className={`text-sm tracking-widest uppercase transition-all duration-300 relative pb-4 ${
+                    activeCategory === cat.id 
+                      ? 'text-lumina-terracotta font-bold' 
+                      : 'text-lumina-green/60 hover:text-lumina-green'
+                  }`}
+                >
+                  {cat.label}
+                  {activeCategory === cat.id && (
+                    <motion.div 
+                      layoutId="activeCategory"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-lumina-terracotta"
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
 
-          <div className="relative w-full md:w-64">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-lumina-green/30" size={18} />
-            <input 
-              type="text"
-              placeholder="搜索好物..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-white border border-lumina-stone/20 rounded-full py-3 pl-12 pr-6 text-sm focus:outline-none focus:ring-2 focus:ring-lumina-terracotta/20 transition-all"
-            />
+            <div className="relative w-full md:w-64">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-lumina-green/30" size={18} />
+              <input 
+                type="text"
+                placeholder="搜索好物..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-white border border-lumina-stone/20 rounded-full py-3 pl-12 pr-6 text-sm focus:outline-none focus:ring-2 focus:ring-lumina-terracotta/20 transition-all"
+              />
+            </div>
           </div>
         </div>
       </div>
 
       {/* Product Grid */}
-      <div className="max-w-7xl mx-auto px-6 pb-20">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 pb-20">
         {filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-x-3 md:gap-x-8 gap-y-8 md:gap-y-16">
             {filteredProducts.map((product, index) => (
               <motion.div 
                 key={product.id}
@@ -184,7 +186,7 @@ export function Grove({ onShowToast }: GroveProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.8 }}
                 onClick={() => setSelectedProduct(product)}
-                className="group flex flex-col bg-white rounded-sm overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-lumina-stone/20 cursor-pointer"
+                className="group flex flex-col bg-white rounded-sm overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 md:hover:-translate-y-2 border border-lumina-stone/20 cursor-pointer"
               >
                 {/* Image Container */}
                 <div className="aspect-[3/4] overflow-hidden relative bg-white">
@@ -195,31 +197,32 @@ export function Grove({ onShowToast }: GroveProps) {
                     referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <div className="bg-white/90 backdrop-blur-sm p-4 rounded-full text-lumina-green">
-                      <Info size={24} />
+                    <div className="bg-white/90 backdrop-blur-sm p-2 md:p-4 rounded-full text-lumina-green">
+                      <Info size={18} md:size={24} />
                     </div>
                   </div>
                 </div>
                 
                 {/* Content */}
-                <div className="p-8 flex flex-col flex-grow">
-                  <div className="mb-4">
-                    <h3 className="font-serif text-2xl text-lumina-green mb-1">{product.name}</h3>
-                    <p className="text-[10px] uppercase tracking-widest text-lumina-charcoal/40">{product.subtitle}</p>
+                <div className="p-3 md:p-8 flex flex-col flex-grow">
+                  <div className="mb-2 md:mb-4">
+                    <h3 className="font-serif text-sm md:text-2xl text-lumina-green mb-0.5 md:mb-1 line-clamp-1 md:line-clamp-none">{product.name}</h3>
+                    <p className="text-[8px] md:text-[10px] uppercase tracking-widest text-lumina-charcoal/40 line-clamp-1 md:line-clamp-none">{product.subtitle}</p>
                   </div>
                   
-                  <p className="text-sm text-lumina-charcoal/70 font-light leading-relaxed mb-8 flex-grow">
+                  <p className="text-[10px] md:text-sm text-lumina-charcoal/70 font-light leading-snug md:leading-relaxed mb-4 md:mb-8 flex-grow line-clamp-2 md:line-clamp-none">
                     {product.desc}
                   </p>
 
-                  <div className="flex items-center justify-between mt-auto pt-6 border-t border-lumina-stone/30">
-                    <span className="text-xl font-serif text-lumina-terracotta">¥{product.price}</span>
+                  <div className="flex flex-col md:flex-row items-start md:items-center justify-between mt-auto pt-3 md:pt-6 border-t border-lumina-stone/30 gap-2 md:gap-0">
+                    <span className="text-sm md:text-xl font-serif text-lumina-terracotta">¥{product.price}</span>
                     <button 
                       onClick={(e) => handleAddToCart(e, product)}
-                      className="flex items-center gap-2 bg-lumina-green text-white px-6 py-3 rounded-full hover:bg-lumina-terracotta transition-colors duration-300 text-xs tracking-widest uppercase font-medium"
+                      className="w-full md:w-auto flex items-center justify-center gap-1 md:gap-2 bg-lumina-green text-white px-3 md:px-6 py-2 md:py-3 rounded-full hover:bg-lumina-terracotta transition-colors duration-300 text-[10px] md:text-xs tracking-widest uppercase font-medium"
                     >
-                      <ShoppingBag size={14} />
-                      加入购物车
+                      <ShoppingBag size={12} md:size={14} />
+                      <span className="hidden md:inline">加入购物车</span>
+                      <span className="md:hidden">加入</span>
                     </button>
                   </div>
                 </div>
@@ -232,27 +235,27 @@ export function Grove({ onShowToast }: GroveProps) {
       </div>
 
       {/* External Market Entry Point */}
-      <div className="max-w-7xl mx-auto px-6 pb-32">
+      <div className="max-w-7xl mx-auto px-6 pb-16 md:pb-32">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-lumina-green rounded-2xl p-12 text-center relative overflow-hidden group"
+          className="bg-lumina-green rounded-xl md:rounded-2xl p-4 md:p-12 text-center relative overflow-hidden group"
         >
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1615485290382-441e4d0c9cb5?q=80&w=2000&auto=format&fit=crop')] opacity-10 bg-cover bg-center group-hover:scale-105 transition-transform duration-1000" />
           <div className="relative z-10">
-            <h3 className="font-serif text-3xl md:text-4xl text-white mb-6">探索更多时令好物</h3>
-            <p className="text-white/70 max-w-xl mx-auto mb-10 font-light leading-relaxed">
+            <h3 className="font-serif text-xl md:text-4xl text-white mb-4 md:mb-6">探索更多时令好物</h3>
+            <p className="text-white/70 max-w-xl mx-auto mb-6 md:mb-10 font-light leading-relaxed text-xs md:text-base">
               前往我们的精品分站，发现更多来自茂名的地道风物与精选农副产品。
             </p>
             <a 
               href="https://pomona-9dd.pages.dev/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-lumina-gold text-lumina-green px-10 py-4 rounded-full hover:bg-white transition-all duration-300 text-sm tracking-widest uppercase font-bold shadow-xl"
+              className="inline-flex items-center gap-2 md:gap-3 bg-lumina-gold text-lumina-green px-6 md:px-10 py-3 md:py-4 rounded-full hover:bg-white transition-all duration-300 text-[10px] md:text-sm tracking-widest uppercase font-bold shadow-xl"
             >
               进入精品分站
-              <ArrowRight size={18} />
+              <ArrowRight size={14} md:size={18} />
             </a>
           </div>
         </motion.div>

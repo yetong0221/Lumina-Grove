@@ -106,16 +106,52 @@ export default function App() {
 
   return (
     <CartProvider>
-      <div className="min-h-screen bg-lumina-cream text-lumina-charcoal font-sans selection:bg-lumina-terracotta selection:text-white relative overflow-x-hidden">
+      <div className="min-h-screen bg-lumina-cream text-lumina-charcoal font-sans selection:bg-lumina-terracotta selection:text-white relative">
         
         {/* Exquisite Background Texture/Gradient */}
-        <div className="fixed inset-0 pointer-events-none z-[-1]">
+        <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
           {/* Subtle paper-like texture */}
           <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/paper-fibers.png')]" />
           {/* Noise texture for more refinement */}
           <div className="absolute inset-0 opacity-[0.02] bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] mix-blend-overlay" />
           {/* Dot pattern */}
           <div className="absolute inset-0 bg-[radial-gradient(#d1d5db_1px,transparent_1px)] [background-size:40px_40px] opacity-30" />
+          
+          {/* Decorative Organic Curves/Waves */}
+          <svg className="absolute inset-0 w-full h-full opacity-[0.07]" preserveAspectRatio="none" viewBox="0 0 1440 800">
+            <motion.path
+              animate={{
+                d: [
+                  "M0,160 C320,300 420,0 720,160 C1020,320 1120,0 1440,160 L1440,800 L0,800 Z",
+                  "M0,160 C320,100 420,250 720,160 C1020,70 1120,250 1440,160 L1440,800 L0,800 Z",
+                  "M0,160 C320,300 420,0 720,160 C1020,320 1120,0 1440,160 L1440,800 L0,800 Z"
+                ]
+              }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              fill="url(#grad1)"
+            />
+            <defs>
+              <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#2D463E" stopOpacity="0.2" />
+                <stop offset="100%" stopColor="#C18C5D" stopOpacity="0.1" />
+              </linearGradient>
+            </defs>
+          </svg>
+
+          <svg className="absolute inset-0 w-full h-full opacity-[0.05]" preserveAspectRatio="none" viewBox="0 0 1440 800">
+            <motion.path
+              animate={{
+                d: [
+                  "M0,400 C480,300 960,500 1440,400 L1440,800 L0,800 Z",
+                  "M0,400 C480,500 960,300 1440,400 L1440,800 L0,800 Z",
+                  "M0,400 C480,300 960,500 1440,400 L1440,800 L0,800 Z"
+                ]
+              }}
+              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+              fill="#2D463E"
+            />
+          </svg>
+
           {/* Soft atmospheric gradients */}
           <div className="absolute inset-0 bg-gradient-to-tr from-lumina-gold/10 via-transparent to-lumina-terracotta/10" />
           <div className="absolute inset-0 bg-gradient-to-bl from-lumina-green/5 via-transparent to-transparent" />
@@ -128,6 +164,7 @@ export default function App() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
+            className="min-h-screen"
           >
             {renderView()}
           </motion.div>
