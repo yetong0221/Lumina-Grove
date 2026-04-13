@@ -160,7 +160,7 @@ export function RepurchaseInfographic() {
             <div className="flex flex-col sm:flex-row items-center gap-6 text-xs text-lumina-charcoal/60 font-light">
               <div className="flex items-center gap-2">
                 <CheckCircle size={16} className="text-lumina-green/70" strokeWidth={1.5} />
-                <span>茂名市政府助农项目背书</span>
+                <span>华南农业大学茂名现代农业研究院助农项目背书</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle size={16} className="text-lumina-green/70" strokeWidth={1.5} />

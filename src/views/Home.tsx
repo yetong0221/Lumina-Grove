@@ -200,18 +200,15 @@ export function Home({ onChangeView }: HomeProps) {
             transition={{ duration: 1, delay: 0.4 }}
             className="border-t border-lumina-gold/20 pt-12 flex flex-col items-center justify-center gap-8"
           >
-            <p className="text-lumina-green/40 text-xs tracking-[0.2em] uppercase mb-4">与华南农业大学、茂名市政府共同打造</p>
+            <p className="text-lumina-green/40 text-xs tracking-[0.2em] uppercase mb-4">与华南农业大学、华南农业大学茂名现代农业研究院共同打造</p>
             
             <div className="flex flex-col md:flex-row items-center gap-12 opacity-80 hover:opacity-100 transition-opacity duration-700">
-              <a 
-                href="http://www.maoming.gov.cn/" 
-                target="_blank" 
-                rel="noopener noreferrer"
+              <div 
                 className="flex flex-col items-center gap-2 group text-center"
               >
-                <span className="font-serif text-xl text-lumina-green font-bold tracking-wider group-hover:text-lumina-terracotta transition-colors">茂名市政府</span>
-                <span className="text-[10px] text-lumina-gold uppercase tracking-widest">Maoming Municipal Government</span>
-              </a>
+                <span className="font-serif text-xl text-lumina-green font-bold tracking-wider group-hover:text-lumina-terracotta transition-colors">华南农业大学茂名现代农业研究院</span>
+                <span className="text-[10px] text-lumina-gold uppercase tracking-widest">SCAU Maoming Modern Agricultural Research Institute</span>
+              </div>
               
               <div className="hidden md:block h-12 w-[1px] bg-lumina-gold/30" />
               
