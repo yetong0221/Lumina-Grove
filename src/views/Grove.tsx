@@ -14,7 +14,7 @@ const PRODUCTS: Product[] = [
     subtitle: 'Quarterly Fresh Fruit Subscription',
     price: 399,
     desc: '每个季度为您精选当季最优质的茂名鲜果，顺丰冷链直达。',
-    image: 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E5%AD%A3%E5%BA%A6%E9%B2%9C%E6%9E%9C%E8%AE%A2%E9%98%85%E5%8C%85.jpg',
+    image: 'https://0221-1408011218.cos.ap-guangzhou.myqcloud.com/%E9%B2%9C%E6%9E%9C%E8%AE%A2%E9%98%85%E5%8C%85%E6%B5%B7%E6%8A%A5.jpg',
     details: '订阅我们的鲜果包，您将按季度收到来自茂名的顶级馈赠。春季荔枝、夏季龙眼、秋季芒果、冬季特色柑橘。每一份都代表了那个季节土地最纯粹的味道。',
     category: 'subscription'
   },
